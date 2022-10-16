@@ -1,0 +1,42 @@
+@import "./../../styles/main";
+
+.h5p-timekeeper-counter {
+  align-items: center;
+  background-color: $color-background;
+  box-shadow: inset 10px 10px 30px $color-shadow-dark;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 10em;
+  width: 100%;
+
+  .h5p-timekeeper-counter-content {
+    font-size: 5em;
+    line-height: 1em;
+    margin: .2em auto;
+    text-align: center;
+
+    .h5p-timekeeper-counter-aria-timer {
+      position: absolute;
+      left: $offset-offscreen;
+    }
+
+    .h5p-timekeeper-format-element {
+      align-items: baseline;
+      display: inline-flex;
+      flex-direction: row;
+
+      &.h5p-timekeeper-format-verbose {
+        .h5p-timekeeper-format-value {
+          margin-left: .25em;
+        }
+
+        .h5p-timekeeper-format-unit {
+          font-size: 50%;
+          margin-right: .25em;
+        }
+      }
+    }
+  }
+}

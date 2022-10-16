@@ -1,0 +1,232 @@
+{
+  "semantics": [
+    {
+      "label": "Einleitung",
+      "description": "Füge optional eine Einleitung ein."
+    },
+    {
+      "label": "Modus",
+      "description": "Wähle, in welchem Modus Timekeeper laufen soll.",
+      "options": [
+        {
+          "label": "Zähle zu einem Datum und einer Uhrzeit herunter"
+        },
+        {
+          "label": "Zähle eine bestimmte Zeit herunter"
+        },
+        {
+          "label": "Stoppuhr"
+        }
+      ]
+    },
+    {
+      "label": "Wähle Datum und Uhrzeit",
+      "fields": [
+        {
+          "label": "Gewünschtes Datum und gewünschte Uhrzeit"
+        },
+        {
+          "label": "Abschlussnachricht",
+          "description": "Optionale Nachricht, die angezeigt wird, wenn das gewünschte Datum und die gewünschte Uhrzeit erreicht wurden.",
+          "default": "Der gewünschte Zeitpunkt wurde erreicht."
+        },
+        {
+          "label": "Abschlussnachricht (beim Öffnen)",
+          "description": "Optionale Nachricht, die angezeigt wird, wenn der Timer erst nach Erreichen des gewünschten Datums und der gewünschten Zeit geöffnet wird.",
+          "default": "Der Timer ist bereits abgelaufen."
+        }
+      ]
+    },
+    {
+      "label": "Wählte die Zeit, von der aus heruntergezählt werden soll",
+      "fields": [
+        {
+          "label": "Startzeit",
+          "description": "Setze die Startzeit im format H:MM:SS."
+        },
+        {
+          "label": "Abschlussnachricht",
+          "description": "Optionale Nachricht, die angezeigt wird, wenn der Timer abgelaufen ist."
+        },
+        {
+          "label": "Starte automatisch",
+          "description": "Wenn gewählt, startet der Timer automatisch. Wenn nicht ausgewählt, müssen die Nutzenden den Timer starten."
+        },
+        {
+          "label": "Pausierbar",
+          "description": "Wenn gewählt, können die Nutzenden den Timer pausieren."
+        },
+        {
+          "label": "Zurücksetzbar",
+          "description": "Wenn gewählt, können die Nutzenden den Timer zurücksetzen."
+        }
+      ]
+    },
+    {
+      "label": "Zeitformat",
+      "description": "Wähle das Zeitformat, das der Timer nutzen soll.",
+      "options": [
+        {
+          "label": "Ausführlich"
+        },
+        {
+          "label": "Timecode"
+        }
+      ]
+    },
+    {
+      "label": "Alarmsignal",
+      "description": "Du kannst optional eine Tondatei angeben, die gespielt werden soll, wenn der Timer abläuft. Bitte beachte, dass beim automatischen Starten des Timers Browser das Abspielen des Signals verhindern können, falls die Nutzenden zuvor nicht mit der Seite interagiert haben."
+    },
+    {
+      "label": "Bedienoberfläche",
+      "fields": [
+        {
+          "label": "Einheit Tage",
+          "description": "Einheit für Tage im ausführlichen Zeitformat.",
+          "default": "T"
+        },
+        {
+          "label": "Einheit Stunden",
+          "description": "Einheit für Stunden im ausführlichen Zeitformat.",
+          "default": "Std"
+        },
+        {
+          "label": "Einheit Minuten",
+          "description": "Einheit für Minuten im ausführlichen Zeitformat.",
+          "default": "M"
+        },
+        {
+          "label": "Einheit Sekunden",
+          "description": "Einheit für Sekunden im ausführlichen Zeitformat.",
+          "default": "S"
+        },
+        {
+          "label": "Titel: Runde",
+          "description": "Titel für die Runden-Spalte in der Rundentabelle.",
+          "default": "Runde"
+        },
+        {
+          "label": "Titel: Rundenzeit",
+          "description": "Titel für die Rundenzeit-Spalte in der Rundentabelle",
+          "default": "Rundenzeit"
+        },
+        {
+          "label": "Titel: Gesamtzeit",
+          "description": "Titel für die Gesamtzeit-Spalte in der Rundentabelle.",
+          "default": "Gesamtzeit"
+        }
+      ]
+    },
+    {
+      "label": "Vorlesewerkzeug",
+      "fields": [
+        {
+          "label": "Beschriftung für den \"Start\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Start\"-Button",
+          "default": "Starte den Timer"
+        },
+        {
+          "label": "Beschriftung für den \"Start\"-Button (deaktiviert)",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Start\"-Button.",
+          "default": "Starte den Timer. Derzeit deaktiviert"
+        },
+        {
+          "label": "Beschriftung für den \"Pause\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Pause\"-Button",
+          "default": "Pausiere den Timer"
+        },
+        {
+          "label": "Beschriftung für den \"Rundenzeit festhalten\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Rundenzeit festhalten\"-Button",
+          "default": "Halte eine Rundenzeit fest"
+        },
+        {
+          "label": "Beschriftung für den \"Rundenzeit festhalten\"-Button (deaktiviert)",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Rundenzeit festhalten\"-Button",
+          "default": "Halte eine Rundenzeit fest. Derzeit deaktiviert"
+        },
+        {
+          "label": "Beschriftung für den \"Reset\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Reset\"-Button",
+          "default": "Setze den Timer zurück"
+        },
+        {
+          "label": "Beschriftung für den \"Start\"-Button (Stoppuhr)",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Start\"-Button",
+          "default": "Starte die Stoppuhr"
+        },
+        {
+          "label": "Beschriftung für den \"Pause\"-Button (Stoppuhr)",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Pause\"-Button",
+          "default": "Pausiere die Stoppuhr"
+        },
+        {
+          "label": "Beschriftung für den \"Reset\"-Button (Stoppuhr)",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Reset\"-Button",
+          "default": "Setze die Stoppuhr zurück"
+        },
+        {
+          "label": "Titel für die Rundentabelle",
+          "description": "Vorlesewerkzeug-Beschreibung.",
+          "default": "Rundenzeiten"
+        },
+        {
+          "label": "Aktuelle Zeit",
+          "description": "Vorlesewerkzeug-Beschreibung.",
+          "default": "Aktuelle Zeit:"
+        },
+        {
+          "label": "Tag",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Tag"
+        },
+        {
+          "label": "Tage",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Tage"
+        },
+        {
+          "label": "Stunde",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Stunde"
+        },
+        {
+          "label": "Stunden",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Stunden"
+        },
+        {
+          "label": "Minute",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Minute"
+        },
+        {
+          "label": "Minuten",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Minuten"
+        },
+        {
+          "label": "Sekunde",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Sekunde"
+        },
+        {
+          "label": "Sekunden",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Sekunden"
+        },
+        {
+          "label": "Zehntelsekunde",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Zehntelsekunde"
+        },
+        {
+          "label": "Zehntelsekunden",
+          "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
+          "default": "Zehntelsekunden"
+        }
+      ]
+    }
+  ]
+}

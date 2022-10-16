@@ -1,0 +1,653 @@
+import Util from './services/util';
+import Dictionary from './services/dictionary';
+import TimeFormatter from './services/timeformatter';
+import Counter from './components/counter';
+import Toolbar from './components/toolbar/toolbar';
+import Laptracker from './components/laptracker';
+import '../styles/h5p-timekeeper.scss';
+
+export default class Timekeeper extends H5P.EventDispatcher {
+  /**
+   * @class
+   * @param {object} params Parameters passed by the editor.
+   * @param {number} contentId Content's id.
+   * @param {object} [extras] Saved state, metadata, etc.
+   */
+  constructor(params, contentId, extras = {}) {
+    super();
+
+    // Sanitize parameters
+    this.params = Util.extend({
+      mode: 'endtime',
+      datetimeGroup: {
+        endtime: new Date(Date.now() + 60)
+      },
+      startTimeGroup: {
+        startTime: 60,
+        autostart: true,
+        canBePaused: false,
+        canBeReset: false
+      },
+      l10n: {
+        unitDays: 'd',
+        unitHours: 'h',
+        unitMinutes: 'm',
+        unitSeconds: 's',
+        lap: 'Lap',
+        lapTime: 'Lap time',
+        totalTime: 'Total time'
+      },
+      a11y: {
+        play: 'Start timer',
+        pause: 'Pause timer',
+        resume: 'Resume timer',
+        lap: 'Track a lap',
+        reset: 'Reset timer',
+        playStopwatch: 'Start stopwatch',
+        resumeStopwatch: 'Resume stopwatch',
+        pauseStopwatch: 'Pause stopwatch',
+        resetStopwatch: 'Reset stopwatch',
+        lapTable: 'Lap times',
+        currentTime: 'Current time:',
+        day: 'day',
+        days: 'days',
+        hour: 'hour',
+        hours: 'hours',
+        minute: 'minute',
+        minutes: 'minutes',
+        second: 'second',
+        seconds: 'seconds',
+        tenth: 'tenth of a second',
+        tenths: 'tenths of a second'
+      }
+    }, params);
+
+    this.contentId = contentId;
+    this.extras = extras;
+
+    // Fill dictionary
+    Dictionary.fill({ l10n: this.params.l10n, a11y: this.params.a11y });
+
+    const defaultLanguage = extras?.metadata?.defaultLanguage || 'en';
+    this.languageTag = Util.formatLanguageCode(defaultLanguage);
+
+    this.state = Timekeeper.STATE_RESET;
+
+    // Create counter, toolbar and laptracker as needed
+    this.createComponents();
+
+    /*
+     * Audio signal when finished
+     * Using WebAudio API, because iOS doesn't preload on cellular connections
+     */
+    if (this.params?.signal?.[0]?.path) {
+      this.audioContext = new AudioContext();
+
+      this.finishedSignal = document.createElement('audio');
+      this.finishedSignal.src = H5P.getPath(
+        this.params.signal[0].path, this.contentId
+      );
+
+      const track = this.audioContext
+        .createMediaElementSource(this.finishedSignal);
+      track.connect(this.audioContext.destination);
+    }
+
+    this.dom = this.buildDOM();
+  }
+
+  /**
+   * Attach library to wrapper.
+   *
+   * @param {H5P.jQuery} $wrapper Content's container.
+   */
+  attach($wrapper) {
+    $wrapper.get(0).classList.add('h5p-timekeeper');
+    $wrapper.get(0).appendChild(this.dom);
+  }
+
+  /**
+   * Build main DOM.
+   *
+   * @returns {HTMLElement} Main DOM.
+   */
+  buildDOM() {
+    const dom = document.createElement('div');
+    dom.classList.add('h5p-timekeeper-main');
+
+    // Optional introduction
+    if (this.params.introduction) {
+      const introduction = document.createElement('div');
+      introduction.classList.add('h5p-timekeeper-introduction');
+
+      const content = document.createElement('div');
+      content.classList.add('h5p-timekeeper-intro-content');
+      content.innerHTML = this.params.introduction;
+      introduction.appendChild(content);
+
+      dom.appendChild(introduction);
+    }
+
+    dom.appendChild(this.component.getDOM());
+
+    if (this.toolbar) {
+      dom.appendChild(this.toolbar.getDOM());
+    }
+
+    if (this.laptracker) {
+      dom.appendChild(this.laptracker.getDOM());
+    }
+
+    if (this.finishedSignal) {
+      dom.appendChild(this.finishedSignal);
+    }
+
+    // Only start once visible to the user
+    this.observer = new IntersectionObserver((entries) => {
+      if (entries[0].intersectionRatio === 1) {
+        this.observer.unobserve(dom); // Only need instantiate once.
+        if (this.isRoot()) {
+          // trigger xAPI attempted
+          this.setActivityStarted();
+        }
+
+        if (this.autostart) {
+          this.component.start();
+        }
+
+        this.trigger('resize');
+      }
+    }, {
+      root: document.documentElement,
+      threshold: [1]
+    });
+    this.observer.observe(dom);
+
+    return dom;
+  }
+
+  /**
+   * Set state.
+   *
+   * @param {number} state State: STATE_ENDED|STATE_PLAYING|STATE_PAUSED.
+   * @param {number} timeMs Time that the state was changed at.
+   */
+  triggerTimerState(state, timeMs) {
+    if (state === Counter.STATE_RESET) {
+      this.triggerXAPITimerEvent('reset', timeMs);
+    }
+    else if (state === Counter.STATE_PLAYED) {
+      this.triggerXAPITimerEvent('played', timeMs);
+    }
+    else if (state === Counter.STATE_PAUSED) {
+      this.triggerXAPITimerEvent('paused', timeMs);
+    }
+    else if (state === Counter.STATE_RESUMED) {
+      this.triggerXAPITimerEvent('resumed', timeMs);
+    }
+    else if (state === Counter.STATE_EXPIRED) {
+      this.triggerXAPITimerEvent('expired', timeMs);
+    }
+  }
+
+  /**
+   * Handle timer state changed.
+   *
+   * @param {number} state State: STATE_ENDED|STATE_PLAYING|STATE_PAUSED.
+   * @param {number} timeMs Time that the state was changed at.
+   */
+  handleStateChanged(state, timeMs) {
+    this.triggerTimerState(state, timeMs);
+
+    if (!this.toolbar) {
+      return; // No toolbar to update
+    }
+
+    if (
+      state === Counter.STATE_PLAYED ||
+      state === Counter.STATE_RESUMED
+    ) {
+      if (
+        this.params.startTimeGroup.canBePaused ||
+        this.params.mode === 'stopwatch'
+      ) {
+        this.toolbar.showButton('pause');
+        if (this.toolbar.hasButtonFocus('play')) {
+          this.toolbar.focus('pause');
+        }
+        this.toolbar.hideButton('play');
+      }
+      else {
+        this.toolbar.disableButton('play');
+      }
+
+      if (this.params.mode === 'stopwatch') {
+        this.toolbar.enableButton('lap');
+      }
+    }
+    else if (
+      state === Counter.STATE_PAUSED ||
+      state === Counter.STATE_EXPIRED ||
+      state === Counter.STATE_RESET
+    ) {
+      this.toolbar.showButton('play');
+      if (this.toolbar.hasButtonFocus('pause')) {
+        this.toolbar.focus('play');
+      }
+      this.toolbar.hideButton('pause');
+
+      if (this.params.mode === 'stopwatch') {
+        this.toolbar.disableButton('lap');
+      }
+    }
+  }
+
+  /**
+   * Handle timer finished
+   */
+  handleFinished() {
+    if (this.finishedText) {
+      this.component.setCounter(this.finishedText);
+    }
+
+    this.toolbar?.disableButton('play');
+
+    if (this.finishedSignal) {
+      if (this.audioContext.state === 'suspended') {
+        this.audioContext.resume();
+      }
+
+      const playPromise = this.finishedSignal.play();
+      // play() is asynchronous and may fail if user didn't interact
+      playPromise?.then(() => {}).catch(() => {});
+    }
+
+    this.triggerXAPIEvent('completed');
+
+    this.trigger('resize');
+  }
+
+  /**
+   * Handle tick from timer.
+   *
+   * @param {number} timeMs Time the timer is at in milliseconds.
+   */
+  handleTick(timeMs) {
+    this.laptracker?.updateLap(timeMs);
+  }
+
+  /**
+   * Handle user click on play.
+   */
+  handleClickPlay() {
+    this.component.start();
+  }
+
+  /**
+   * Handle user click on pause.
+   */
+  handleClickPause() {
+    this.component.pause();
+  }
+
+  /**
+   * Handle user click on lap.
+   */
+  handleClickLap() {
+    if (!this.laptracker) {
+      return;
+    }
+
+    const timeMs = this.component.getTime();
+
+    this.triggerXAPITimerEvent('tracked', timeMs);
+    this.laptracker.addLap(timeMs);
+  }
+
+  /**
+   * Handle user click on reset.
+   */
+  handleClickReset() {
+    this.toolbar.enableButton('play');
+    this.component.reset();
+
+    this.laptracker?.reset();
+
+    if (this.autostart) {
+      this.component.start();
+    }
+
+    if (this.finishedSignal) {
+      this.finishedSignal.pause();
+      this.finishedSignal.currentTime = 0;
+    }
+  }
+
+  /**
+   * Get task title.
+   *
+   * @returns {string} Title.
+   */
+  getTitle() {
+    return H5P.createTitle(
+      this.extras?.metadata?.title || Timekeeper.DEFAULT_DESCRIPTION
+    );
+  }
+
+  /**
+   * Get description.
+   *
+   * @returns {string} Description.
+   */
+  getDescription() {
+    return Timekeeper.DEFAULT_DESCRIPTION;
+  }
+
+  /**
+   * Trigger xAPI event.
+   *
+   * @param {string} verb Short id of the verb we want to trigger.
+   */
+  triggerXAPIEvent(verb) {
+    const xAPIEvent = this.createXAPIEvent(verb);
+    this.trigger(xAPIEvent);
+  }
+
+  /**
+   * Trigger xAPI event with custom verb/extension URI
+   *
+   * @param {string} verb Short id of the verb we want to trigger.
+   * @param {number} timeMs Time in milliseconds.
+   */
+  triggerXAPITimerEvent(verb, timeMs) {
+    const xAPIEvent = this.createXAPIEvent({});
+    this.setXAPITimerVerb(xAPIEvent, verb);
+
+    if (typeof timeMs === 'number') {
+      this.setXAPITimeExtension(xAPIEvent, timeMs);
+    }
+
+    this.trigger(xAPIEvent);
+  }
+
+  /**
+   * Create an xAPI event.
+   *
+   * @param {string} verb Short id of the verb we want to trigger.
+   * @returns {H5P.XAPIEvent} Event template.
+   */
+  createXAPIEvent(verb) {
+    const xAPIEvent = this.createXAPIEventTemplate(verb);
+
+    Util.extend(
+      xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
+      this.getXAPIDefinition());
+
+    return xAPIEvent;
+  }
+
+  /**
+   * Add time extension to xAPI definition.
+   *
+   * @param {H5P.XAPIEvent} xAPIEvent to set definition for.
+   * @param {number} timeMs Time in milliseconds.
+   */
+  setXAPITimeExtension(xAPIEvent, timeMs) {
+    if (timeMs < 0) {
+      return; // Time not valid
+    }
+
+    const statement = xAPIEvent?.data?.statement;
+    if (!statement) {
+      return; // No statement found
+    }
+
+    statement.object = statement.object || {};
+    statement.object.definition = statement.object.definition || {};
+    statement.object.definition.extensions =
+      statement.object.definition.extensions || {};
+
+    statement.object.definition.extensions[
+      'https://snordian.de/x-api/timer/extensions/time-period'
+    ] = TimeFormatter.toISO8601TimePeriod(timeMs);
+  }
+
+  /**
+   * Set verb for timer.
+   *
+   * @param {H5P.XAPIEvent} xAPIEvent to set definition for.
+   * @param {string} verb Verb to set.
+   */
+  setXAPITimerVerb(xAPIEvent, verb) {
+    if (typeof verb !== 'string') {
+      return; // No verb
+    }
+
+    const statement = xAPIEvent?.data?.statement;
+    if (!statement) {
+      return; // No statement found
+    }
+    statement.verb = {
+      'id': `https://snordian.de/x-api/timer/verbs/${verb}`,
+      'display': { 'en-US': verb }
+    };
+  }
+
+  /**
+   * Get the xAPI definition for the xAPI object.
+   *
+   * @returns {object} XAPI definition.
+   */
+  getXAPIDefinition() {
+    const definition = {};
+
+    definition.name = {};
+    definition.name[this.languageTag] = this.getTitle();
+    // Fallback for h5p-php-reporting, expects en-US
+    definition.name['en-US'] = definition.name[this.languageTag];
+
+    definition.description = {};
+    definition.description[this.languageTag] = Util.stripHTML(this.getDescription());
+    // Fallback for h5p-php-reporting, expects en-US
+    definition.description['en-US'] = definition.description[this.languageTag];
+
+    definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
+    definition.interactionType = 'other';
+
+    return definition;
+  }
+
+  /**
+   * Create components
+   */
+  createComponents() {
+    const buttons = this.buildButtons();
+
+    // Create components
+    if (this.params.mode === 'endtime') {
+      this.autostart = true;
+      this.finishedText = this.params.datetimeGroup.finishedText;
+
+      this.component = new Counter(
+        {
+          canBePaused: false,
+          canBeReset: false,
+          timeToCount: (
+            new Date(this.params.datetimeGroup.endtime) - new Date()
+          ) / 1000,
+          finishedText: this.params.datetimeGroup.finishedText,
+          tooLateText: this.params.datetimeGroup.tooLateText,
+          format: this.params.timeFormat
+        },
+        {
+          onStateChanged: (state, timeMs) => {
+            this.handleStateChanged(state, timeMs);
+          },
+          onExpired: () => {
+            this.handleFinished();
+          }
+        }
+      );
+    }
+    else if (this.params.mode === 'starttime') {
+      this.autostart = this.params.startTimeGroup.autostart;
+      this.finishedText = this.params.startTimeGroup.finishedText;
+
+      this.component = new Counter(
+        {
+          canBePaused: this.params.startTimeGroup.canBePaused,
+          canBeReset: this.params.startTimeGroup.canBeReset,
+          timeToCount: this.params.startTimeGroup.startTime,
+          finishedText: this.params.startTimeGroup.finishedText,
+          format: this.params.timeFormat
+        },
+        {
+          onStateChanged: (state, timeMs) => {
+            this.handleStateChanged(state, timeMs);
+          },
+          onExpired: () => {
+            this.handleFinished();
+          }
+        }
+      );
+
+      const toolbarButtons = [];
+      if (!this.autostart || this.params.startTimeGroup.canBePaused) {
+        toolbarButtons.push(buttons['play']);
+      }
+      if (this.params.startTimeGroup.canBePaused) {
+        toolbarButtons.push(buttons['pause']);
+      }
+      if (this.params.startTimeGroup.canBeReset) {
+        toolbarButtons.push(buttons['reset']);
+      }
+
+      this.toolbar = new Toolbar({
+        buttons: toolbarButtons
+      });
+    }
+    else {
+      this.component = new Counter(
+        {
+          canBePaused: true,
+          canBeReset: true,
+          mode: 'stopwatch',
+          format: 'stopwatch'
+        },
+        {
+          onStateChanged: (state, timeMs) => {
+            this.handleStateChanged(state, timeMs);
+          },
+          onTick: (time) => {
+            this.handleTick(time);
+          }
+        }
+      );
+
+      // Toolbar
+      this.toolbar = new Toolbar({
+        buttons: [
+          buttons['play'],
+          buttons['pause'],
+          buttons['lap'],
+          buttons['reset']
+        ]
+      });
+
+      // Laptracker
+      this.laptracker = new Laptracker({}, {
+        onResize: () => {
+          this.trigger('resize');
+        }
+      });
+    }
+  }
+
+  /**
+   * Build buttons.
+   *
+   * @returns {object} Buttons to choose from in toolbar
+   */
+  buildButtons() {
+    // Possible buttons for toolbar.
+    return ({
+      play: {
+        a11y: { disabled: Dictionary.get('a11y.playDisabled') },
+        id: 'play',
+        type: 'pulse',
+        pulseStates: [
+          {
+            id: 'normal',
+            label: (this.params.mode === 'stopwatch') ?
+              Dictionary.get('a11y.playStopwatch') :
+              Dictionary.get('a11y.play')
+          }
+        ],
+        onClick: () => {
+          this.handleClickPlay();
+        }
+      },
+      pause: {
+        id: 'pause',
+        type: 'pulse',
+        pulseStates: [
+          {
+            id: 'normal',
+            label: (this.params.mode === 'stopwatch') ?
+              Dictionary.get('a11y.pauseStopwatch') :
+              Dictionary.get('a11y.pause')
+          }
+        ],
+        hidden: true,
+        onClick: () => {
+          this.handleClickPause();
+        }
+      },
+      lap: {
+        a11y: { disabled: Dictionary.get('a11y.lapDisabled') },
+        id: 'lap',
+        type: 'pulse',
+        pulseStates: [
+          { id: 'normal', label: Dictionary.get('a11y.lap')}
+        ],
+        disabled: true,
+        onClick: () => {
+          this.handleClickLap();
+        }
+      },
+      reset: {
+        id: 'reset',
+        type: 'pulse',
+        pulseStates: [
+          {
+            id: 'normal',
+            label: (this.params.mode === 'stopwatch') ?
+              Dictionary.get('a11y.resetStopwatch') :
+              Dictionary.get('a11y.reset')
+          }
+        ],
+        onClick: () => {
+          this.handleClickReset();
+        }
+      }
+    });
+  }
+}
+
+/** @constant {string} Default description */
+Timekeeper.DEFAULT_DESCRIPTION = 'Timekeeper';
+
+/** @constant {number} State reset */
+Timekeeper.STATE_RESET = 0;
+
+/** @constant {number} State played */
+Timekeeper.STATE_PLAYED = 1;
+
+/** @constant {number} State paused */
+Timekeeper.STATE_PAUSED = 2;
+
+/** @constant {number} State resumed */
+Timekeeper.STATE_RESUMED = 3;
+
+/** @constant {number} State completed */
+Timekeeper.STATE_EXPIRED = 4;

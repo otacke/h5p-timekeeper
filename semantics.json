@@ -1,0 +1,415 @@
+[
+  {
+    "name": "introduction",
+    "type": "text",
+    "label": "Introduction",
+    "description": "Optionally set some introduction.",
+    "optional": true,
+    "widget": "html",
+    "enterMode": "div",
+    "tags": [
+      "sub",
+      "sup",
+      "strong",
+      "em",
+      "p",
+      "code",
+      "u",
+      "del",
+      "a",
+      "ul",
+      "ol",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "pre",
+      "hr",
+      "table"
+    ],
+    "font": {
+      "size": true,
+      "color": true,
+      "background": true
+    }
+  },
+  {
+    "name": "mode",
+    "type": "select",
+    "label": "Mode",
+    "description": "Choose what mode you want Timekeeper to run in.",
+    "optional": false,
+    "options": [
+      {
+        "label": "Count down to date and time",
+        "value": "endtime"
+      },
+      {
+        "label": "Count down from a certain time",
+        "value": "starttime"
+      },
+      {
+        "label": "Stop watch",
+        "value": "stopwatch"
+      }
+    ],
+    "default": "endtime"
+  },
+  {
+    "name": "datetimeGroup",
+    "type": "group",
+    "label": "Select date and time",
+    "expanded": true,
+    "importance": "high",
+    "fields": [
+      {
+        "name": "endtime",
+        "type": "text",
+        "label": "Target date and time",
+        "optional": true,
+        "widget": "datetime"
+      },
+      {
+        "name": "finishedText",
+        "type": "text",
+        "label": "Finished message",
+        "description": "Optional message to display when the date and time that were set have been reached.",
+        "optional": true,
+        "default": "The target time has been reached."
+      },
+      {
+        "name": "tooLateText",
+        "type": "text",
+        "label": "Too late message",
+        "description": "Optional message to display when the timer is opened after the target date and time.",
+        "default": "The timer has already expired.",
+        "optional": true
+      }
+    ],
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "mode",
+          "equals": "endtime"
+        }
+      ]
+    }
+  },
+  {
+    "name": "startTimeGroup",
+    "type": "group",
+    "label": "Select number to count down from",
+    "expanded": true,
+    "importance": "high",
+    "fields": [
+      {
+        "name": "startTime",
+        "type": "number",
+        "label": "Start time",
+        "description": "Set start time in the format H:MM:SS.",
+        "widget": "timecode",
+        "optional": true
+      },
+      {
+        "name": "finishedText",
+        "type": "text",
+        "label": "Finished message",
+        "description": "Optional message to display when the timer has finished.",
+        "optional": true
+      },
+      {
+        "name": "autostart",
+        "type": "boolean",
+        "label": "Start automatically",
+        "description": "If checked, the timer will start automatically. If not checked, the user will have to start the timer.",
+        "default": true
+      },
+      {
+        "name": "canBePaused",
+        "type": "boolean",
+        "label": "Pauseable",
+        "description": "If checked, the user will be able to pause the timer.",
+        "default": false
+      },
+      {
+        "name": "canBeReset",
+        "type": "boolean",
+        "label": "Resettable",
+        "description": "If checked, the user will be able to reset the timer.",
+        "default": false
+      }
+    ],
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "mode",
+          "equals": "starttime"
+        }
+      ]
+    }
+  },
+  {
+    "name": "timeFormat",
+    "type": "select",
+    "label": "Time format",
+    "description": "Choose what time format the timer should have.",
+    "options": [
+      {
+        "label": "Verbose",
+        "value": "verbose"
+      },
+      {
+        "label": "Timecode",
+        "value": "timecode"
+      }
+    ],
+    "default": "verbose",
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "endtime",
+            "starttime"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "signal",
+    "type": "audio",
+    "label": "Timer signal",
+    "description": "Optionally set an audio file that should be played when the timer has expired. Please note that when starting the timer automatically, the browser may prevent playing the signal unless the user has interacted with the page first.",
+    "optional": true,
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "endtime",
+            "starttime"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "l10n",
+    "type": "group",
+    "label": "User interface",
+    "common": true,
+    "fields": [
+      {
+        "name": "unitDays",
+        "type": "text",
+        "label": "Unit days",
+        "description": "Unit text for days in verbose time format.",
+        "default": "d"
+      },
+      {
+        "name": "unitHours",
+        "type": "text",
+        "label": "Unit hours",
+        "description": "Unit text for hours in verbose time format.",
+        "default": "h"
+      },
+      {
+        "name": "unitMinutes",
+        "type": "text",
+        "label": "Unit minutes",
+        "description": "Unit text for minutes in verbose time format.",
+        "default": "m"
+      },
+      {
+        "name": "unitSeconds",
+        "type": "text",
+        "label": "Unit seconds",
+        "description": "Unit text for seconds in verbose time format.",
+        "default": "s"
+      },
+      {
+        "name": "lap",
+        "type": "text",
+        "label": "Header: Lap",
+        "description": "Header for lap column in lap tracking table.",
+        "default": "Lap"
+      },
+      {
+        "name": "lapTime",
+        "type": "text",
+        "label": "Header: Lap time",
+        "description": "Header for lap time column in lap tracking table.",
+        "default": "Lap time"
+      },
+      {
+        "name": "totalTime",
+        "type": "text",
+        "label": "Header: Total time",
+        "description": "Header for total time column in lap tracking table.",
+        "default": "Total time"
+      }
+    ]
+  },
+  {
+    "name": "a11y",
+    "type": "group",
+    "label": "Accessibility texts",
+    "common": true,
+    "fields": [
+      {
+        "name": "play",
+        "type": "text",
+        "label": "Start button label",
+        "description": "Text for screenreaders.",
+        "default": "Start timer"
+      },
+      {
+        "name": "playDisabled",
+        "type": "text",
+        "label": "Start button label (disabled)",
+        "description": "Text for screenreaders.",
+        "default": "Start timer. Currently disabled"
+      },
+      {
+        "name": "pause",
+        "type": "text",
+        "label": "Pause button label",
+        "description": "Text for screenreaders.",
+        "default": "Pause timer"
+      },
+      {
+        "name": "lap",
+        "type": "text",
+        "label": "Track lap button label",
+        "description": "Text for screenreaders.",
+        "default": "Track a lap"
+      },
+      {
+        "name": "lapDisabled",
+        "type": "text",
+        "label": "Track lap button label",
+        "description": "Text for screenreaders.",
+        "default": "Track a lap. Currently disabled"
+      },
+      {
+        "name": "reset",
+        "type": "text",
+        "label": "Reset button label",
+        "description": "Text for screenreaders.",
+        "default": "Reset timer"
+      },
+      {
+        "name": "playStopwatch",
+        "type": "text",
+        "label": "Start button label (stopwatch)",
+        "description": "Text for screenreaders.",
+        "default": "Start stopwatch"
+      },
+      {
+        "name": "pauseStopwatch",
+        "type": "text",
+        "label": "Pause button label (stopwatch)",
+        "description": "Text for screenreaders.",
+        "default": "Pause stopwatch"
+      },
+      {
+        "name": "resetStopwatch",
+        "type": "text",
+        "label": "Reset button label (stopwatch)",
+        "description": "Text for screenreaders.",
+        "default": "Reset stopwatch"
+      },
+      {
+        "name": "lapTable",
+        "type": "text",
+        "label": "Lap table caption",
+        "description": "Text for screenreaders.",
+        "default": "Lap times"
+      },
+      {
+        "name": "currentTime",
+        "type": "text",
+        "label": "Current time",
+        "description": "Text for screenreaders.",
+        "default": "Current time:"
+      },
+      {
+        "name": "day",
+        "type": "text",
+        "label": "Day",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "day"
+      },
+      {
+        "name": "days",
+        "type": "text",
+        "label": "Days",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "days"
+      },
+      {
+        "name": "hour",
+        "type": "text",
+        "label": "Hour",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "hour"
+      },
+      {
+        "name": "hours",
+        "type": "text",
+        "label": "Hours",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "hours"
+      },
+      {
+        "name": "minute",
+        "type": "text",
+        "label": "Minute",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "minute"
+      },
+      {
+        "name": "minutes",
+        "type": "text",
+        "label": "Minutes",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "minutes"
+      },
+      {
+        "name": "second",
+        "type": "text",
+        "label": "Second",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "second"
+      },
+      {
+        "name": "seconds",
+        "type": "text",
+        "label": "Seconds",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "seconds"
+      },
+      {
+        "name": "tenth of a second",
+        "type": "text",
+        "label": "Tenth of a second",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "tenth of a second"
+      },
+      {
+        "name": "tenths of a secons",
+        "type": "text",
+        "label": "Tenths of a secons",
+        "description": "Text for screenreaders. Used to annouce time.",
+        "default": "tenths of a second"
+      }
+    ]
+  }
+]

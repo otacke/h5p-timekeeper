@@ -1,0 +1,88 @@
+@import "./../../../styles/main";
+
+$icon-button-play-blue: url("./../../../assets/button-play-icon-blue.svg");
+$icon-button-play-white: url("./../../../assets/button-play-icon-white.svg");
+$icon-button-play-grey: url("./../../../assets/button-play-icon-grey.svg");
+$icon-button-pause-blue: url("./../../../assets/button-pause-icon-blue.svg");
+$icon-button-pause-white: url("./../../../assets/button-pause-icon-white.svg");
+$icon-button-pause-grey: url("./../../../assets/button-pause-icon-grey.svg");
+$icon-button-lap-blue: url("./../../../assets/button-lap-icon-blue.svg");
+$icon-button-lap-white: url("./../../../assets/button-lap-icon-white.svg");
+$icon-button-lap-grey: url("./../../../assets/button-lap-icon-grey.svg");
+$icon-button-reset-blue: url("./../../../assets/button-reset-icon-blue.svg");
+$icon-button-reset-white: url("./../../../assets/button-reset-icon-white.svg");
+$icon-button-reset-grey: url("./../../../assets/button-reset-icon-grey.svg");
+
+.toolbar-tool-bar {
+  align-items: center;
+  box-shadow: 10px -10px 30px $color-shadow-dark;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  padding: .5em;
+  width: 100%;
+
+  .toolbar-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+    .toolbar-button {
+      &.toolbar-button-play {
+        &.toolbar-button-normal {
+          background-image: $icon-button-play-blue;
+
+          &.toolbar-button-disabled {
+            background-image: $icon-button-play-grey;
+          }
+        }
+      }
+
+      &.toolbar-button-pause {
+        &.toolbar-button-normal {
+          background-image: $icon-button-pause-blue;
+
+          &.toolbar-button-disabled {
+            background-image: $icon-button-pause-grey;
+          }
+        }
+      }
+
+      &.toolbar-button-lap {
+        &.toolbar-button-normal {
+          background-image: $icon-button-lap-blue;
+
+          &.toolbar-button-disabled {
+            background-image: $icon-button-lap-grey;
+          }
+
+          &:active:not(.toolbar-button-disabled) {
+            background-color: $color-primary;
+            background-image: $icon-button-lap-white;
+          }
+        }
+      }
+
+      &.toolbar-button-reset {
+        &.toolbar-button-normal {
+          background-image: $icon-button-reset-blue;
+
+          &.toolbar-button-disabled {
+            background-image: $icon-button-reset-grey;
+          }
+
+          &:active:not(.toolbar-button-disabled) {
+            background-color: $color-primary;
+            background-image: $icon-button-reset-white;
+          }
+        }
+      }
+    }
+  }
+
+  &.display-none {
+    display: none;
+  }
+}

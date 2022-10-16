@@ -1,0 +1,35 @@
+@import "./../../styles/main";
+
+.h5p-timekeeper-laptracker {
+  background-color: $color-background;
+  box-shadow: inset 10px 10px 30px $color-shadow-dark;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  &.display-none {
+    display: none;
+  }
+
+  .h5p-timekeeper-laptracker-table {
+    border-spacing: 1em 0;
+    margin: 1em auto;
+    min-width: 40%;
+    max-width: 90%;
+
+    .h5p-timekeeper-laptracker-table-caption {
+      position: absolute;
+      left: $offset-offscreen;
+    }
+
+    th, td {
+      text-align: center;
+    }
+
+    th {
+      width: calc(100% / 3);
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "h5p-timekeeper",
+  "version": "1.0.0",
+  "description": "Use H5P as a timer or stopwatch",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cross-env NODE_ENV=production webpack",
+    "watch": "cross-env NODE_ENV=development webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otacke/h5p-timekeeper.git"
+  },
+  "keywords": [
+    "h5p",
+    "library",
+    "time",
+    "clock"
+  ],
+  "author": "Oliver Tacke",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.25.0",
+    "eslint-plugin-jsdoc": "^39.3.6",
+    "mini-css-extract-plugin": "^2.6.1",
+    "regenerator-runtime": "^0.13.10",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "he": "^1.2.0"
+  }
+}
