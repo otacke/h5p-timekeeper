@@ -163,7 +163,7 @@
         "value": "verbose"
       },
       {
-        "label": "Timecode",
+        "label": "Time code",
         "value": "timecode"
       }
     ],
