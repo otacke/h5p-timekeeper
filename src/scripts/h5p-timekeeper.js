@@ -177,7 +177,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
       this.triggerXAPITimerEvent('reset', timeMs);
     }
     else if (state === Counter.STATE_PLAYED) {
-      this.triggerXAPITimerEvent('played', timeMs);
+      this.triggerXAPITimerEvent('started', timeMs);
     }
     else if (state === Counter.STATE_PAUSED) {
       this.triggerXAPITimerEvent('paused', timeMs);
@@ -186,7 +186,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
       this.triggerXAPITimerEvent('resumed', timeMs);
     }
     else if (state === Counter.STATE_EXPIRED) {
-      this.triggerXAPITimerEvent('expired', timeMs);
+      this.triggerXAPITimerEvent('stopped', timeMs);
     }
   }
 
@@ -408,7 +408,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
       statement.object.definition.extensions || {};
 
     statement.object.definition.extensions[
-      'https://snordian.de/x-api/timer/extensions/time-period'
+      'http://id.tincanapi.com/extension/time'
     ] = TimeFormatter.toISO8601TimePeriod(timeMs);
   }
 
@@ -428,7 +428,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
       return; // No statement found
     }
     statement.verb = {
-      'id': `https://snordian.de/x-api/timer/verbs/${verb}`,
+      'id': `https://w3id.org/xapi/dod-isd/verbs/${verb}`,
       'display': { 'en-US': verb }
     };
   }
