@@ -383,6 +383,20 @@ export default class Timekeeper extends H5P.EventDispatcher {
       xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
       this.getXAPIDefinition());
 
+    if (verb === 'completed') {
+      xAPIEvent.data.statement.result = Util.extend(
+        {
+          completion: true,
+          score: {
+            max: 0,
+            raw: 0,
+            scaled: 0
+          }
+        },
+        xAPIEvent.data.statement.result || {}
+      );
+    }
+
     return xAPIEvent;
   }
 
