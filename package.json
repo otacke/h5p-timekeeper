@@ -1,6 +1,6 @@
 {
   "name": "h5p-timekeeper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Use H5P as a timer or stopwatch",
   "private": true,
   "scripts": {
