@@ -58,12 +58,12 @@ module.exports = {
       },
       {
         test: /\.svg|\.jpg|\.png$/,
-        include: path.join(__dirname, 'src/images'),
+        include: path.join(__dirname, 'src/assets'),
         type: 'asset/resource'
       },
       {
         test: /\.woff$/,
-        include: path.join(__dirname, 'src/fonts'),
+        include: path.join(__dirname, 'src/assets/fonts'),
         type: 'asset/resource'
       }
     ]
