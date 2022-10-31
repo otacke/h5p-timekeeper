@@ -58,7 +58,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
         second: 'second',
         seconds: 'seconds',
         tenth: 'tenth of a second',
-        tenths: 'tenths of a second'
+        tenths: 'tenths of a second',
+        buttonFullscreenEnter: 'Enter fullscreen mode',
+        buttonFullscreenExit: 'Exit fullscreen mode'
       }
     }, params);
 
@@ -70,6 +72,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
     const defaultLanguage = extras?.metadata?.defaultLanguage || 'en';
     this.languageTag = Util.formatLanguageCode(defaultLanguage);
+
+    // Should fullscreen be possible?
+    this.noFullscreen = !this.isRoot() || !H5P.fullscreenSupported;
 
     this.state = Timekeeper.STATE_RESET;
 
@@ -94,6 +99,16 @@ export default class Timekeeper extends H5P.EventDispatcher {
     }
 
     this.dom = this.buildDOM();
+
+    if (!this.noFullscreen) {
+      this.on('enterFullScreen', () => {
+        this.component.setFullscreen(true);
+      });
+
+      this.on('exitFullScreen', () => {
+        this.component.setFullscreen(false);
+      });
+    }
   }
 
   /**
@@ -102,8 +117,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
    * @param {H5P.jQuery} $wrapper Content's container.
    */
   attach($wrapper) {
-    $wrapper.get(0).classList.add('h5p-timekeeper');
-    $wrapper.get(0).appendChild(this.dom);
+    this.container = $wrapper.get(0);
+    this.container.classList.add('h5p-timekeeper');
+    this.container.appendChild(this.dom);
   }
 
   /**
@@ -117,15 +133,15 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
     // Optional introduction
     if (this.params.introduction) {
-      const introduction = document.createElement('div');
-      introduction.classList.add('h5p-timekeeper-introduction');
+      this.introduction = document.createElement('div');
+      this.introduction.classList.add('h5p-timekeeper-introduction');
 
       const content = document.createElement('div');
       content.classList.add('h5p-timekeeper-intro-content');
       content.innerHTML = this.params.introduction;
-      introduction.appendChild(content);
+      this.introduction.appendChild(content);
 
-      dom.appendChild(introduction);
+      dom.appendChild(this.introduction);
     }
 
     dom.appendChild(this.component.getDOM());
@@ -324,6 +340,58 @@ export default class Timekeeper extends H5P.EventDispatcher {
   }
 
   /**
+   * Handle fullscreen button clicked.
+   */
+  handleFullscreenClicked() {
+    setTimeout(() => {
+      this.toggleFullscreen();
+    }, 300); // Some devices don't register user gesture before call to to requestFullscreen
+  }
+
+  /**
+   * Toggle fullscreen button.
+   *
+   * @param {string|boolean} state enter|false for enter, exit|true for exit.
+   */
+  toggleFullscreen(state) {
+    if (!this.container) {
+      return;
+    }
+
+    if (typeof state === 'string') {
+      if (state === 'enter') {
+        state = false;
+      }
+      else if (state === 'exit') {
+        state = true;
+      }
+    }
+
+    if (typeof state !== 'boolean') {
+      state = !H5P.isFullscreen;
+    }
+
+    if (state) {
+      H5P.fullScreen(H5P.jQuery(this.container), this);
+    }
+    else {
+      H5P.exitFullScreen();
+    }
+  }
+
+  /**
+   * Remove fullscreen button.
+   */
+  removeFullscreenButton() {
+    if (this.component) { // Not yet instantiated
+      this.noFullscreen = true;
+      return;
+    }
+
+    this.component.removeFullscreenButton();
+  }
+
+  /**
    * Get task title.
    *
    * @returns {string} Title.
@@ -491,7 +559,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           ) / 1000,
           finishedText: this.params.datetimeGroup.finishedText,
           tooLateText: this.params.datetimeGroup.tooLateText,
-          format: this.params.timeFormat
+          format: this.params.timeFormat,
+          noFullscreen: this.noFullscreen
         },
         {
           onStateChanged: (state, timeMs) => {
@@ -499,6 +568,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
           },
           onExpired: () => {
             this.handleFinished();
+          },
+          onButtonFullscreenClicked: () => {
+            this.handleFullscreenClicked();
           }
         }
       );
@@ -513,7 +585,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           canBeReset: this.params.startTimeGroup.canBeReset,
           timeToCount: this.params.startTimeGroup.startTime,
           finishedText: this.params.startTimeGroup.finishedText,
-          format: this.params.timeFormat
+          format: this.params.timeFormat,
+          noFullscreen: this.noFullscreen
         },
         {
           onStateChanged: (state, timeMs) => {
@@ -521,6 +594,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
           },
           onExpired: () => {
             this.handleFinished();
+          },
+          onButtonFullscreenClicked: () => {
+            this.handleFullscreenClicked();
           }
         }
       );
@@ -546,7 +622,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           canBePaused: true,
           canBeReset: true,
           mode: 'stopwatch',
-          format: 'stopwatch'
+          format: 'stopwatch',
+          noFullscreen: this.noFullscreen
         },
         {
           onStateChanged: (state, timeMs) => {
@@ -554,6 +631,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
           },
           onTick: (time) => {
             this.handleTick(time);
+          },
+          onButtonFullscreenClicked: () => {
+            this.handleFullscreenClicked();
           }
         }
       );

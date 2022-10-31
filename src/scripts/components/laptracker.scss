@@ -4,9 +4,6 @@
   background-color: $color-background;
   box-shadow: inset 10px 10px 30px $color-shadow-dark;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 100%;
 
   &.display-none {

@@ -22,6 +22,7 @@ $icon-button-reset-grey: url("./../../../assets/button-reset-icon-grey.svg");
   overflow: hidden;
   padding: .5em;
   width: 100%;
+  min-height: calc($toolbarButtonSize + 2 * .5em);
 
   .toolbar-buttons {
     display: flex;

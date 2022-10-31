@@ -11,7 +11,10 @@ export default class Counter {
    * @class
    * @param {object} [params] Parameters.
    * @param {object} [callbacks] Callbacks.
+   * @param {function} [callbacks.onStateChanged] Called when state changed.
    * @param {function} [callbacks.onExpired] Called when timer finished.
+   * @param {function} [callbacks.onTick] Called on Timer tick.
+   * @param {function} [callbacks.onButtonFullscreenClicked] FS button clicked.
    */
   constructor(params = {}, callbacks = {}) {
     this.params = Util.extend({
@@ -22,7 +25,8 @@ export default class Counter {
     this.callbacks = Util.extend({
       onStateChanged: () => {},
       onExpired: () => {},
-      onTick: () => {}
+      onTick: () => {},
+      onButtonFullscreenClicked: () => {}
     }, callbacks);
 
     this.state = Counter.STATE_RESET;
@@ -53,6 +57,9 @@ export default class Counter {
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-timekeeper-counter');
 
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('h5p-timekeeper-counter-content-wrapper');
+
     this.content = document.createElement('div');
     this.content.classList.add('h5p-timekeeper-counter-content');
     this.content.setAttribute('role', 'timer');
@@ -67,7 +74,19 @@ export default class Counter {
     this.timerText.setAttribute('aria-hidden', true);
     this.content.appendChild(this.timerText);
 
-    this.dom.appendChild(this.content);
+    contentWrapper.appendChild(this.content);
+
+    if (!this.params.noFullscreen) {
+      this.buttonFullscreen = document.createElement('button');
+      this.buttonFullscreen.classList.add('h5p-timekeeper-button-fullscreen');
+      this.buttonFullscreen.addEventListener('click', () => {
+        this.callbacks.onButtonFullscreenClicked();
+      });
+      this.setFullscreen(false);
+      contentWrapper.appendChild(this.buttonFullscreen);
+    }
+
+    this.dom.appendChild(contentWrapper);
 
     if (this.params.timeToCount <= 0 && this.params.mode !== 'stopwatch') {
       this.setCounter(this.params.tooLateText || '0');
@@ -211,6 +230,33 @@ export default class Counter {
       this.timerText.innerHTML = params.html;
       this.content.setAttribute('aria-label', params.aria);
     }
+  }
+
+  /**
+   * Remove fullscreen button.
+   */
+  removeFullscreenButton() {
+    if (!this.buttonFullscreen) {
+      return;
+    }
+
+    this.buttonFullscreen.parentNode.removeChild(this.buttonFullscreen);
+  }
+
+  /**
+   * Set fullscreen title.
+   *
+   * @param {boolean} state If true, fullscreen entered, else exited.
+   */
+  setFullscreen(state) {
+    if (!this.buttonFullscreen || typeof state !== 'boolean') {
+      return;
+    }
+
+    const title = state ?
+      Dictionary.get('a11y.buttonFullscreenExit') :
+      Dictionary.get('a11y.buttonFullscreenEnter');
+    this.buttonFullscreen.setAttribute('aria-label', title);
   }
 
   /**

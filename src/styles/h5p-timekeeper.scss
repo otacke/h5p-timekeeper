@@ -19,4 +19,25 @@
       }
     }
   }
+
+  &.h5p-fullscreen {
+    .h5p-timekeeper-main {
+      height: 100%;
+
+      .h5p-timekeeper-introduction {
+        max-height: 15%;
+        overflow: auto;
+      }
+
+      .h5p-timekeeper-counter {
+        flex-grow: 1;
+        min-height: 7em;
+      }
+
+      .h5p-timekeeper-laptracker {
+        height: 50%;
+        overflow: auto;
+      }
+    }
+  }
 }

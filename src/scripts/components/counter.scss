@@ -1,7 +1,22 @@
 @import "./../../styles/main";
 
+$icon-button-fullscreen-enter: url("./../../assets/button-fullscreen-icon-enter-blue.svg");
+$icon-button-fullscreen-exit: url("./../../assets/button-fullscreen-icon-exit-blue.svg");
+
+.h5p-timekeeper.h5p-fullscreen {
+  .h5p-timekeeper-counter .h5p-timekeeper-button-fullscreen {
+    background-image: $icon-button-fullscreen-exit;
+  }
+}
+
+.h5p-timekeeper:not(.h5p-fullscreen) {
+  .h5p-timekeeper-counter .h5p-timekeeper-button-fullscreen {
+    background-image: $icon-button-fullscreen-enter;
+  }
+}
+
 .h5p-timekeeper-counter {
-  align-items: center;
+  align-items: stretch;
   background-color: $color-background;
   box-shadow: inset 10px 10px 30px $color-shadow-dark;
   box-sizing: border-box;
@@ -11,30 +26,67 @@
   min-height: 10em;
   width: 100%;
 
-  .h5p-timekeeper-counter-content {
-    font-size: 5em;
-    line-height: 1em;
-    margin: .2em auto;
-    text-align: center;
+  .h5p-timekeeper-counter-content-wrapper {
+    align-items: center;
+    display: flex;
+    position: relative;
+    width: 100%;
 
-    .h5p-timekeeper-counter-aria-timer {
+    .h5p-timekeeper-button-fullscreen {
+      background-color: $color-primary-5;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 0.8em 0.8em;
+      border: 1px solid $color-primary-30;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 1.75em;
+      top: 0.5em;
+      overflow: hidden;
+      padding: 0;
       position: absolute;
-      left: $offset-offscreen;
+      left: 0.5em;
+      transition: border-color 100ms, opacity 100ms;
+      width: 1.75em;
+
+      &:focus {
+        outline: #000 auto 1px;
+      }
+
+      &:hover {
+        background-color: $color-primary-10;
+      }
+
+      &:active {
+        background-color: $color-primary-10;
+      }
     }
 
-    .h5p-timekeeper-format-element {
-      align-items: baseline;
-      display: inline-flex;
-      flex-direction: row;
+    .h5p-timekeeper-counter-content {
+      font-size: 5em;
+      line-height: 1em;
+      margin: .2em auto;
+      text-align: center;
 
-      &.h5p-timekeeper-format-verbose {
-        .h5p-timekeeper-format-value {
-          margin-left: .25em;
-        }
+      .h5p-timekeeper-counter-aria-timer {
+        position: absolute;
+        left: $offset-offscreen;
+      }
 
-        .h5p-timekeeper-format-unit {
-          font-size: 50%;
-          margin-right: .25em;
+      .h5p-timekeeper-format-element {
+        align-items: baseline;
+        display: inline-flex;
+        flex-direction: row;
+
+        &.h5p-timekeeper-format-verbose {
+          .h5p-timekeeper-format-value {
+            margin-left: .25em;
+          }
+
+          .h5p-timekeeper-format-unit {
+            font-size: 50%;
+            margin-right: .25em;
+          }
         }
       }
     }

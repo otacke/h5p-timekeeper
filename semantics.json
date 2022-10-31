@@ -409,6 +409,20 @@
         "label": "Tenths of a secons",
         "description": "Text for screenreaders. Used to annouce time.",
         "default": "tenths of a second"
+      },
+      {
+        "name": "buttonFullscreenEnter",
+        "type": "text",
+        "label": "Text for screenreaders. Title for fullscreen button (enter)",
+        "importance": "low",
+        "default": "Enter fullscreen mode"
+      },
+      {
+        "name": "buttonFullscreenExit",
+        "type": "text",
+        "label": "Text for screenreaders. Title for fullscreen button (exit)",
+        "importance": "low",
+        "default": "Exit fullscreen mode"
       }
     ]
   }

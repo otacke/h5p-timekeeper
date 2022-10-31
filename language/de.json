@@ -225,6 +225,14 @@
           "label": "Zehntelsekunden",
           "description": "Vorlesewerkzeug-Beschreibung. Benutzt für die Zeitansage.",
           "default": "Zehntelsekunden"
+        },
+        {
+          "label": "Vorlesewerkzeug-Beschreibung. Titel des Vollbild-Buttons (aktivieren)",
+          "default": "Gehe in den Vollbildmodus"
+        },
+        {
+          "label": "Vorlesewerkzeug-Beschreibung. Titel des Vollbild-Buttons (deaktivieren)",
+          "default": "Verlasse den Vollbildmodus"
         }
       ]
     }
