@@ -108,7 +108,7 @@
         },
         {
           "label": "Titel: Rundenzeit",
-          "description": "Titel für die Rundenzeit-Spalte in der Rundentabelle",
+          "description": "Titel für die Rundenzeit-Spalte in der Rundentabelle.",
           "default": "Rundenzeit"
         },
         {
@@ -123,7 +123,7 @@
       "fields": [
         {
           "label": "Beschriftung für den \"Start\"-Button",
-          "description": "Vorlesewerkzeug-Beschreibung für den \"Start\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Start\"-Button.",
           "default": "Starte den Timer"
         },
         {
@@ -133,37 +133,37 @@
         },
         {
           "label": "Beschriftung für den \"Pause\"-Button",
-          "description": "Vorlesewerkzeug-Beschreibung für den \"Pause\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Pause\"-Button.",
           "default": "Pausiere den Timer"
         },
         {
           "label": "Beschriftung für den \"Rundenzeit festhalten\"-Button",
-          "description": "Vorlesewerkzeug-Beschreibung für den \"Rundenzeit festhalten\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Rundenzeit festhalten\"-Button.",
           "default": "Halte eine Rundenzeit fest"
         },
         {
           "label": "Beschriftung für den \"Rundenzeit festhalten\"-Button (deaktiviert)",
-          "description": "Vorlesewerkzeug-Beschreibung für den \"Rundenzeit festhalten\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Rundenzeit festhalten\"-Button.",
           "default": "Halte eine Rundenzeit fest. Derzeit deaktiviert"
         },
         {
           "label": "Beschriftung für den \"Reset\"-Button",
-          "description": "Vorlesewerkzeug-Beschreibung für den \"Reset\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Reset\"-Button.",
           "default": "Setze den Timer zurück"
         },
         {
           "label": "Beschriftung für den \"Start\"-Button (Stoppuhr)",
-          "description": "Vorlesewerkzeug-Beschreibung für den \"Start\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Start\"-Button.",
           "default": "Starte die Stoppuhr"
         },
         {
           "label": "Beschriftung für den \"Pause\"-Button (Stoppuhr)",
-          "description": "Vorlesewerkzeug-Beschreibung für den \"Pause\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Pause\"-Button.",
           "default": "Pausiere die Stoppuhr"
         },
         {
           "label": "Beschriftung für den \"Reset\"-Button (Stoppuhr)",
-          "description": "Vorlesewerkzeug-Beschreibung für den \"Reset\"-Button",
+          "description": "Vorlesewerkzeug-Beschreibung für den \"Reset\"-Button.",
           "default": "Setze die Stoppuhr zurück"
         },
         {
