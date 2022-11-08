@@ -1,0 +1,240 @@
+{
+  "semantics": [
+    {
+      "label": "Introductie",
+      "description": "Stel optioneel een introductie in."
+    },
+    {
+      "label": "Modus",
+      "description": "Kies de modus waarin de tijdregistratie moet werken.",
+      "options": [
+        {
+          "label": "Aftellen tot een datum en een tijd"
+        },
+        {
+          "label": "Aftellen vanaf een bepaalde tijd"
+        },
+        {
+          "label": "Stopwatch"
+        }
+      ]
+    },
+    {
+      "label": "Selecteer de datum en de tijd",
+      "fields": [
+        {
+          "label": "Doeldatum en -tijd"
+        },
+        {
+          "label": "Einde bericht",
+          "description": "Een optioneel bericht om weer te geven wanneer de ingestelde datum en tijd zijn bereikt.",
+          "default": "De doeltijd is bereikt."
+        },
+        {
+          "label": "Te laat bericht",
+          "description": "Een optioneel bericht om weer te geven wanneer de timer wordt geopend na de streefdatum en -tijd.",
+          "default": "De timer is al afgelopen."
+        }
+      ]
+    },
+    {
+      "label": "Selecteer een nummer om af te tellen vanaf",
+      "fields": [
+        {
+          "label": "Starttijd",
+          "description": "Starttijd instellen in het formaat H:MM:SS."
+        },
+        {
+          "label": "Einde bericht",
+          "description": "Een optioneel bericht om weer te geven wanneer de timer is afgelopen."
+        },
+        {
+          "label": "Start automatisch",
+          "description": "Indien aangevinkt, start de timer automatisch. Indien niet aangevinkt, moet de gebruiker de timer starten."
+        },
+        {
+          "label": "Pauzeerbaar",
+          "description": "Indien aangevinkt, kan de gebruiker de timer pauzeren."
+        },
+        {
+          "label": "Opnieuw instellen",
+          "description": "Indien aangevinkt, kan de gebruiker de timer opnieuw instellen."
+        }
+      ]
+    },
+    {
+      "label": "Tijdformaat",
+      "description": "Kies welk tijdformaat de timer moet hebben.",
+      "options": [
+        {
+          "label": "Uitgebreid"
+        },
+        {
+          "label": "Tijdcode"
+        }
+      ]
+    },
+    {
+      "label": "Timer signaal",
+      "description": "Stel optioneel een audiobestand in dat moet worden afgespeeld als de timer is afgelopen. Let op dat wanneer de timer automatisch start, de browser het signaal mogelijk niet afspeelt tenzij de gebruiker eerst interactie heeft gehad met de pagina."
+    },
+    {
+      "label": "Gebruikersinterface",
+      "fields": [
+        {
+          "label": "Dagen uitgedrukt in eenheden",
+          "description": "De tekst in eenheden voor dagen in een uitgebreid tijdformaat.",
+          "default": "d"
+        },
+        {
+          "label": "Uren uitgedrukt in eenheden",
+          "description": "De tekst in eenheden voor uren in een uitgbreid tijdformaat.",
+          "default": "u"
+        },
+        {
+          "label": "Minuten uitgedruk in eenheden",
+          "description": "De tekst in eenheden voor minuten in een uitgebreid tijdformaat.",
+          "default": "m"
+        },
+        {
+          "label": "Seconden uitgedrukt in eenheden",
+          "description": "De tekst in eenheden voor seconden in een uitgebreid tijdformaat.",
+          "default": "s"
+        },
+        {
+          "label": "Koptekst: Ronde",
+          "description": "De koptekst voor de kolom 'Ronde' in ronde overzichtstabel.",
+          "default": "Ronde"
+        },
+        {
+          "label": "Koptekst: Rondetijd",
+          "description": "De koptekst voor de kolom 'Rondetijd' in de rondo overzichtstabel.",
+          "default": "Rondetijd"
+        },
+        {
+          "label": "Koptekst: Totale tijd",
+          "description": "De koptekst voor de kolom 'Totale tijd' in de ronde overzichtstabel.",
+          "default": "Totale tijd"
+        }
+      ]
+    },
+    {
+      "label": "Toegankelijkheidsteksten",
+      "fields": [
+        {
+          "label": "Label startknop",
+          "description": "Tekst voor schermlezers.",
+          "default": "Start timer"
+        },
+        {
+          "label": "Label startknop (uitgeschakeld)",
+          "description": "Tekst voor schermlezers.",
+          "default": "Start timer. Currently disabled"
+        },
+        {
+          "label": "Label pauzeknop",
+          "description": "Tekst voor schermlezers.",
+          "default": "Pauzeer timer"
+        },
+        {
+          "label": "Label rondeknop volgen",
+          "description": "Tekst voor schermlezers.",
+          "default": "Volg een ronde"
+        },
+        {
+          "label": "Label rondeknop volgen (uitgeschakeld)",
+          "description": "Tekst voor schermlezers.",
+          "default": "Volg een ronde. Op dit moment uitgeschakeld"
+        },
+        {
+          "label": "Label resetknop",
+          "description": "Tekst voor schermlezers.",
+          "default": "Reset timer"
+        },
+        {
+          "label": "Label startknop (stopwatch)",
+          "description": "Tekst voor schermlezers.",
+          "default": "Start stopwatch"
+        },
+        {
+          "label": "Label pauzeknop (stopwatch)",
+          "description": "Tekst voor schermlezers.",
+          "default": "Pauzeer stopwatch"
+        },
+        {
+          "label": "Label resetknop (stopwatch)",
+          "description": "Tekst voor schermlezers.",
+          "default": "Reset stopwatch"
+        },
+        {
+          "label": "Label rondeoverzicht",
+          "description": "Tekst voor schermlezers.",
+          "default": "Rondetijden"
+        },
+        {
+          "label": "Huidige tijd",
+          "description": "Tekst voor schermlezers.",
+          "default": "Huidige tijd:"
+        },
+        {
+          "label": "Dag",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "dag"
+        },
+        {
+          "label": "Dagen",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "dagen"
+        },
+        {
+          "label": "Uur",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "uur"
+        },
+        {
+          "label": "Uren",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "uren"
+        },
+        {
+          "label": "Minuut",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "minuut"
+        },
+        {
+          "label": "Minuten",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "minuten"
+        },
+        {
+          "label": "Seconde",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "seconde"
+        },
+        {
+          "label": "Seconden",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "seconden"
+        },
+        {
+          "label": "Tiende van een seconde",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "tiende van een seconde"
+        },
+        {
+          "label": "Tienden van seconden",
+          "description": "Tekst voor schermlezers. Deze wordt gebruikt om de tijd aan te kondigen.",
+          "default": "tienden van seconden"
+        },
+        {
+          "label": "Tekst voor schermlezers. Titel voor schermvullende knop (enter)",
+          "default": "Open volledig scherm"
+        },
+        {
+          "label": "Tekst voor schermlezers. Titel voor schermvullende knop (exit)",
+          "default": "Sluit volledig scherm"
+        }
+      ]
+    }
+  ]
+}
