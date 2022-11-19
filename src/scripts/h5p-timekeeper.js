@@ -451,14 +451,16 @@ export default class Timekeeper extends H5P.EventDispatcher {
       xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
       this.getXAPIDefinition());
 
+    /* Score of 1 is stupid but workaround for task completion in moodle */
     if (verb === 'completed') {
       xAPIEvent.data.statement.result = Util.extend(
         {
           completion: true,
           score: {
-            max: 0,
-            raw: 0,
-            scaled: 0
+            max: 1,
+            min: 0,
+            raw: 1,
+            scaled: 1.0
           }
         },
         xAPIEvent.data.statement.result || {}
