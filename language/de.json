@@ -42,7 +42,7 @@
       "fields": [
         {
           "label": "Startzeit",
-          "description": "Setze die Startzeit im format H:MM:SS."
+          "description": "Setze die Startzeit im Format M:SS oder H:MM:SS ohne führende Nullen."
         },
         {
           "label": "Abschlussnachricht",

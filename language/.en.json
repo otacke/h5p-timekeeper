@@ -42,7 +42,7 @@
       "fields": [
         {
           "label": "Start time",
-          "description": "Set start time in the format H:MM:SS."
+          "description": "Set start time in the format M:SS or H:MM:SS without leading zeros."
         },
         {
           "label": "Finished message",

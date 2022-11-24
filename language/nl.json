@@ -42,7 +42,7 @@
       "fields": [
         {
           "label": "Starttijd",
-          "description": "Starttijd instellen in het formaat H:MM:SS."
+          "description": "Starttijd instellen in het formaat M:SS of H:MM:SS zonder voorloopnullen."
         },
         {
           "label": "Einde bericht",
