@@ -3,18 +3,6 @@
 $icon-button-fullscreen-enter: url("./../../assets/button-fullscreen-icon-enter-blue.svg");
 $icon-button-fullscreen-exit: url("./../../assets/button-fullscreen-icon-exit-blue.svg");
 
-.h5p-timekeeper.h5p-fullscreen {
-  .h5p-timekeeper-counter .h5p-timekeeper-button-fullscreen {
-    background-image: $icon-button-fullscreen-exit;
-  }
-}
-
-.h5p-timekeeper:not(.h5p-fullscreen) {
-  .h5p-timekeeper-counter .h5p-timekeeper-button-fullscreen {
-    background-image: $icon-button-fullscreen-enter;
-  }
-}
-
 .h5p-timekeeper-counter {
   align-items: stretch;
   background-color: $color-background;
@@ -90,5 +78,17 @@ $icon-button-fullscreen-exit: url("./../../assets/button-fullscreen-icon-exit-bl
         }
       }
     }
+  }
+}
+
+.h5p-timekeeper.h5p-fullscreen {
+  .h5p-timekeeper-counter .h5p-timekeeper-button-fullscreen {
+    background-image: $icon-button-fullscreen-exit;
+  }
+}
+
+.h5p-timekeeper:not(.h5p-fullscreen) {
+  .h5p-timekeeper-counter .h5p-timekeeper-button-fullscreen {
+    background-image: $icon-button-fullscreen-enter;
   }
 }
