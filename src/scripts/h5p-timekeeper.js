@@ -158,26 +158,28 @@ export default class Timekeeper extends H5P.EventDispatcher {
       dom.appendChild(this.finishedSignal);
     }
 
-    // Only start once visible to the user
-    this.observer = new IntersectionObserver((entries) => {
-      if (entries[0].intersectionRatio === 1) {
-        this.observer.unobserve(dom); // Only need instantiate once.
-        if (this.isRoot()) {
-          // trigger xAPI attempted
-          this.setActivityStarted();
-        }
+    window.requestIdleCallback(() => {
+      // Only start once visible to the user
+      this.observer = new IntersectionObserver((entries) => {
+        if (entries[0].intersectionRatio > 0) {
+          this.observer.unobserve(dom); // Only need instantiate once.
+          if (this.isRoot()) {
+            // trigger xAPI attempted
+            this.setActivityStarted();
+          }
 
-        if (this.autostart) {
-          this.component.start();
-        }
+          if (this.autostart) {
+            this.component.start();
+          }
 
-        this.trigger('resize');
-      }
-    }, {
-      root: document.documentElement,
-      threshold: [1]
+          this.trigger('resize');
+        }
+      }, {
+        root: document.documentElement,
+        threshold: 0
+      });
+      this.observer.observe(dom);
     });
-    this.observer.observe(dom);
 
     return dom;
   }
