@@ -1,0 +1,240 @@
+{
+  "semantics": [
+    {
+      "label": "Introduction",
+      "description": "Optionally set some introduction."
+    },
+    {
+      "label": "Mode",
+      "description": "Choose what mode you want Timekeeper to run in.",
+      "options": [
+        {
+          "label": "Count down to date and time"
+        },
+        {
+          "label": "Count down from a certain time"
+        },
+        {
+          "label": "Stopwatch"
+        }
+      ]
+    },
+    {
+      "label": "Select date and time",
+      "fields": [
+        {
+          "label": "Target date and time"
+        },
+        {
+          "label": "Finished message",
+          "description": "Optional message to display when the date and time that were set have been reached.",
+          "default": "The target time has been reached."
+        },
+        {
+          "label": "Too late message",
+          "description": "Optional message to display when the timer is opened after the target date and time.",
+          "default": "The timer has already expired."
+        }
+      ]
+    },
+    {
+      "label": "Select number to count down from",
+      "fields": [
+        {
+          "label": "Start time",
+          "description": "Set start time in the format H:MM:SS."
+        },
+        {
+          "label": "Finished message",
+          "description": "Optional message to display when the timer has finished."
+        },
+        {
+          "label": "Start automatically",
+          "description": "If checked, the timer will start automatically. If not checked, the user will have to start the timer."
+        },
+        {
+          "label": "Pauseable",
+          "description": "If checked, the user will be able to pause the timer."
+        },
+        {
+          "label": "Resettable",
+          "description": "If checked, the user will be able to reset the timer."
+        }
+      ]
+    },
+    {
+      "label": "Time format",
+      "description": "Choose what time format the timer should have.",
+      "options": [
+        {
+          "label": "Verbose"
+        },
+        {
+          "label": "Time code"
+        }
+      ]
+    },
+    {
+      "label": "Timer signal",
+      "description": "Optionally set an audio file that should be played when the timer has expired. Please note that when starting the timer automatically, the browser may prevent playing the signal unless the user has interacted with the page first."
+    },
+    {
+      "fields": [
+        {
+          "default": "d",
+          "label": "Unit days",
+          "description": "Unit text for days in verbose time format."
+        },
+        {
+          "label": "Unit hours",
+          "description": "Unit text for hours in verbose time format.",
+          "default": "h"
+        },
+        {
+          "label": "Unit minutes",
+          "description": "Unit text for minutes in verbose time format.",
+          "default": "m"
+        },
+        {
+          "label": "Unit seconds",
+          "description": "Unit text for seconds in verbose time format.",
+          "default": "s"
+        },
+        {
+          "label": "Header: Lap",
+          "description": "Header for lap column in lap tracking table.",
+          "default": "Lap"
+        },
+        {
+          "label": "Header: Lap time",
+          "description": "Header for lap time column in lap tracking table.",
+          "default": "Lap time"
+        },
+        {
+          "label": "Header: Total time",
+          "description": "Header for total time column in lap tracking table.",
+          "default": "Total time"
+        }
+      ],
+      "label": "User interface"
+    },
+    {
+      "fields": [
+        {
+          "label": "Start button label",
+          "description": "Text for screenreaders.",
+          "default": "Start timer"
+        },
+        {
+          "label": "Start button label (disabled)",
+          "description": "Text for screenreaders.",
+          "default": "Start timer. Currently disabled"
+        },
+        {
+          "label": "Pause button label",
+          "description": "Text for screenreaders.",
+          "default": "Pause timer"
+        },
+        {
+          "label": "Track lap button label",
+          "description": "Text for screenreaders.",
+          "default": "Track a lap"
+        },
+        {
+          "label": "Track lap button label",
+          "description": "Text for screenreaders.",
+          "default": "Track a lap. Currently disabled"
+        },
+        {
+          "label": "Reset button label",
+          "description": "Text for screenreaders.",
+          "default": "Reset timer"
+        },
+        {
+          "label": "Start button label (stopwatch)",
+          "description": "Text for screenreaders.",
+          "default": "Start stopwatch"
+        },
+        {
+          "label": "Pause button label (stopwatch)",
+          "description": "Text for screenreaders.",
+          "default": "Pause stopwatch"
+        },
+        {
+          "label": "Reset button label (stopwatch)",
+          "description": "Text for screenreaders.",
+          "default": "Reset stopwatch"
+        },
+        {
+          "label": "Lap table caption",
+          "description": "Text for screenreaders.",
+          "default": "Lap times"
+        },
+        {
+          "label": "Current time",
+          "description": "Text for screenreaders.",
+          "default": "Current time:"
+        },
+        {
+          "label": "Day",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "day"
+        },
+        {
+          "label": "Days",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "days"
+        },
+        {
+          "label": "Hour",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "hour"
+        },
+        {
+          "label": "Hours",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "hours"
+        },
+        {
+          "label": "Minute",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "minute"
+        },
+        {
+          "label": "Minutes",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "minutes"
+        },
+        {
+          "label": "Second",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "second"
+        },
+        {
+          "label": "Seconds",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "seconds"
+        },
+        {
+          "default": "tenth of a second",
+          "label": "Tenth of a second",
+          "description": "Text for screenreaders. Used to annouce time."
+        },
+        {
+          "label": "Tenths of a secons",
+          "description": "Text for screenreaders. Used to annouce time.",
+          "default": "tenths of a second"
+        },
+        {
+          "default": "Enter fullscreen mode",
+          "label": "Text for screenreaders. Title for fullscreen button (enter)"
+        },
+        {
+          "label": "Text for screenreaders. Title for fullscreen button (exit)",
+          "default": "Exit fullscreen mode"
+        }
+      ],
+      "label": "Accessibility texts"
+    }
+  ]
+}
