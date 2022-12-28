@@ -158,7 +158,12 @@ export default class Timekeeper extends H5P.EventDispatcher {
       dom.appendChild(this.finishedSignal);
     }
 
-    window.requestIdleCallback(() => {
+    // iOS is behind ... Again ...
+    const callback = window.requestIdleCallback ?
+      window.requestIdleCallback :
+      window.requestAnimationFrame;
+
+    callback(() => {
       // Only start once visible to the user
       this.observer = new IntersectionObserver((entries) => {
         if (entries[0].intersectionRatio > 0) {
