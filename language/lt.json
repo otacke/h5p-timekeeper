@@ -6,13 +6,13 @@
     },
     {
       "label": "Pateikimas",
-      "description": "Choose what mode you want Timekeeper to run in.",
+      "description": "Pasirinkite, kokiu režimu norite, kad laikmatis veiktų.",
       "options": [
         {
-          "label": "Count down to date and time"
+          "label": "Skaičiuokite iki datos ir laiko"
         },
         {
-          "label": "Count down from a certain time"
+          "label": "Skaičiuokite atgal nuo tam tikro laiko"
         },
         {
           "label": "Chronometras"
