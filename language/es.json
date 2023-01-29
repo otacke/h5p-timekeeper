@@ -1,0 +1,240 @@
+{
+  "semantics": [
+    {
+      "label": "Introducción",
+      "description": "Proporcionar una introducción opcional."
+    },
+    {
+      "label": "Modo",
+      "description": "Elije en qué modo deseas que se ejecute el Reloj.",
+      "options": [
+        {
+          "label": "Cuenta atrás hasta la fecha y la hora"
+        },
+        {
+          "label": "Cuenta hacia atrás desde un momento determinado"
+        },
+        {
+          "label": "Cronómetro"
+        }
+      ]
+    },
+    {
+      "label": "Seleccionar fecha y hora",
+      "fields": [
+        {
+          "label": "Fecha y hora seleccionadas"
+        },
+        {
+          "label": "Mensaje de terminado",
+          "description": "Mensaje opcional mostrado cuando se alcancen la fecha y la hora establecidas.",
+          "default": "Se ha alcanzado el tiempo establecido."
+        },
+        {
+          "label": "Mensaje para demasiado tarde",
+          "description": "Mensaje opcional mostrado cuando el temporizador se abre después de la fecha y hora establecidas.",
+          "default": "El temporizador ya ha expirado."
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "label": "Hora de inicio",
+          "description": "Establezca la hora de inicio en el formato M:SS o H:MM:SS sin ceros a la izquierda."
+        },
+        {
+          "label": "Mensaje de terminado",
+          "description": "Mensaje opcional mostrado cuando el temporizador ha terminado."
+        },
+        {
+          "label": "Iniciar automáticamente",
+          "description": "Si está marcado, el temporizador se iniciará automáticamente. Si no está marcado, el usuario tendrá que iniciar el temporizador."
+        },
+        {
+          "description": "Si está marcado, el usuario podrá pausar el temporizador.",
+          "label": "Se puede pausar"
+        },
+        {
+          "label": "Reiniciable",
+          "description": "Si está marcado, el usuario podrá reiniciar el temporizador."
+        }
+      ],
+      "label": "Seleccione el número desde el que iniciar la cuenta atrás"
+    },
+    {
+      "label": "Formato de tiempo",
+      "description": "Elija qué formato de hora debe tener el temporizador.",
+      "options": [
+        {
+          "label": "Información extra"
+        },
+        {
+          "label": "Código de Tiempo"
+        }
+      ]
+    },
+    {
+      "label": "Señal de temporizador",
+      "description": "Opcionalmente, establece un archivo de audio que se reproducirá cuando el temporizador haya expirado. Ten en cuenta que cuando se inicia el temporizador automáticamente, el navegador puede impedir la reproducción de la señal a menos que el usuario haya interactuado primero con la página."
+    },
+    {
+      "label": "Interfaz de usuario",
+      "fields": [
+        {
+          "label": "Unidad de días",
+          "description": "Unidad de texto para días en formato de tiempo detallado.",
+          "default": "d"
+        },
+        {
+          "label": "Unidad para las horas",
+          "description": "Texto de unidad para horas en formato de tiempo detallado.",
+          "default": "h"
+        },
+        {
+          "label": "Unidad para minutos",
+          "description": "Unidad de texto para minutos en formato de tiempo detallado.",
+          "default": "m"
+        },
+        {
+          "label": "Unidad para segundos",
+          "description": "Unidad de texto para segundos en formato de tiempo detallado.",
+          "default": "s"
+        },
+        {
+          "label": "Encabezado: Vuelta",
+          "description": "Encabezado de la columna de vueltas en la tabla de seguimiento de vueltas.",
+          "default": "Vuelta"
+        },
+        {
+          "label": "Encabezado: Tiempo de vuelta",
+          "description": "Encabezado de la columna de tiempo de vuelta en la tabla de seguimiento de vueltas.",
+          "default": "Tiempo de vuelta"
+        },
+        {
+          "label": "Encabezado: Tiempo total",
+          "description": "Encabezado de la columna de tiempo total en la tabla de seguimiento de vueltas.",
+          "default": "Tiempo Total"
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "label": "Etiqueta botón Iniciar",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Iniciar temporizador"
+        },
+        {
+          "label": "Etiqueta del botón de inicio (deshabilitado)",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Temporizador de inicio. Actualmente desactivado"
+        },
+        {
+          "label": "Etiqueta del botón de pausa",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Pausar temporizador"
+        },
+        {
+          "label": "Etiqueta del botón de seguimiento de vuelta",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Seguimiento de una vuelta"
+        },
+        {
+          "label": "Etiqueta del botón de seguimiento de vuelta",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Seguir una vuelta. Actualmente desactivado"
+        },
+        {
+          "label": "Etiqueta del botón reiniciar",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Restablecer temporizador"
+        },
+        {
+          "label": "Etiqueta del botón de inicio (cronómetro)",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Iniciar cronómetro"
+        },
+        {
+          "label": "Etiqueta del botón de pausa (cronómetro)",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Pausar cronómetro"
+        },
+        {
+          "label": "Etiqueta del botón de reinicio (cronómetro)",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Restablecer cronómetro"
+        },
+        {
+          "label": "Leyenda de la tabla de vueltas",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Tiempos de vuelta"
+        },
+        {
+          "label": "Tiempo actual",
+          "description": "Texto para lectores de pantalla.",
+          "default": "Tiempo actual:"
+        },
+        {
+          "label": "Día",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "día"
+        },
+        {
+          "label": "Días",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "días"
+        },
+        {
+          "label": "Hora",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "hora"
+        },
+        {
+          "label": "Horas",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "horas"
+        },
+        {
+          "label": "Minuto",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "minuto"
+        },
+        {
+          "label": "Minutos",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "minutos"
+        },
+        {
+          "label": "Segundo",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "segundo"
+        },
+        {
+          "label": "Segundos",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "segundos"
+        },
+        {
+          "label": "Décima de segundo",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "décima de segundo"
+        },
+        {
+          "label": "Décimas de segundo",
+          "description": "Texto para lectores de pantalla. Se utiliza para anunciar el tiempo.",
+          "default": "décimas de segundo"
+        },
+        {
+          "label": "Texto para lectores de pantalla. Título para el botón de pantalla completa (Entrar)",
+          "default": "Pasar a modo de pantalla completa"
+        },
+        {
+          "label": "Texto para lectores de pantalla. Título para el botón de pantalla completa (Salir)",
+          "default": "Salir del modo de Pantalla Completa"
+        }
+      ],
+      "label": "Textos de Accesibilidad"
+    }
+  ]
+}
