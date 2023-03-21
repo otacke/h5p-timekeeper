@@ -1,0 +1,240 @@
+{
+  "semantics": [
+    {
+      "label": "介绍",
+      "description": "可选:为用户设置一些介绍内容。"
+    },
+    {
+      "label": "模式",
+      "description": "选择计时器运行的模式。",
+      "options": [
+        {
+          "label": "从某个日期和时间开始倒计时"
+        },
+        {
+          "label": "从某个时间开始倒计时"
+        },
+        {
+          "label": "秒表"
+        }
+      ]
+    },
+    {
+      "label": "选择日期和时间",
+      "fields": [
+        {
+          "label": "目标日期和时间"
+        },
+        {
+          "label": "完成消息",
+          "description": "可选，当设置的日期和时间达到时显示的消息。",
+          "default": "已经到达您设置的目标时间。"
+        },
+        {
+          "label": "过期消息",
+          "description": "可选，当在目标日期和时间之后打开计时器时显示的消息。",
+          "default": "计时器已过期。"
+        }
+      ]
+    },
+    {
+      "label": "选择倒计时开始的数字",
+      "fields": [
+        {
+          "label": "开始时间",
+          "description": "以M:SS或H:MM:SS格式设置开始时间，不包括前导零。"
+        },
+        {
+          "label": "完成消息",
+          "description": "可选，在计时器结束时显示的消息。"
+        },
+        {
+          "label": "自动开始",
+          "description": "如果选中，计时器将自动开始。如果未选中，用户需要手动开始计时器。"
+        },
+        {
+          "label": "可暂停",
+          "description": "如果选中，用户将能够暂停计时器。"
+        },
+        {
+          "label": "可重置",
+          "description": "如果选中，用户将能够重置计时器。"
+        }
+      ]
+    },
+    {
+      "label": "时间格式",
+      "description": "选择计时器应该采用什么时间格式。",
+      "options": [
+        {
+          "label": "详细格式"
+        },
+        {
+          "label": "时间代码"
+        }
+      ]
+    },
+    {
+      "label": "计时器信号",
+      "description": "可选：可以设置一个音频文件，当计时器到期时播放该文件。请注意，当自动启动计时器时，除非用户先与页面交互，否则浏览器可能会阻止播放信号。"
+    },
+    {
+      "label": "用户界面",
+      "fields": [
+        {
+          "label": "天的单位",
+          "description": "详细时间格式中天的文本单位。",
+          "default": "d"
+        },
+        {
+          "label": "小时的单位",
+          "description": "详细时间格式中小时的文本单位。",
+          "default": "h"
+        },
+        {
+          "label": "分钟的单位",
+          "description": "详细时间格式中分钟的文本单位。",
+          "default": "m"
+        },
+        {
+          "label": "秒的单位",
+          "description": "详细时间格式中秒的文本单位。",
+          "default": "s"
+        },
+        {
+          "label": "标题：圈数",
+          "description": "圈跑追踪表中圈数列的标题。",
+          "default": "圈"
+        },
+        {
+          "label": "标题：圈时间",
+          "description": "圈跑追踪表中圈时间列的标题。",
+          "default": "圈时间"
+        },
+        {
+          "label": "标题：总时间",
+          "description": "圈跑追踪表中总时间列的标题。",
+          "default": "总时间"
+        }
+      ]
+    },
+    {
+      "label": "无障碍文本",
+      "fields": [
+        {
+          "label": "开始按钮标签",
+          "description": "屏幕阅读器的文本。",
+          "default": "开始计时器"
+        },
+        {
+          "label": "开始按钮标签（禁用）",
+          "description": "屏幕阅读器的文本。",
+          "default": "开始计时器。目前已禁用"
+        },
+        {
+          "label": "暂停按钮标签",
+          "description": "屏幕阅读器的文本。",
+          "default": "暂停计时器"
+        },
+        {
+          "label": "跟踪圈数按钮标签",
+          "description": "屏幕阅读器的文本。",
+          "default": "跟踪圈数"
+        },
+        {
+          "label": "跟踪圈数按钮标签（禁用）",
+          "description": "屏幕阅读器的文本。",
+          "default": "跟踪圈数。目前已禁用"
+        },
+        {
+          "label": "重置按钮标签",
+          "description": "屏幕阅读器的文本。",
+          "default": "重置计时器"
+        },
+        {
+          "label": "开始按钮标签（秒表）",
+          "description": "屏幕阅读器的文本。",
+          "default": "开始秒表"
+        },
+        {
+          "label": "暂停按钮标签（秒表）",
+          "description": "屏幕阅读器的文本。",
+          "default": "暂停秒表"
+        },
+        {
+          "label": "重置按钮标签（秒表）",
+          "description": "屏幕阅读器的文本。",
+          "default": "重置秒表"
+        },
+        {
+          "label": "圈数表标题",
+          "description": "屏幕阅读器的文本。",
+          "default": "圈数时间"
+        },
+        {
+          "label": "当前时间",
+          "description": "屏幕阅读器的文本。",
+          "default": "当前时间:"
+        },
+        {
+          "label": "天",
+          "description": "屏幕阅读器的文本。用于报告时间。",
+          "default": "天"
+        },
+        {
+          "label": "天数",
+          "description": "屏幕阅读器的文本。用于报告时间。",
+          "default": "天数"
+        },
+        {
+          "label": "小时",
+          "description": "屏幕阅读器的文本。用于报告时间。",
+          "default": "小时"
+        },
+        {
+          "label": "小时数",
+          "description": "屏幕阅读器的文本。用于报告时间。",
+          "default": "小时数"
+        },
+        {
+          "label": "分钟",
+          "description": "屏幕阅读器的文本。用于报告时间。",
+          "default": "分钟"
+        },
+        {
+          "label": "分钟数",
+          "description": "屏幕阅读器使用的文本。用于宣读时间。",
+          "default": "分钟数"
+        },
+        {
+          "label": "秒",
+          "description": "屏幕阅读器使用的文本。用于宣读时间。",
+          "default": "秒"
+        },
+        {
+          "label": "秒数",
+          "description": "屏幕阅读器使用的文本。用于宣读时间。",
+          "default": "秒数"
+        },
+        {
+          "label": "十分之一秒",
+          "description": "屏幕阅读器使用的文本。用于宣读时间。",
+          "default": "十分之一秒"
+        },
+        {
+          "label": "十分之几秒",
+          "description": "屏幕阅读器使用的文本。用于宣读时间。",
+          "default": "十分之几秒"
+        },
+        {
+          "label": "屏幕阅读器使用的文本。全屏按钮的标题（进入）",
+          "default": "进入全屏模式"
+        },
+        {
+          "label": "屏幕阅读器使用的文本。全屏按钮的标题（退出）",
+          "default": "进入全屏模式"
+        }
+      ]
+    }
+  ]
+}
