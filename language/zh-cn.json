@@ -75,6 +75,24 @@
       ]
     },
     {
+      "label": "Granularity",
+      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "options": [
+        {
+          "label": "Seconds"
+        },
+        {
+          "label": "Minutes"
+        },
+        {
+          "label": "Hours"
+        },
+        {
+          "label": "Days"
+        }
+      ]
+    },
+    {
       "label": "计时器信号",
       "description": "可选：可以设置一个音频文件，当计时器到期时播放该文件。请注意，当自动启动计时器时，除非用户先与页面交互，否则浏览器可能会阻止播放信号。"
     },
