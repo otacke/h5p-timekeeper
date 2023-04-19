@@ -75,20 +75,20 @@
       ]
     },
     {
-      "label": "Granularity",
-      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "label": "Granularidad",
+      "description": "Elija la unidad más pequeña para mostrar en modo detallado. Si el tiempo restante arroja un valor de 0 para esa unidad, se elegirá automáticamente la siguiente unidad más pequeña.",
       "options": [
         {
-          "label": "Seconds"
+          "label": "Segundos"
         },
         {
-          "label": "Minutes"
+          "label": "Minutos"
         },
         {
-          "label": "Hours"
+          "label": "Horas"
         },
         {
-          "label": "Days"
+          "label": "Días"
         }
       ]
     },
