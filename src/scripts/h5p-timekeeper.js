@@ -115,7 +115,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Attach library to wrapper.
-   *
    * @param {H5P.jQuery} $wrapper Content's container.
    */
   attach($wrapper) {
@@ -126,7 +125,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Build main DOM.
-   *
    * @returns {HTMLElement} Main DOM.
    */
   buildDOM() {
@@ -193,7 +191,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Set state.
-   *
    * @param {number} state State: STATE_ENDED|STATE_PLAYING|STATE_PAUSED.
    * @param {number} timeMs Time that the state was changed at.
    */
@@ -217,7 +214,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Handle timer state changed.
-   *
    * @param {number} state State: STATE_ENDED|STATE_PLAYING|STATE_PAUSED.
    * @param {number} timeMs Time that the state was changed at.
    */
@@ -294,7 +290,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Handle tick from timer.
-   *
    * @param {number} timeMs Time the timer is at in milliseconds.
    */
   handleTick(timeMs) {
@@ -359,7 +354,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Toggle fullscreen button.
-   *
    * @param {string|boolean} state enter|false for enter, exit|true for exit.
    */
   toggleFullscreen(state) {
@@ -402,7 +396,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Get task title.
-   *
    * @returns {string} Title.
    */
   getTitle() {
@@ -413,7 +406,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Get description.
-   *
    * @returns {string} Description.
    */
   getDescription() {
@@ -422,7 +414,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Trigger xAPI event.
-   *
    * @param {string} verb Short id of the verb we want to trigger.
    */
   triggerXAPIEvent(verb) {
@@ -432,7 +423,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Trigger xAPI event with custom verb/extension URI
-   *
    * @param {string} verb Short id of the verb we want to trigger.
    * @param {number} timeMs Time in milliseconds.
    */
@@ -449,7 +439,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Create an xAPI event.
-   *
    * @param {string} verb Short id of the verb we want to trigger.
    * @returns {H5P.XAPIEvent} Event template.
    */
@@ -481,7 +470,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Add time extension to xAPI definition.
-   *
    * @param {H5P.XAPIEvent} xAPIEvent to set definition for.
    * @param {number} timeMs Time in milliseconds.
    */
@@ -507,7 +495,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Set verb for timer.
-   *
    * @param {H5P.XAPIEvent} xAPIEvent to set definition for.
    * @param {string} verb Verb to set.
    */
@@ -528,7 +515,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Get the xAPI definition for the xAPI object.
-   *
    * @returns {object} XAPI definition.
    */
   getXAPIDefinition() {
@@ -673,7 +659,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Build buttons.
-   *
    * @returns {object} Buttons to choose from in toolbar
    */
   buildButtons() {

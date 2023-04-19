@@ -58,7 +58,6 @@ export default class Laptracker {
 
   /**
    * Get DOM.
-   *
    * @returns {HTMLElement} DOM.
    */
   getDOM() {
@@ -95,7 +94,6 @@ export default class Laptracker {
 
   /**
    * Add a lap to display.
-   *
    * @param {number} totalTime Total time in milliseconds.
    */
   addLap(totalTime) {
@@ -124,7 +122,6 @@ export default class Laptracker {
 
   /**
    * Update current lap in progress.
-   *
    * @param {number} totalTime Total time in milliseconds.
    */
   updateLap(totalTime) {
@@ -145,7 +142,6 @@ export default class Laptracker {
 
   /**
    * Build lap entry containing lap number, lap time and total time.
-   *
    * @param {number} lap Lap number.
    * @param {number} lapTime Lap time in milliseconds.
    * @param {number} totalTime Total time in milliseconds.

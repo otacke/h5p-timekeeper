@@ -3,7 +3,6 @@ import Util from './util';
 export default class Timer {
   /**
    * Timer.
-   *
    * @class
    * @param {object} [params={}] Parameters.
    * @param {string} [params.mode='timer'] Mode: timer|stopwatch.
@@ -37,7 +36,6 @@ export default class Timer {
 
   /**
    * Set current state.
-   *
    * @param {number} state Current state.
    */
   setState(state) {
@@ -47,7 +45,6 @@ export default class Timer {
 
   /**
    * Start.
-   *
    * @param {number} [defaultTime] Time to start with.
    */
   start(defaultTime) {
@@ -113,7 +110,6 @@ export default class Timer {
 
   /**
    * Set time.
-   *
    * @param {number} timeMs time in ms.
    */
   setTime(timeMs) {
@@ -122,7 +118,6 @@ export default class Timer {
 
   /**
    * Get time.
-   *
    * @returns {number} Time in ms.
    */
   getTime() {

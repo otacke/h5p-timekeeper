@@ -103,7 +103,6 @@ export default class Counter {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -112,7 +111,6 @@ export default class Counter {
 
   /**
    * Get current time.
-   *
    * @returns {number} Current time.
    */
   getTime() {
@@ -121,7 +119,6 @@ export default class Counter {
 
   /**
    * Start.
-   *
    * @param {number} timeMs Time to count in milliseconds.
    */
   start(timeMs = this.params.timeToCount * 1000) {
@@ -210,7 +207,6 @@ export default class Counter {
 
   /**
    * Set counter.
-   *
    * @param {string|object} params Parameters: Plain text or multiple formats.
    * @param {string} params.html HTML to display.
    * @param {string} params.aria ARIA label to use for display.
@@ -247,7 +243,6 @@ export default class Counter {
 
   /**
    * Set fullscreen title.
-   *
    * @param {boolean} state If true, fullscreen entered, else exited.
    */
   setFullscreen(state) {
@@ -263,7 +258,6 @@ export default class Counter {
 
   /**
    * Handle tick of timer.
-   *
    * @param {number} timeMs Timer time of change.
    */
   handleTick(timeMs) {
@@ -283,7 +277,6 @@ export default class Counter {
 
   /**
    * Handle state of timer changed.
-   *
    * @param {number} state New state.
    * @param {number} timeMs Timer time of change.
    */

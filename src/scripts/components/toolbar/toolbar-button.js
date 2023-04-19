@@ -4,7 +4,6 @@ import Util from './../../services/util';
 export default class ToolbarButton {
   /**
    * Button for toolbar.
-   *
    * @class
    * @param {object} params Parameter from editor.
    * @param {object} [callbacks] Callbacks.
@@ -109,7 +108,6 @@ export default class ToolbarButton {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -206,7 +204,6 @@ export default class ToolbarButton {
 
   /**
    * Force button click.
-   *
    * @param {boolean} [active] If set to boolean, activate accordingly.
    * @param {boolean} [triggerClick=true] If false, no button click trigger.
    */
@@ -311,7 +308,6 @@ export default class ToolbarButton {
 
   /**
    * Set attribute.
-   *
    * @param {string} attribute Attribute key.
    * @param {string} value Attribute value.
    */
@@ -321,7 +317,6 @@ export default class ToolbarButton {
 
   /**
    * Determine whether button is active.
-   *
    * @returns {boolean} True, if button is active, else false.
    */
   isActive() {
@@ -330,7 +325,6 @@ export default class ToolbarButton {
 
   /**
    * Determine whether button is disabled.
-   *
    * @returns {boolean} True, if button is disabled, else false.
    */
   isDisabled() {
@@ -339,7 +333,6 @@ export default class ToolbarButton {
 
   /**
    * Determine whether button is cloaked.
-   *
    * @returns {boolean} True, if button is cloaked, else false.
    */
   isCloaked() {
@@ -348,7 +341,6 @@ export default class ToolbarButton {
 
   /**
    * Determine whether button has focus.
-   *
    * @returns {boolean} True, if button has focus.
    */
   hasFocus() {

@@ -4,7 +4,6 @@ import Util from './util';
 export default class TimeFormatter {
   /**
    * Convert milliseconds to other time units.
-   *
    * @param {number} milliSeconds Milliseconds.
    * @returns {object} The milliseconds in other time units.
    */
@@ -34,7 +33,6 @@ export default class TimeFormatter {
    *
    * At some point, having a general formatter might be nice ... For now, three
    * hardcoded formats are enough.
-   *
    * @param {number} timeMs Time in milliseconds.
    * @param {string} format Name of the format requested.
    * @param {boolean} [ariaWithTenths=false] If true, add tenths to aria text.
@@ -175,7 +173,6 @@ export default class TimeFormatter {
 
   /**
    * Convert seconds to ISO 8601 time period.
-   *
    * @param {number} timeMs Time in milliseconds >= 0.
    * @returns {string|null} ISO 8601 time period or null.
    */
@@ -215,7 +212,6 @@ export default class TimeFormatter {
 
   /**
    * Fit time to granularity.
-   *
    * @param {number} timeMs Time in milliseconds
    * @param {string} granularity Granularity.
    * @returns {object} New timeMs and granularity.

@@ -3,7 +3,6 @@ import he from 'he';
 export default class Dictionary {
   /**
    * Fill dictionary with translations.
-   *
    * @param {object} translation Translations.
    */
   static fill(translation = {}) {
@@ -12,7 +11,6 @@ export default class Dictionary {
 
   /**
    * Get translation for a key.
-   *
    * @param {string} key Key to look for.
    * @param {object} [base] Base to start looking.
    * @returns {string} Translation.
@@ -35,7 +33,6 @@ export default class Dictionary {
 
   /**
    * Sanitize translations recursively: HTML decode and strip HTML.
-   *
    * @param {string|object} translation Translation.
    * @returns {string} Translation value.
    */

@@ -49,7 +49,6 @@ export default class Toolbar {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -58,7 +57,6 @@ export default class Toolbar {
 
   /**
    * Add button.
-   *
    * @param {object} [button={}] Button parameters.
    */
   addButton(button = {}) {
@@ -92,7 +90,6 @@ export default class Toolbar {
 
   /**
    * Set button attributes.
-   *
    * @param {string} id Button id.
    * @param {object} attributes HTML attributes to set.
    */
@@ -108,7 +105,6 @@ export default class Toolbar {
 
   /**
    * Force button state.
-   *
    * @param {string} id Button id.
    * @param {boolean|number} active If true, toggle active, else inactive.
    * @param {boolean} [triggerClick=true] If false, no button click trigger.
@@ -126,7 +122,6 @@ export default class Toolbar {
 
   /**
    * Enable button.
-   *
    * @param {string} id Button id.
    */
   enableButton(id = '') {
@@ -139,7 +134,6 @@ export default class Toolbar {
 
   /**
    * Disable button.
-   *
    * @param {string} id Button id.
    */
   disableButton(id = '') {
@@ -152,7 +146,6 @@ export default class Toolbar {
 
   /**
    * Show button.
-   *
    * @param {string} id Button id.
    */
   showButton(id = '') {
@@ -165,7 +158,6 @@ export default class Toolbar {
 
   /**
    * Hide button.
-   *
    * @param {string} id Button id.
    */
   hideButton(id = '') {
@@ -178,7 +170,6 @@ export default class Toolbar {
 
   /**
    * Decloak button.
-   *
    * @param {string} id Button id.
    */
   decloakButton(id = '') {
@@ -191,7 +182,6 @@ export default class Toolbar {
 
   /**
    * Cloak button.
-   *
    * @param {string} id Button id.
    */
   cloakButton(id = '') {
@@ -204,7 +194,6 @@ export default class Toolbar {
 
   /**
    * Determine whether button has focus.
-   *
    * @param {string} id Button id.
    * @returns {boolean|undefined} True, if button has focus.
    */
@@ -218,7 +207,6 @@ export default class Toolbar {
 
   /**
    * Focus a button.
-   *
    * @param {string} id Button id.
    */
   focus(id = '') {
