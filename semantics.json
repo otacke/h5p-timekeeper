@@ -182,6 +182,43 @@
     }
   },
   {
+    "name": "granularity",
+    "type": "select",
+    "label": "Granularity",
+    "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+    "options": [
+      {
+        "label": "Seconds",
+        "value": "seconds"
+      },
+      {
+        "label": "Minutes",
+        "value": "minutes"
+      },
+      {
+        "label": "Hours",
+        "value": "hours"
+      },
+      {
+        "label": "Days",
+        "value": "days"
+      }
+    ],
+    "default": "seconds",
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "endtime",
+            "starttime"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "name": "signal",
     "type": "audio",
     "label": "Timer signal",

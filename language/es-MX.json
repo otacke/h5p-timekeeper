@@ -63,6 +63,8 @@
       ]
     },
     {
+      "label": "Formato de tiempo",
+      "description": "Elija qué formato de hora debe tener el temporizador.",
       "options": [
         {
           "label": "Verboso"
@@ -70,9 +72,25 @@
         {
           "label": "Código de Tiempo"
         }
-      ],
-      "label": "Formato de tiempo",
-      "description": "Elija qué formato de hora debe tener el temporizador."
+      ]
+    },
+    {
+      "label": "Granularity",
+      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "options": [
+        {
+          "label": "Seconds"
+        },
+        {
+          "label": "Minutes"
+        },
+        {
+          "label": "Hours"
+        },
+        {
+          "label": "Days"
+        }
+      ]
     },
     {
       "label": "Señal de temporizador",

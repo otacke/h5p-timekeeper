@@ -75,10 +75,29 @@
       ]
     },
     {
+      "label": "Granularity",
+      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "options": [
+        {
+          "label": "Seconds"
+        },
+        {
+          "label": "Minutes"
+        },
+        {
+          "label": "Hours"
+        },
+        {
+          "label": "Days"
+        }
+      ]
+    },
+    {
       "label": "Sinal do temporizador",
       "description": "Opcionalmente, configura un ficheiro de son que debería reproducirse cando caduque o temporizador. Ten en conta que ao iniciar o temporizador automaticamente, o navegador pode impedir a reprodución do sinal a menos que o usuario interactuase primeiro coa páxina."
     },
     {
+      "label": "Interface de usuario",
       "fields": [
         {
           "label": "Unidade de días",
@@ -96,14 +115,14 @@
           "default": "m"
         },
         {
-          "default": "s",
           "label": "Unidade de segundos",
-          "description": "Texto de unidade para segundos en formato de hora detallado."
+          "description": "Texto de unidade para segundos en formato de hora detallado.",
+          "default": "s"
         },
         {
-          "default": "Volta",
           "label": "Cabeceira: Volta",
-          "description": "Cabeceira da columna volta na táboa de seguimento de voltas."
+          "description": "Cabeceira da columna volta na táboa de seguimento de voltas.",
+          "default": "Volta"
         },
         {
           "label": "Cabeceira: tempo de volta",
@@ -115,10 +134,10 @@
           "description": "Cabeceira da columna de tempo total na táboa de seguimento de voltas.",
           "default": "Tempo total"
         }
-      ],
-      "label": "Interface de usuario"
+      ]
     },
     {
+      "label": "Textos de accesibilidade",
       "fields": [
         {
           "label": "Etiqueta para o botón de inicio",
@@ -176,9 +195,9 @@
           "default": "Hora actual:"
         },
         {
-          "default": "día",
           "label": "Día",
-          "description": "Texto para lectores de pantalla. Usado para anunciar a hora."
+          "description": "Texto para lectores de pantalla. Usado para anunciar a hora.",
+          "default": "día"
         },
         {
           "label": "Días",
@@ -233,8 +252,7 @@
           "label": "Texto para lectores de pantalla. Título para o botón de pantalla completa (saír)",
           "default": "Saír do modo de pantalla completa"
         }
-      ],
-      "label": "Textos de accesibilidade"
+      ]
     }
   ]
 }

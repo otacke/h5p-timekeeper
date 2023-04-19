@@ -38,6 +38,7 @@
       ]
     },
     {
+      "label": "Select number to count down from",
       "fields": [
         {
           "label": "Start time",
@@ -59,8 +60,7 @@
           "label": "Resettable",
           "description": "If checked, the user will be able to reset the timer."
         }
-      ],
-      "label": "Select number to count down from"
+      ]
     },
     {
       "label": "Time format",
@@ -71,6 +71,24 @@
         },
         {
           "label": "Time code"
+        }
+      ]
+    },
+    {
+      "label": "Granularity",
+      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "options": [
+        {
+          "label": "Seconds"
+        },
+        {
+          "label": "Minutes"
+        },
+        {
+          "label": "Hours"
+        },
+        {
+          "label": "Days"
         }
       ]
     },

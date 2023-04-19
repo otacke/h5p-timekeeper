@@ -75,6 +75,24 @@
       ]
     },
     {
+      "label": "Granularity",
+      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "options": [
+        {
+          "label": "Seconds"
+        },
+        {
+          "label": "Minutes"
+        },
+        {
+          "label": "Hours"
+        },
+        {
+          "label": "Days"
+        }
+      ]
+    },
+    {
       "label": "Timer signaal",
       "description": "Stel optioneel een audiobestand in dat moet worden afgespeeld als de timer is afgelopen. Let op dat wanneer de timer automatisch start, de browser het signaal mogelijk niet afspeelt tenzij de gebruiker eerst interactie heeft gehad met de pagina."
     },

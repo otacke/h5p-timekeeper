@@ -38,6 +38,7 @@
       ]
     },
     {
+      "label": "Seleccione el número desde el que iniciar la cuenta atrás",
       "fields": [
         {
           "label": "Hora de inicio",
@@ -52,15 +53,14 @@
           "description": "Si está marcado, el temporizador se iniciará automáticamente. Si no está marcado, el usuario tendrá que iniciar el temporizador."
         },
         {
-          "description": "Si está marcado, el usuario podrá pausar el temporizador.",
-          "label": "Se puede pausar"
+          "label": "Se puede pausar",
+          "description": "Si está marcado, el usuario podrá pausar el temporizador."
         },
         {
           "label": "Reiniciable",
           "description": "Si está marcado, el usuario podrá reiniciar el temporizador."
         }
-      ],
-      "label": "Seleccione el número desde el que iniciar la cuenta atrás"
+      ]
     },
     {
       "label": "Formato de tiempo",
@@ -71,6 +71,24 @@
         },
         {
           "label": "Código de Tiempo"
+        }
+      ]
+    },
+    {
+      "label": "Granularity",
+      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "options": [
+        {
+          "label": "Seconds"
+        },
+        {
+          "label": "Minutes"
+        },
+        {
+          "label": "Hours"
+        },
+        {
+          "label": "Days"
         }
       ]
     },
@@ -119,6 +137,7 @@
       ]
     },
     {
+      "label": "Textos de Accesibilidad",
       "fields": [
         {
           "label": "Etiqueta botón Iniciar",
@@ -233,8 +252,7 @@
           "label": "Texto para lectores de pantalla. Título para el botón de pantalla completa (Salir)",
           "default": "Salir del modo de Pantalla Completa"
         }
-      ],
-      "label": "Textos de Accesibilidad"
+      ]
     }
   ]
 }

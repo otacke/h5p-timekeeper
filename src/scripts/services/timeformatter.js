@@ -38,9 +38,17 @@ export default class TimeFormatter {
    * @param {number} timeMs Time in milliseconds.
    * @param {string} format Name of the format requested.
    * @param {boolean} [ariaWithTenths=false] If true, add tenths to aria text.
+   * @param {string} granularity Granularity of display.
    * @returns {object} Time as (HTML) string and plain verbose aria string.
    */
-  static format(timeMs, format, ariaWithTenths = false) {
+  static format(timeMs, format, ariaWithTenths = false, granularity = 'seconds') {
+    if (format === 'verbose') {
+      (
+        { timeMs, granularity } =
+        TimeFormatter.fitToGranularity(timeMs, granularity)
+      );
+    }
+
     const elements = TimeFormatter.convert(timeMs);
 
     let segments = [];
@@ -97,24 +105,32 @@ export default class TimeFormatter {
         segments.push('</div>');
       }
 
-      if (elements.h !== 0 || segments.length > 0) {
+      if (
+        (elements.h !== 0 || segments.length > 0) &&
+        granularity !== 'days'
+      ) {
         segments.push('<div class="h5p-timekeeper-format-element h5p-timekeeper-format-verbose">');
         segments.push(`<span class="h5p-timekeeper-format-value">${elements.h}</span>`);
         segments.push(`<span class="h5p-timekeeper-format-unit">${Dictionary.get('l10n.unitHours')}</span>`);
         segments.push('</div>');
       }
 
-      if (elements.m !== 0 || segments.length > 0) {
+      if (
+        (elements.m !== 0 || segments.length > 0) &&
+        (granularity !== 'days' && granularity !== 'hours')
+      ) {
         segments.push('<div class="h5p-timekeeper-format-element h5p-timekeeper-format-verbose">');
         segments.push(`<span class="h5p-timekeeper-format-value">${elements.m}</span>`);
         segments.push(`<span class="h5p-timekeeper-format-unit">${Dictionary.get('l10n.unitMinutes')}</span>`);
         segments.push('</div>');
       }
 
-      segments.push('<div class="h5p-timekeeper-format-element h5p-timekeeper-format-verbose">');
-      segments.push(`<span class="h5p-timekeeper-format-value">${elements.s}</span>`);
-      segments.push(`<span class="h5p-timekeeper-format-unit">${Dictionary.get('l10n.unitSeconds')}</span>`);
-      segments.push('</div>');
+      if (granularity === 'seconds') {
+        segments.push('<div class="h5p-timekeeper-format-element h5p-timekeeper-format-verbose">');
+        segments.push(`<span class="h5p-timekeeper-format-value">${elements.s}</span>`);
+        segments.push(`<span class="h5p-timekeeper-format-unit">${Dictionary.get('l10n.unitSeconds')}</span>`);
+        segments.push('</div>');
+      }
     }
 
     const ariaSegments = [];
@@ -195,5 +211,46 @@ export default class TimeFormatter {
     segments.push(`${seconds}.${milliseconds}S`);
 
     return `PT${segments.join('')}`;
+  }
+
+  /**
+   * Fit time to granularity.
+   *
+   * @param {number} timeMs Time in milliseconds
+   * @param {string} granularity Granularity.
+   * @returns {object} New timeMs and granularity.
+   */
+  static fitToGranularity(timeMs, granularity) {
+    let factor;
+    if (granularity === 'days') {
+      factor = 86400000; // 24 * 60 * 60 * 1000 ms
+
+      const days = Math.floor(timeMs / factor);
+      if (days !== 0) {
+        return { timeMs: days * factor, granularity: 'days' };
+      }
+
+      granularity = 'hours';
+    }
+
+    if (granularity === 'hours') {
+      factor = 3600000; // 60 * 60 * 1000 ms
+      const hours = Math.floor(timeMs / factor);
+      if (hours !== 0) {
+        return { timeMs: hours * factor, granularity: 'hours' };
+      }
+
+      granularity = 'minutes';
+    }
+
+    if (granularity === 'minutes') {
+      factor = 60000; // 60 * 1000 ms
+      const minutes = Math.floor(timeMs / factor);
+      if (minutes !== 0) {
+        return { timeMs: minutes * factor, granularity: 'minutes' };
+      }
+    }
+
+    return { timeMs: timeMs, granularity: 'seconds' };
   }
 }

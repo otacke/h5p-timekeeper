@@ -95,7 +95,8 @@ export default class Counter {
       this.setCounter(TimeFormatter.format(
         this.params.timeToCount * 1000,
         this.params.format,
-        this.params.mode === 'stopwatch'
+        this.params.mode === 'stopwatch',
+        this.params.granularity
       ));
     }
   }
@@ -202,7 +203,8 @@ export default class Counter {
     this.setCounter(TimeFormatter.format(
       this.params.timeToCount * 1000,
       this.params.format,
-      this.params.mode === 'stopwatch'
+      this.params.mode === 'stopwatch',
+      this.params.granularity
     ));
   }
 
@@ -272,7 +274,10 @@ export default class Counter {
     }
 
     this.setCounter(TimeFormatter.format(
-      timeMs, this.params.format, this.params.mode === 'stopwatch'
+      timeMs,
+      this.params.format,
+      this.params.mode === 'stopwatch',
+      this.params.granularity
     ));
   }
 

@@ -75,6 +75,24 @@
       ]
     },
     {
+      "label": "Granularität",
+      "description": "Wähle die kleinste Einheit, die im ausführlichen Zeitformat angezeigt werden soll. Wenn die verbleibende Zeit für diese Einheit eine 0 ergibt, wird automatisch die nächstkleinere Einheit gewählt.",
+      "options": [
+        {
+          "label": "Sekunden"
+        },
+        {
+          "label": "Minuten"
+        },
+        {
+          "label": "Stunden"
+        },
+        {
+          "label": "Tage"
+        }
+      ]
+    },
+    {
       "label": "Alarmsignal",
       "description": "Du kannst optional eine Tondatei angeben, die gespielt werden soll, wenn der Timer abläuft. Bitte beachte, dass beim automatischen Starten des Timers Browser das Abspielen des Signals verhindern können, falls die Nutzenden zuvor nicht mit der Seite interagiert haben."
     },

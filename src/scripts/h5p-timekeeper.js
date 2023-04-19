@@ -28,6 +28,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
         canBePaused: false,
         canBeReset: false
       },
+      timeFormat: 'verbose',
+      granularity: 'seconds',
       l10n: {
         unitDays: 'd',
         unitHours: 'h',
@@ -569,7 +571,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           finishedText: this.params.datetimeGroup.finishedText,
           tooLateText: this.params.datetimeGroup.tooLateText,
           format: this.params.timeFormat,
-          noFullscreen: this.noFullscreen
+          noFullscreen: this.noFullscreen,
+          granularity: this.params.granularity
         },
         {
           onStateChanged: (state, timeMs) => {
@@ -595,7 +598,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           timeToCount: this.params.startTimeGroup.startTime,
           finishedText: this.params.startTimeGroup.finishedText,
           format: this.params.timeFormat,
-          noFullscreen: this.noFullscreen
+          noFullscreen: this.noFullscreen,
+          granularity: this.params.granularity
         },
         {
           onStateChanged: (state, timeMs) => {
@@ -632,7 +636,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           canBeReset: true,
           mode: 'stopwatch',
           format: 'stopwatch',
-          noFullscreen: this.noFullscreen
+          noFullscreen: this.noFullscreen,
+          granularity: this.params.granularity
         },
         {
           onStateChanged: (state, timeMs) => {
