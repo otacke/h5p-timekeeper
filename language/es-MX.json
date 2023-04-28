@@ -6,7 +6,7 @@
     },
     {
       "label": "Modo",
-      "description": "Elije en qué modo deseas que se ejecute el Reloj.",
+      "description": "Elegir en qué modo desea que se ejecute el Reloj.",
       "options": [
         {
           "label": "Cuenta atrás hasta la fecha y la hora"
@@ -38,11 +38,11 @@
       ]
     },
     {
-      "label": "Seleccione el número desde el que iniciar la cuenta atrás",
+      "label": "Seleccionar el número desde el cual iniciar la cuenta atrás",
       "fields": [
         {
           "label": "Hora de inicio",
-          "description": "Establezca la hora de inicio en el formato M:SS o H:MM:SS sin ceros a la izquierda."
+          "description": "Establecer la hora de inicio en el formato M:SS o H:MM:SS sin ceros a la izquierda."
         },
         {
           "label": "Mensaje de terminado",
@@ -64,7 +64,7 @@
     },
     {
       "label": "Formato de tiempo",
-      "description": "Elija qué formato de hora debe tener el temporizador.",
+      "description": "Elegir qué formato de hora debe tener el temporizador.",
       "options": [
         {
           "label": "Verboso"
@@ -75,20 +75,20 @@
       ]
     },
     {
-      "label": "Granularity",
-      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "label": "Granularidad",
+      "description": "Eleegir la unidad más pequeña para mostrar en modo detallado. Si el tiempo restante arroja un valor de 0 para esa unidad, se elegirá automáticamente la siguiente unidad más pequeña.",
       "options": [
         {
-          "label": "Seconds"
+          "label": "Segundos"
         },
         {
-          "label": "Minutes"
+          "label": "Minutos"
         },
         {
-          "label": "Hours"
+          "label": "Horas"
         },
         {
-          "label": "Days"
+          "label": "Días"
         }
       ]
     },

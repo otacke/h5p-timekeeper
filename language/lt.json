@@ -75,8 +75,8 @@
       ]
     },
     {
-      "label": "Granularity",
-      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "label": "Granuliuotumas",
+      "description": "Pasirinkite mažiausią vienetą, kuris bus rodomas išsamiu režimu. Jei per likusį laiką to vieneto vertė yra 0, automatiškai bus pasirinktas kitas mažesnis vienetas.",
       "options": [
         {
           "label": "Seconds"
@@ -93,30 +93,30 @@
       ]
     },
     {
-      "label": "Timer signal",
+      "label": "Laikmačio signalas",
       "description": "Optionally set an audio file that should be played when the timer has expired. Please note that when starting the timer automatically, the browser may prevent playing the signal unless the user has interacted with the page first."
     },
     {
-      "label": "User interface",
+      "label": "Naudotojo sąsaja",
       "fields": [
         {
-          "label": "Unit days",
-          "description": "Unit text for days in verbose time format.",
+          "label": "Dienų vienetas",
+          "description": "Dienų vieneto tekstas išsamiu laiko formatu.",
           "default": "d"
         },
         {
-          "label": "Unit hours",
-          "description": "Unit text for hours in verbose time format.",
-          "default": "h"
+          "label": "Valandų vienetas",
+          "description": "Vieneto tekstas valandoms išsamiu laiko formatu.",
+          "default": "val"
         },
         {
-          "label": "Unit minutes",
-          "description": "Unit text for minutes in verbose time format.",
+          "label": "Minučių vienetas",
+          "description": "Vieneto tekstas minutėms išsamiu laiko formatu.",
           "default": "m"
         },
         {
-          "label": "Unit seconds",
-          "description": "Unit text for seconds in verbose time format.",
+          "label": "Vienetas sekundėms",
+          "description": "Vieneto tekstas sekundėms išsamiu laiko formatu.",
           "default": "s"
         },
         {
@@ -130,9 +130,9 @@
           "default": "Lap time"
         },
         {
-          "label": "Header: Total time",
+          "label": "Antraštė: Bendras laikas",
           "description": "Header for total time column in lap tracking table.",
-          "default": "Total time"
+          "default": "Bendras laikas"
         }
       ]
     },
