@@ -35,7 +35,7 @@ export default class TimeFormatter {
    * hardcoded formats are enough.
    * @param {number} timeMs Time in milliseconds.
    * @param {string} format Name of the format requested.
-   * @param {boolean} [ariaWithTenths=false] If true, add tenths to aria text.
+   * @param {boolean} [ariaWithTenths] If true, add tenths to aria text.
    * @param {string} granularity Granularity of display.
    * @returns {object} Time as (HTML) string and plain verbose aria string.
    */

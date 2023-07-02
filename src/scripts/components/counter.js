@@ -1,7 +1,7 @@
-import Dictionary from './../services/dictionary';
-import Timer from './../services/timer';
-import TimeFormatter from './../services/timeformatter';
-import Util from './../services/util';
+import Dictionary from '@services/dictionary';
+import Timer from '@services/timer';
+import TimeFormatter from '@services/timeformatter';
+import Util from '@services/util';
 
 import './counter.scss';
 

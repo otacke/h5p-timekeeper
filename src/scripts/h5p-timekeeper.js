@@ -1,10 +1,10 @@
-import Util from './services/util';
-import Dictionary from './services/dictionary';
-import TimeFormatter from './services/timeformatter';
-import Counter from './components/counter';
-import Toolbar from './components/toolbar/toolbar';
-import Laptracker from './components/laptracker';
-import '../styles/h5p-timekeeper.scss';
+import Util from '@services/util';
+import Dictionary from '@services/dictionary';
+import TimeFormatter from '@services/timeformatter';
+import Counter from '@components/counter';
+import Toolbar from '@components/toolbar/toolbar';
+import Laptracker from '@components/laptracker';
+import '@styles/h5p-timekeeper.scss';
 
 export default class Timekeeper extends H5P.EventDispatcher {
   /**

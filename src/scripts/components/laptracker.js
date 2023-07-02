@@ -1,14 +1,14 @@
-import Dictionary from './../services/dictionary';
-import TimeFormatter from './../services/timeformatter';
-import Util from './../services/util';
+import Dictionary from '@services/dictionary';
+import TimeFormatter from '@services/timeformatter';
+import Util from '@services/util';
 import './laptracker.scss';
 
 /** Class keeping track of laps */
 export default class Laptracker {
   /**
    * @class
-   * @param {object} [params={}] Parameters.
-   * @param {object} [callbacks={}] Callbacks.
+   * @param {object} [params] Parameters.
+   * @param {object} [callbacks] Callbacks.
    * @param {function} [callbacks.onResize] Callback for resize needed.
    */
   constructor(params = {}, callbacks = {}) {

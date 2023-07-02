@@ -1,5 +1,5 @@
 import './toolbar-button.scss';
-import Util from './../../services/util';
+import Util from '@services/util';
 
 export default class ToolbarButton {
   /**
@@ -205,7 +205,7 @@ export default class ToolbarButton {
   /**
    * Force button click.
    * @param {boolean} [active] If set to boolean, activate accordingly.
-   * @param {boolean} [triggerClick=true] If false, no button click trigger.
+   * @param {boolean} [triggerClick] If false, no button click trigger.
    */
   force(active, triggerClick = true) {
     if (this.params.type === 'toggle') {

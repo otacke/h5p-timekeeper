@@ -1,15 +1,15 @@
 import './toolbar.scss';
 import ToolbarButton from './toolbar-button';
-import Util from './../../services/util';
+import Util from '@services/util';
 
 /** Class representing the button bar */
 export default class Toolbar {
 
   /**
    * @class
-   * @param {object} [params={}] Parameters.
-   * @param {boolean} [params.hidden=false] If true, hide toolbar.
-   * @param {object} [callbacks={}] Callbacks.
+   * @param {object} [params] Parameters.
+   * @param {boolean} [params.hidden] If true, hide toolbar.
+   * @param {object} [callbacks] Callbacks.
    * @param {function} [callbacks.onClickButtonPreview] Callback preview button.
    * @param {function} [callbacks.onClickButtonExport] Callback export button.
    */
@@ -57,7 +57,7 @@ export default class Toolbar {
 
   /**
    * Add button.
-   * @param {object} [button={}] Button parameters.
+   * @param {object} [button] Button parameters.
    */
   addButton(button = {}) {
     if (typeof button.id !== 'string') {
@@ -107,7 +107,7 @@ export default class Toolbar {
    * Force button state.
    * @param {string} id Button id.
    * @param {boolean|number} active If true, toggle active, else inactive.
-   * @param {boolean} [triggerClick=true] If false, no button click trigger.
+   * @param {boolean} [triggerClick] If false, no button click trigger.
    */
   forceButton(id = '', active, triggerClick = true) {
     if (
