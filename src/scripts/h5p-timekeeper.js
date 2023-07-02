@@ -70,7 +70,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
     this.extras = extras;
 
     // Fill dictionary
-    Dictionary.fill({ l10n: this.params.l10n, a11y: this.params.a11y });
+    this.dictionary = new Dictionary();
+    this.dictionary.fill({ l10n: this.params.l10n, a11y: this.params.a11y });
 
     const defaultLanguage = extras?.metadata?.defaultLanguage || 'en';
     this.languageTag = Util.formatLanguageCode(defaultLanguage);
@@ -549,6 +550,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
       this.component = new Counter(
         {
+          dictionary: this.dictionary,
           canBePaused: false,
           canBeReset: false,
           timeToCount: (
@@ -579,6 +581,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
       this.component = new Counter(
         {
+          dictionary: this.dictionary,
           canBePaused: this.params.startTimeGroup.canBePaused,
           canBeReset: this.params.startTimeGroup.canBeReset,
           timeToCount: this.params.startTimeGroup.startTime,
@@ -618,6 +621,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
     else {
       this.component = new Counter(
         {
+          dictionary: this.dictionary,
           canBePaused: true,
           canBeReset: true,
           mode: 'stopwatch',
@@ -649,11 +653,16 @@ export default class Timekeeper extends H5P.EventDispatcher {
       });
 
       // Laptracker
-      this.laptracker = new Laptracker({}, {
-        onResize: () => {
-          this.trigger('resize');
+      this.laptracker = new Laptracker(
+        {
+          dictionary: this.dictionary
+        },
+        {
+          onResize: () => {
+            this.trigger('resize');
+          }
         }
-      });
+      );
     }
   }
 
@@ -665,15 +674,15 @@ export default class Timekeeper extends H5P.EventDispatcher {
     // Possible buttons for toolbar.
     return ({
       play: {
-        a11y: { disabled: Dictionary.get('a11y.playDisabled') },
+        a11y: { disabled: this.dictionary.get('a11y.playDisabled') },
         id: 'play',
         type: 'pulse',
         pulseStates: [
           {
             id: 'normal',
             label: (this.params.mode === 'stopwatch') ?
-              Dictionary.get('a11y.playStopwatch') :
-              Dictionary.get('a11y.play')
+              this.dictionary.get('a11y.playStopwatch') :
+              this.dictionary.get('a11y.play')
           }
         ],
         onClick: () => {
@@ -687,8 +696,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           {
             id: 'normal',
             label: (this.params.mode === 'stopwatch') ?
-              Dictionary.get('a11y.pauseStopwatch') :
-              Dictionary.get('a11y.pause')
+              this.dictionary.get('a11y.pauseStopwatch') :
+              this.dictionary.get('a11y.pause')
           }
         ],
         hidden: true,
@@ -697,11 +706,11 @@ export default class Timekeeper extends H5P.EventDispatcher {
         }
       },
       lap: {
-        a11y: { disabled: Dictionary.get('a11y.lapDisabled') },
+        a11y: { disabled: this.dictionary.get('a11y.lapDisabled') },
         id: 'lap',
         type: 'pulse',
         pulseStates: [
-          { id: 'normal', label: Dictionary.get('a11y.lap')}
+          { id: 'normal', label: this.dictionary.get('a11y.lap')}
         ],
         disabled: true,
         onClick: () => {
@@ -715,8 +724,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           {
             id: 'normal',
             label: (this.params.mode === 'stopwatch') ?
-              Dictionary.get('a11y.resetStopwatch') :
-              Dictionary.get('a11y.reset')
+              this.dictionary.get('a11y.resetStopwatch') :
+              this.dictionary.get('a11y.reset')
           }
         ],
         onClick: () => {

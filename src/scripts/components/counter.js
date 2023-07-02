@@ -1,4 +1,3 @@
-import Dictionary from '@services/dictionary';
 import Timer from '@services/timer';
 import TimeFormatter from '@services/timeformatter';
 import Util from '@services/util';
@@ -66,7 +65,7 @@ export default class Counter {
 
     const ariaTimer = document.createElement('div');
     ariaTimer.classList.add('h5p-timekeeper-counter-aria-timer');
-    ariaTimer.innerText = Dictionary.get('a11y.currentTime');
+    ariaTimer.innerText = this.params.dictionary.get('a11y.currentTime');
     this.content.appendChild(ariaTimer);
 
     this.timerText = document.createElement('div');
@@ -95,6 +94,7 @@ export default class Counter {
       this.setCounter(TimeFormatter.format(
         this.params.timeToCount * 1000,
         this.params.format,
+        this.params.dictionary,
         this.params.mode === 'stopwatch',
         this.params.granularity
       ));
@@ -200,6 +200,7 @@ export default class Counter {
     this.setCounter(TimeFormatter.format(
       this.params.timeToCount * 1000,
       this.params.format,
+      this.params.dictionary,
       this.params.mode === 'stopwatch',
       this.params.granularity
     ));
@@ -251,8 +252,8 @@ export default class Counter {
     }
 
     const title = state ?
-      Dictionary.get('a11y.buttonFullscreenExit') :
-      Dictionary.get('a11y.buttonFullscreenEnter');
+      this.params.dictionary.get('a11y.buttonFullscreenExit') :
+      this.params.dictionary.get('a11y.buttonFullscreenEnter');
     this.buttonFullscreen.setAttribute('aria-label', title);
   }
 
@@ -270,6 +271,7 @@ export default class Counter {
     this.setCounter(TimeFormatter.format(
       timeMs,
       this.params.format,
+      this.params.dictionary,
       this.params.mode === 'stopwatch',
       this.params.granularity
     ));

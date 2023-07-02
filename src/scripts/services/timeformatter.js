@@ -1,4 +1,3 @@
-import Dictionary from './dictionary';
 import Util from './util';
 
 export default class TimeFormatter {
@@ -35,11 +34,12 @@ export default class TimeFormatter {
    * hardcoded formats are enough.
    * @param {number} timeMs Time in milliseconds.
    * @param {string} format Name of the format requested.
+   * @param {object} dictionary dictionary.
    * @param {boolean} [ariaWithTenths] If true, add tenths to aria text.
-   * @param {string} granularity Granularity of display.
+   * @param {string} [granularity] Granularity of display.
    * @returns {object} Time as (HTML) string and plain verbose aria string.
    */
-  static format(timeMs, format, ariaWithTenths = false, granularity = 'seconds') {
+  static format(timeMs, format, dictionary, ariaWithTenths = false, granularity = 'seconds') {
     if (format === 'verbose') {
       (
         { timeMs, granularity } =
@@ -99,7 +99,7 @@ export default class TimeFormatter {
       if (elements.d !== 0) {
         segments.push('<div class="h5p-timekeeper-format-element h5p-timekeeper-format-verbose">');
         segments.push(`<span class="h5p-timekeeper-format-value">${elements.d}</span>`);
-        segments.push(`<span class="h5p-timekeeper-format-unit">${Dictionary.get('l10n.unitDays')}</span>`);
+        segments.push(`<span class="h5p-timekeeper-format-unit">${dictionary.get('l10n.unitDays')}</span>`);
         segments.push('</div>');
       }
 
@@ -109,7 +109,7 @@ export default class TimeFormatter {
       ) {
         segments.push('<div class="h5p-timekeeper-format-element h5p-timekeeper-format-verbose">');
         segments.push(`<span class="h5p-timekeeper-format-value">${elements.h}</span>`);
-        segments.push(`<span class="h5p-timekeeper-format-unit">${Dictionary.get('l10n.unitHours')}</span>`);
+        segments.push(`<span class="h5p-timekeeper-format-unit">${dictionary.get('l10n.unitHours')}</span>`);
         segments.push('</div>');
       }
 
@@ -119,14 +119,14 @@ export default class TimeFormatter {
       ) {
         segments.push('<div class="h5p-timekeeper-format-element h5p-timekeeper-format-verbose">');
         segments.push(`<span class="h5p-timekeeper-format-value">${elements.m}</span>`);
-        segments.push(`<span class="h5p-timekeeper-format-unit">${Dictionary.get('l10n.unitMinutes')}</span>`);
+        segments.push(`<span class="h5p-timekeeper-format-unit">${dictionary.get('l10n.unitMinutes')}</span>`);
         segments.push('</div>');
       }
 
       if (granularity === 'seconds') {
         segments.push('<div class="h5p-timekeeper-format-element h5p-timekeeper-format-verbose">');
         segments.push(`<span class="h5p-timekeeper-format-value">${elements.s}</span>`);
-        segments.push(`<span class="h5p-timekeeper-format-unit">${Dictionary.get('l10n.unitSeconds')}</span>`);
+        segments.push(`<span class="h5p-timekeeper-format-unit">${dictionary.get('l10n.unitSeconds')}</span>`);
         segments.push('</div>');
       }
     }
@@ -134,31 +134,31 @@ export default class TimeFormatter {
     const ariaSegments = [];
     if (elements.d !== 0) {
       const unit = (elements.d === 1) ?
-        Dictionary.get('a11y.day') :
-        Dictionary.get('a11y.days');
+        dictionary.get('a11y.day') :
+        dictionary.get('a11y.days');
       ariaSegments.push(`${elements.d} ${unit}`);
     }
     if (elements.h !== 0) {
       const unit = (elements.h === 1) ?
-        Dictionary.get('a11y.hour') :
-        Dictionary.get('a11y.hours');
+        dictionary.get('a11y.hour') :
+        dictionary.get('a11y.hours');
       ariaSegments.push(`${elements.h} ${unit}`);
     }
     if (elements.m !== 0) {
       const unit = (elements.m === 1) ?
-        Dictionary.get('a11y.minute') :
-        Dictionary.get('a11y.minutes');
+        dictionary.get('a11y.minute') :
+        dictionary.get('a11y.minutes');
       ariaSegments.push(`${elements.m} ${unit}`);
     }
     const unit = (elements.s === 1) ?
-      Dictionary.get('a11y.second') :
-      Dictionary.get('a11y.seconds');
+      dictionary.get('a11y.second') :
+      dictionary.get('a11y.seconds');
     ariaSegments.push(`${elements.s} ${unit}`);
 
     if (ariaWithTenths) {
       const unit = (elements.t === 1) ?
-        Dictionary.get('a11y.tenth') :
-        Dictionary.get('a11y.tenths');
+        dictionary.get('a11y.tenth') :
+        dictionary.get('a11y.tenths');
       ariaSegments.push(`${elements.t} ${unit}`);
     }
 

@@ -1,4 +1,3 @@
-import Dictionary from '@services/dictionary';
 import TimeFormatter from '@services/timeformatter';
 import Util from '@services/util';
 import './laptracker.scss';
@@ -28,7 +27,7 @@ export default class Laptracker {
 
     const caption = document.createElement('caption');
     caption.classList.add('h5p-timekeeper-laptracker-table-caption');
-    caption.innerText = Dictionary.get('a11y.lapTable');
+    caption.innerText = this.params.dictionary.get('a11y.lapTable');
     table.appendChild(caption);
 
     this.tablehead = document.createElement('thead');
@@ -36,17 +35,17 @@ export default class Laptracker {
 
     const th1 = document.createElement('th');
     th1.classList.add('h5p-timekeeper-laptracker-table-head-lap');
-    th1.innerHTML = Dictionary.get('l10n.lap');
+    th1.innerHTML = this.params.dictionary.get('l10n.lap');
     this.tablehead.appendChild(th1);
 
     const th2 = document.createElement('th');
     th2.classList.add('h5p-timekeeper-laptracker-table-head-time');
-    th2.innerHTML = Dictionary.get('l10n.lapTime');
+    th2.innerHTML = this.params.dictionary.get('l10n.lapTime');
     this.tablehead.appendChild(th2);
 
     const th3 = document.createElement('th');
     th3.classList.add('h5p-timekeeper-laptracker-table-head-total');
-    th3.innerHTML = Dictionary.get('l10n.totalTime');
+    th3.innerHTML = this.params.dictionary.get('l10n.totalTime');
     this.tablehead.appendChild(th3);
 
     table.appendChild(this.tablehead);
@@ -134,10 +133,14 @@ export default class Laptracker {
       totalTime - this.laps[this.laps.length - 1].lapTime;
 
     this.currentLapEntry.tdLapTimeText.innerText =
-      TimeFormatter.format(lapTime, 'stopwatch', true).text;
+      TimeFormatter.format(
+        lapTime, 'stopwatch', this.params.dictionary, true
+      ).text;
 
     this.currentLapEntry.tdTotalTimeText.innerText =
-      TimeFormatter.format(totalTime, 'stopwatch', true).text;
+      TimeFormatter.format(
+        totalTime, 'stopwatch', this.params.dictionary, true
+      ).text;
   }
 
   /**
@@ -163,7 +166,9 @@ export default class Laptracker {
     const tdLapTimeText = document.createElement('span');
     tdLapTimeText.classList.add('h5p-timekeeper-laptracker-table-column-time-text');
     tdLapTimeText.setAttribute('role', 'timer');
-    tdLapTimeText.innerText = TimeFormatter.format(lapTime, 'stopwatch', true).text;
+    tdLapTimeText.innerText = TimeFormatter.format(
+      lapTime, 'stopwatch', this.params.dictionary, true
+    ).text;
     tdLapTime.appendChild(tdLapTimeText);
 
     const tdTotalTime = document.createElement('td');
@@ -173,7 +178,9 @@ export default class Laptracker {
     const tdTotalTimeText = document.createElement('span');
     tdTotalTimeText.classList.add('h5p-timekeeper-laptracker-table-column-time-text');
     tdTotalTimeText.setAttribute('role', 'timer');
-    tdTotalTimeText.innerText = TimeFormatter.format(totalTime, 'stopwatch', true).text;
+    tdTotalTimeText.innerText = TimeFormatter.format(
+      totalTime, 'stopwatch', this.params.dictionary, true
+    ).text;
     tdTotalTime.appendChild(tdTotalTimeText);
 
     return {row, tdLap, tdLapTime, tdTotalTime, tdLapTimeText, tdTotalTimeText};
