@@ -103,6 +103,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
       if (this.params.music?.[0]?.path) {
         this.backgroundMusic = document.createElement('audio');
+        this.backgroundMusic.loop = true;
         this.backgroundMusic.src = H5P.getPath(
           this.params.music[0].path, this.contentId
         );
