@@ -12,6 +12,10 @@ $icon-button-lap-grey: url("./../../../assets/button-lap-icon-grey.svg");
 $icon-button-reset-blue: url("./../../../assets/button-reset-icon-blue.svg");
 $icon-button-reset-white: url("./../../../assets/button-reset-icon-white.svg");
 $icon-button-reset-grey: url("./../../../assets/button-reset-icon-grey.svg");
+$icon-button-music-active-blue: url("./../../../assets/button-music-active-icon-blue.svg");
+$icon-button-music-active-grey: url("./../../../assets/button-music-active-icon-grey.svg");
+$icon-button-music-inactive-blue: url("./../../../assets/button-music-inactive-icon-blue.svg");
+$icon-button-music-inactive-grey: url("./../../../assets/button-music-inactive-icon-grey.svg");
 
 .toolbar-tool-bar {
   align-items: center;
@@ -77,6 +81,23 @@ $icon-button-reset-grey: url("./../../../assets/button-reset-icon-grey.svg");
           &:active:not(.toolbar-button-disabled) {
             background-color: $color-primary;
             background-image: $icon-button-reset-white;
+          }
+        }
+      }
+
+      &.toolbar-button-music {
+        &.toolbar-button-muted {
+          background-image: $icon-button-music-inactive-blue;
+
+          &.toolbar-button-disabled {
+            background-image: $icon-button-music-inactive-grey;
+          }
+        }
+        &.toolbar-button-playing {
+          background-image: $icon-button-music-active-blue;
+
+          &.toolbar-button-disabled {
+            background-image: $icon-button-music-active-grey;
           }
         }
       }

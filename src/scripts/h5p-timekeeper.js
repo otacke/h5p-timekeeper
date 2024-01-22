@@ -62,7 +62,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
         tenth: 'tenth of a second',
         tenths: 'tenths of a second',
         buttonFullscreenEnter: 'Enter fullscreen mode',
-        buttonFullscreenExit: 'Exit fullscreen mode'
+        buttonFullscreenExit: 'Exit fullscreen mode',
+        buttonAudioActive: 'Mute audio. Currently unmuted.',
+        buttonAudioInactive: 'Unmute audio. Currently muted.',
       }
     }, params);
 
@@ -81,25 +83,38 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
     this.state = Timekeeper.STATE_RESET;
 
-    // Create counter, toolbar and laptracker as needed
-    this.createComponents();
-
     /*
      * Audio signal when finished
      * Using WebAudio API, because iOS doesn't preload on cellular connections
      */
-    if (this.params?.signal?.[0]?.path) {
+    if (this.params?.signal?.[0]?.path || this.params?.music?.[0]?.path) {
       this.audioContext = new AudioContext();
 
-      this.finishedSignal = document.createElement('audio');
-      this.finishedSignal.src = H5P.getPath(
-        this.params.signal[0].path, this.contentId
-      );
+      if (this.params.signal?.[0]?.path) {
+        this.finishedSignal = document.createElement('audio');
+        this.finishedSignal.src = H5P.getPath(
+          this.params.signal[0].path, this.contentId
+        );
 
-      const track = this.audioContext
-        .createMediaElementSource(this.finishedSignal);
-      track.connect(this.audioContext.destination);
+        const track = this.audioContext
+          .createMediaElementSource(this.finishedSignal);
+        track.connect(this.audioContext.destination);
+      }
+
+      if (this.params.music?.[0]?.path) {
+        this.backgroundMusic = document.createElement('audio');
+        this.backgroundMusic.src = H5P.getPath(
+          this.params.music[0].path, this.contentId
+        );
+
+        const track = this.audioContext
+          .createMediaElementSource(this.backgroundMusic);
+        track.connect(this.audioContext.destination);
+      }
     }
+
+    // Create counter, toolbar and laptracker as needed
+    this.createComponents();
 
     this.dom = this.buildDOM();
 
@@ -157,6 +172,10 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
     if (this.finishedSignal) {
       dom.appendChild(this.finishedSignal);
+    }
+
+    if (this.backgroundMusic) {
+      dom.appendChild(this.backgroundMusic);
     }
 
     // iOS is behind ... Again ...
@@ -265,6 +284,38 @@ export default class Timekeeper extends H5P.EventDispatcher {
   }
 
   /**
+   * Toggle background music.
+   * @param {boolean} musicShouldPlay True to play, false to pause.
+   */
+  toggleMusic(musicShouldPlay) {
+    if (!this.backgroundMusic) {
+      return;
+    }
+
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume();
+    }
+
+    musicShouldPlay = typeof state === 'boolean' ?
+      musicShouldPlay :
+      !this.isMusicPlaying;
+
+    if (!musicShouldPlay && this.isMusicPlaying) {
+      this.backgroundMusic.pause();
+      this.isMusicPlaying = false;
+    }
+    else if (musicShouldPlay && !this.isMusicPlaying) {
+      const playPromise = this.backgroundMusic.play();
+      // play() is asynchronous and may fail if user didn't interact
+      playPromise?.then(() => {
+        this.isMusicPlaying = true;
+      }).catch(() => {
+        this.isMusicPlaying = false;
+      });
+    }
+  }
+
+  /**
    * Handle timer finished
    */
   handleFinished() {
@@ -273,6 +324,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
     }
 
     this.toolbar?.disableButton('play');
+    this.toolbar?.forceButton('music', 0, false);
+    this.backgroundMusic?.pause();
+    this.toolbar?.disableButton('music');
 
     if (this.finishedSignal) {
       if (this.audioContext.state === 'suspended') {
@@ -330,6 +384,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
    */
   handleClickReset() {
     this.toolbar.enableButton('play');
+    this.toolbar?.enableButton('music');
+    this.toolbar?.forceButton('music', 0, false);
     this.component.reset();
 
     this.laptracker?.reset();
@@ -341,6 +397,11 @@ export default class Timekeeper extends H5P.EventDispatcher {
     if (this.finishedSignal) {
       this.finishedSignal.pause();
       this.finishedSignal.currentTime = 0;
+    }
+
+    if (this.backgroundMusic) {
+      this.backgroundMusic.pause();
+      this.backgroundMusic.currentTime = 0;
     }
   }
 
@@ -574,6 +635,15 @@ export default class Timekeeper extends H5P.EventDispatcher {
           }
         }
       );
+
+      const toolbarButtons = [];
+      if (this.backgroundMusic) {
+        toolbarButtons.push(buttons['music']);
+      }
+
+      this.toolbar = new Toolbar({
+        buttons: toolbarButtons
+      });
     }
     else if (this.params.mode === 'starttime') {
       this.autostart = this.params.startTimeGroup.autostart;
@@ -612,6 +682,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
       }
       if (this.params.startTimeGroup.canBeReset) {
         toolbarButtons.push(buttons['reset']);
+      }
+      if (this.backgroundMusic) {
+        toolbarButtons.push(buttons['music']);
       }
 
       this.toolbar = new Toolbar({
@@ -730,6 +803,23 @@ export default class Timekeeper extends H5P.EventDispatcher {
         ],
         onClick: () => {
           this.handleClickReset();
+        }
+      },
+      music: {
+        id: 'music',
+        type: 'pulse',
+        pulseStates: [
+          {
+            id: 'muted',
+            label: this.dictionary.get('a11y.buttonAudioInactive')
+          },
+          {
+            id: 'playing',
+            label: this.dictionary.get('a11y.buttonAudioActive')
+          }
+        ],
+        onClick: () => {
+          this.toggleMusic();
         }
       }
     });

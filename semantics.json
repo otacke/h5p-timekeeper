@@ -238,6 +238,25 @@
     }
   },
   {
+    "name": "music",
+    "type": "audio",
+    "label": "Background music",
+    "importance": "low",
+    "optional": true,
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "endtime",
+            "starttime"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "name": "l10n",
     "type": "group",
     "label": "User interface",
@@ -460,6 +479,18 @@
         "label": "Text for screenreaders. Title for fullscreen button (exit)",
         "importance": "low",
         "default": "Exit fullscreen mode"
+      },
+      {
+        "name": "buttonAudioActive",
+        "type": "text",
+        "label": "Audio button (unmuted)",
+        "default": "Mute audio. Currently unmuted."
+      },
+      {
+        "name": "buttonAudioInactive",
+        "type": "text",
+        "label": "Audio button (muted)",
+        "default": "Unmute audio. Currently muted."
       }
     ]
   }

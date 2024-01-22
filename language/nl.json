@@ -97,6 +97,9 @@
       "description": "Stel optioneel een audiobestand in dat moet worden afgespeeld als de timer is afgelopen. Let op dat wanneer de timer automatisch start, de browser het signaal mogelijk niet afspeelt tenzij de gebruiker eerst interactie heeft gehad met de pagina."
     },
     {
+      "label": "Background music"
+    },
+    {
       "label": "Gebruikersinterface",
       "fields": [
         {
@@ -251,6 +254,14 @@
         {
           "label": "Tekst voor schermlezers. Titel voor schermvullende knop (exit)",
           "default": "Sluit volledig scherm"
+        },
+        {
+          "label": "Audio button (unmuted)",
+          "default": "Mute audio. Currently unmuted."
+        },
+        {
+          "label": "Audio button (muted)",
+          "default": "Unmute audio. Currently muted."
         }
       ]
     }
