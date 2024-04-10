@@ -49,7 +49,7 @@
           "description": "Optional message to display when the timer has finished."
         },
         {
-          "label": "Start automatically",
+          "label": "Pradėti automatiškai",
           "description": "If checked, the timer will start automatically. If not checked, the user will have to start the timer."
         },
         {
@@ -64,7 +64,7 @@
     },
     {
       "label": "Time format",
-      "description": "Choose what time format the timer should have.",
+      "description": "Pasirinkite, kokį laiko formatą turi turėti laikmatis.",
       "options": [
         {
           "label": "Verbose"
@@ -79,13 +79,13 @@
       "description": "Pasirinkite mažiausią vienetą, kuris bus rodomas išsamiu režimu. Jei per likusį laiką to vieneto vertė yra 0, automatiškai bus pasirinktas kitas mažesnis vienetas.",
       "options": [
         {
-          "label": "Seconds"
+          "label": "Sekundės"
         },
         {
-          "label": "Minutes"
+          "label": "Minutės"
         },
         {
-          "label": "Hours"
+          "label": "Valandos"
         },
         {
           "label": "Days"
@@ -95,6 +95,9 @@
     {
       "label": "Laikmačio signalas",
       "description": "Optionally set an audio file that should be played when the timer has expired. Please note that when starting the timer automatically, the browser may prevent playing the signal unless the user has interacted with the page first."
+    },
+    {
+      "label": "Background music"
     },
     {
       "label": "Naudotojo sąsaja",
@@ -251,6 +254,14 @@
         {
           "label": "Text for screenreaders. Title for fullscreen button (exit)",
           "default": "Exit fullscreen mode"
+        },
+        {
+          "label": "Audio button (unmuted)",
+          "default": "Mute audio. Currently unmuted."
+        },
+        {
+          "label": "Audio button (muted)",
+          "default": "Unmute audio. Currently muted."
         }
       ]
     }

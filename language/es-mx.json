@@ -97,6 +97,9 @@
       "description": "Opcionalmente, establece un archivo de audio que se reproducirá cuando el temporizador haya expirado. Tenga en cuenta que cuando se inicia el temporizador automáticamente, el navegador puede impedir la reproducción de la señal a menos que el usuario haya interactuado primero con la página."
     },
     {
+      "label": "Música de fondo"
+    },
+    {
       "label": "Interfaz del usuario",
       "fields": [
         {
@@ -251,6 +254,14 @@
         {
           "label": "Texto para lectores de pantalla. Título para el botón de pantalla completa (Salir)",
           "default": "Salir del modo de Pantalla Completa"
+        },
+        {
+          "label": "Botón de audio (sonoro)",
+          "default": "Enmudecer audio. Actualmente sonoro."
+        },
+        {
+          "label": "Motón de audio (mudo)",
+          "default": "Activar audio. Actualmente mudo."
         }
       ]
     }

@@ -2,7 +2,7 @@
   "semantics": [
     {
       "label": "介绍",
-      "description": "可选:为用户设置一些介绍内容。"
+      "description": "可选地设置一些介绍。"
     },
     {
       "label": "模式",
@@ -27,12 +27,12 @@
         },
         {
           "label": "完成消息",
-          "description": "可选，当设置的日期和时间达到时显示的消息。",
+          "description": "当达到所设置的日期和时间时显示的可选消息。",
           "default": "已经到达您设置的目标时间。"
         },
         {
           "label": "过期消息",
-          "description": "可选，当在目标日期和时间之后打开计时器时显示的消息。",
+          "description": "当计时器在目标日期和时间之后打开时显示的可选消息。",
           "default": "计时器已过期。"
         }
       ]
@@ -42,15 +42,15 @@
       "fields": [
         {
           "label": "开始时间",
-          "description": "以M:SS或H:MM:SS格式设置开始时间，不包括前导零。"
+          "description": "设置开始时间的格式为M:SS或H:MM:SS，不带前导零。"
         },
         {
           "label": "完成消息",
-          "description": "可选，在计时器结束时显示的消息。"
+          "description": "计时器完成时显示的可选消息。"
         },
         {
           "label": "自动开始",
-          "description": "如果选中，计时器将自动开始。如果未选中，用户需要手动开始计时器。"
+          "description": "如果选中，计时器将自动启动。如果不勾选，用户将不得不启动计时器。"
         },
         {
           "label": "可暂停",
@@ -75,48 +75,51 @@
       ]
     },
     {
-      "label": "Granularity",
-      "description": "Choose the smallest unit to display in verbose mode. If the remaining time yields a value of 0 for that unit, the next smaller unit will be chosen automatically.",
+      "label": "间隔尺寸",
+      "description": "选择要在详细模式下显示的最小单元。如果该单位的剩余时间为0，则将自动选择下一个较小的单位。",
       "options": [
         {
-          "label": "Seconds"
+          "label": "秒钟"
         },
         {
-          "label": "Minutes"
+          "label": "分钟"
         },
         {
-          "label": "Hours"
+          "label": "小时"
         },
         {
-          "label": "Days"
+          "label": "天"
         }
       ]
     },
     {
       "label": "计时器信号",
-      "description": "可选：可以设置一个音频文件，当计时器到期时播放该文件。请注意，当自动启动计时器时，除非用户先与页面交互，否则浏览器可能会阻止播放信号。"
+      "description": "可选地设置计时器过期时应该播放的音频文件。请注意，当自动启动计时器时，浏览器可能会阻止播放信号，除非用户首先与页面进行交互。"
+    },
+    {
+      "label": "背景音乐"
     },
     {
       "label": "用户界面",
       "fields": [
         {
           "label": "天的单位",
-          "description": "详细时间格式中天的文本单位。",
+          "description": "详细时间格式中天的单位文本。",
           "default": "d"
         },
         {
           "label": "小时的单位",
-          "description": "详细时间格式中小时的文本单位。",
+          "description": "详细时间格式中小时的单位文本。",
           "default": "h"
         },
         {
           "label": "分钟的单位",
-          "description": "详细时间格式中分钟的文本单位。",
+          "description": "详细时间格式中分钟的单位文本。",
           "default": "m"
         },
         {
           "label": "秒的单位",
-          "description": "详细时间格式中秒的文本单位。",
+          "description": "详细时间格式中秒的单位文本。",
           "default": "s"
         },
         {
@@ -137,7 +140,7 @@
       ]
     },
     {
-      "label": "无障碍文本",
+      "label": "辅助功能文本",
       "fields": [
         {
           "label": "开始按钮标签",
@@ -160,7 +163,7 @@
           "default": "跟踪圈数"
         },
         {
-          "label": "跟踪圈数按钮标签（禁用）",
+          "label": "跟踪圈数按钮标签",
           "description": "屏幕阅读器的文本。",
           "default": "跟踪圈数。目前已禁用"
         },
@@ -251,6 +254,14 @@
         {
           "label": "屏幕阅读器使用的文本。全屏按钮的标题（退出）",
           "default": "进入全屏模式"
+        },
+        {
+          "label": "音频按钮（未静音）",
+          "default": "将音频静音。当前未静音。"
+        },
+        {
+          "label": "音频按钮（静音）",
+          "default": "取消音频静音。当前已静音。"
         }
       ]
     }

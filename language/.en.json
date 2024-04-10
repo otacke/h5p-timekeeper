@@ -97,6 +97,9 @@
       "description": "Optionally set an audio file that should be played when the timer has expired. Please note that when starting the timer automatically, the browser may prevent playing the signal unless the user has interacted with the page first."
     },
     {
+      "label": "Background music"
+    },
+    {
       "label": "User interface",
       "fields": [
         {
@@ -251,6 +254,14 @@
         {
           "label": "Text for screenreaders. Title for fullscreen button (exit)",
           "default": "Exit fullscreen mode"
+        },
+        {
+          "label": "Audio button (unmuted)",
+          "default": "Mute audio. Currently unmuted."
+        },
+        {
+          "label": "Audio button (muted)",
+          "default": "Unmute audio. Currently muted."
         }
       ]
     }

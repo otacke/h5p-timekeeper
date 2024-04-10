@@ -97,6 +97,9 @@
       "description": "Opcionalmente, configura un ficheiro de son que debería reproducirse cando caduque o temporizador. Ten en conta que ao iniciar o temporizador automaticamente, o navegador pode impedir a reprodución do sinal a menos que o usuario interactuase primeiro coa páxina."
     },
     {
+      "label": "Música de fondo"
+    },
+    {
       "label": "Interface de usuario",
       "fields": [
         {
@@ -251,6 +254,14 @@
         {
           "label": "Texto para lectores de pantalla. Título para o botón de pantalla completa (saír)",
           "default": "Saír do modo de pantalla completa"
+        },
+        {
+          "label": "Botón de son (desactivado)",
+          "default": "Silenciar o son, actualmente activado."
+        },
+        {
+          "label": "Botón de son (silenciado)",
+          "default": "Activar o son, actualmente silenciado."
         }
       ]
     }
