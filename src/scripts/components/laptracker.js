@@ -1,5 +1,5 @@
-import TimeFormatter from '@services/timeformatter';
-import Util from '@services/util';
+import TimeFormatter from '@services/timeformatter.js';
+import Util from '@services/util.js';
 import './laptracker.scss';
 
 /** Class keeping track of laps */
@@ -183,6 +183,6 @@ export default class Laptracker {
     ).text;
     tdTotalTime.appendChild(tdTotalTimeText);
 
-    return {row, tdLap, tdLapTime, tdTotalTime, tdLapTimeText, tdTotalTimeText};
+    return { row, tdLap, tdLapTime, tdTotalTime, tdLapTimeText, tdTotalTimeText };
   }
 }

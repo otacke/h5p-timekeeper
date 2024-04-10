@@ -1,6 +1,6 @@
-import Timer from '@services/timer';
-import TimeFormatter from '@services/timeformatter';
-import Util from '@services/util';
+import Timer from '@services/timer.js';
+import TimeFormatter from '@services/timeformatter.js';
+import Util from '@services/util.js';
 
 import './counter.scss';
 

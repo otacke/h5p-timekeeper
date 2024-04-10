@@ -1,9 +1,9 @@
-import Util from '@services/util';
-import Dictionary from '@services/dictionary';
-import TimeFormatter from '@services/timeformatter';
-import Counter from '@components/counter';
-import Toolbar from '@components/toolbar/toolbar';
-import Laptracker from '@components/laptracker';
+import Util from '@services/util.js';
+import Dictionary from '@services/dictionary.js';
+import TimeFormatter from '@services/timeformatter.js';
+import Counter from '@components/counter.js';
+import Toolbar from '@components/toolbar/toolbar.js';
+import Laptracker from '@components/laptracker.js';
 import '@styles/h5p-timekeeper.scss';
 
 export default class Timekeeper extends H5P.EventDispatcher {
@@ -710,7 +710,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
         id: 'lap',
         type: 'pulse',
         pulseStates: [
-          { id: 'normal', label: this.dictionary.get('a11y.lap')}
+          { id: 'normal', label: this.dictionary.get('a11y.lap') }
         ],
         disabled: true,
         onClick: () => {
