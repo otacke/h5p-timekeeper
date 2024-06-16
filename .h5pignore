@@ -19,3 +19,4 @@ package.json
 package-lock.json
 worknotes
 LICENSE
+eslint.config.js
