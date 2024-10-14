@@ -1,12 +1,12 @@
-@import "./../../styles/main";
+@use "@styles/main";
 
-$icon-button-fullscreen-enter: url("./../../assets/button-fullscreen-icon-enter-blue.svg");
-$icon-button-fullscreen-exit: url("./../../assets/button-fullscreen-icon-exit-blue.svg");
+$icon-button-fullscreen-enter: url("@assets/button-fullscreen-icon-enter-blue.svg");
+$icon-button-fullscreen-exit: url("@assets/button-fullscreen-icon-exit-blue.svg");
 
 .h5p-timekeeper-counter {
   align-items: stretch;
-  background-color: $color-background;
-  box-shadow: inset 10px 10px 30px $color-shadow-dark;
+  background-color: main.$color-background;
+  box-shadow: inset 10px 10px 30px main.$color-shadow-dark;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -21,11 +21,11 @@ $icon-button-fullscreen-exit: url("./../../assets/button-fullscreen-icon-exit-bl
     width: 100%;
 
     .h5p-timekeeper-button-fullscreen {
-      background-color: $color-primary-5;
+      background-color: main.$color-primary-5;
       background-position: center;
       background-repeat: no-repeat;
       background-size: 0.8em 0.8em;
-      border: 1px solid $color-primary-30;
+      border: 1px solid main.$color-primary-30;
       border-radius: 50%;
       cursor: pointer;
       height: 1.75em;
@@ -42,11 +42,11 @@ $icon-button-fullscreen-exit: url("./../../assets/button-fullscreen-icon-exit-bl
       }
 
       &:hover {
-        background-color: $color-primary-10;
+        background-color: main.$color-primary-10;
       }
 
       &:active {
-        background-color: $color-primary-10;
+        background-color: main.$color-primary-10;
       }
     }
 
@@ -58,7 +58,7 @@ $icon-button-fullscreen-exit: url("./../../assets/button-fullscreen-icon-exit-bl
 
       .h5p-timekeeper-counter-aria-timer {
         position: absolute;
-        left: $offset-offscreen;
+        left: main.$offset-offscreen;
       }
 
       .h5p-timekeeper-format-element {

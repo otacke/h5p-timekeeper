@@ -1,8 +1,8 @@
-@import "./../../styles/main";
+@use "@styles/main";
 
 .h5p-timekeeper-laptracker {
-  background-color: $color-background;
-  box-shadow: inset 10px 10px 30px $color-shadow-dark;
+  background-color: main.$color-background;
+  box-shadow: inset 10px 10px 30px main.$color-shadow-dark;
   box-sizing: border-box;
   width: 100%;
 
@@ -18,7 +18,7 @@
 
     .h5p-timekeeper-laptracker-table-caption {
       position: absolute;
-      left: $offset-offscreen;
+      left: main.$offset-offscreen;
     }
 
     th, td {

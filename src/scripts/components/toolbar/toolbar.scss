@@ -1,32 +1,32 @@
-@import "./../../../styles/main";
+@use "@styles/main";
 
-$icon-button-play-blue: url("./../../../assets/button-play-icon-blue.svg");
-$icon-button-play-white: url("./../../../assets/button-play-icon-white.svg");
-$icon-button-play-grey: url("./../../../assets/button-play-icon-grey.svg");
-$icon-button-pause-blue: url("./../../../assets/button-pause-icon-blue.svg");
-$icon-button-pause-white: url("./../../../assets/button-pause-icon-white.svg");
-$icon-button-pause-grey: url("./../../../assets/button-pause-icon-grey.svg");
-$icon-button-lap-blue: url("./../../../assets/button-lap-icon-blue.svg");
-$icon-button-lap-white: url("./../../../assets/button-lap-icon-white.svg");
-$icon-button-lap-grey: url("./../../../assets/button-lap-icon-grey.svg");
-$icon-button-reset-blue: url("./../../../assets/button-reset-icon-blue.svg");
-$icon-button-reset-white: url("./../../../assets/button-reset-icon-white.svg");
-$icon-button-reset-grey: url("./../../../assets/button-reset-icon-grey.svg");
-$icon-button-music-active-blue: url("./../../../assets/button-music-active-icon-blue.svg");
-$icon-button-music-active-grey: url("./../../../assets/button-music-active-icon-grey.svg");
-$icon-button-music-inactive-blue: url("./../../../assets/button-music-inactive-icon-blue.svg");
-$icon-button-music-inactive-grey: url("./../../../assets/button-music-inactive-icon-grey.svg");
+$icon-button-play-blue: url("@assets/button-play-icon-blue.svg");
+$icon-button-play-white: url("@assets/button-play-icon-white.svg");
+$icon-button-play-grey: url("@assets/button-play-icon-grey.svg");
+$icon-button-pause-blue: url("@assets/button-pause-icon-blue.svg");
+$icon-button-pause-white: url("@assets/button-pause-icon-white.svg");
+$icon-button-pause-grey: url("@assets/button-pause-icon-grey.svg");
+$icon-button-lap-blue: url("@assets/button-lap-icon-blue.svg");
+$icon-button-lap-white: url("@assets/button-lap-icon-white.svg");
+$icon-button-lap-grey: url("@assets/button-lap-icon-grey.svg");
+$icon-button-reset-blue: url("@assets/button-reset-icon-blue.svg");
+$icon-button-reset-white: url("@assets/button-reset-icon-white.svg");
+$icon-button-reset-grey: url("@assets/button-reset-icon-grey.svg");
+$icon-button-music-active-blue: url("@assets/button-music-active-icon-blue.svg");
+$icon-button-music-active-grey: url("@assets/button-music-active-icon-grey.svg");
+$icon-button-music-inactive-blue: url("@assets/button-music-inactive-icon-blue.svg");
+$icon-button-music-inactive-grey: url("@assets/button-music-inactive-icon-grey.svg");
 
 .toolbar-tool-bar {
   align-items: center;
-  box-shadow: 10px -10px 30px $color-shadow-dark;
+  box-shadow: 10px -10px 30px main.$color-shadow-dark;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   overflow: hidden;
   padding: .5em;
   width: 100%;
-  min-height: calc($toolbarButtonSize + 2 * .5em);
+  min-height: calc(main.$toolbarButtonSize + 2 * .5em);
 
   .toolbar-buttons {
     display: flex;
@@ -64,7 +64,7 @@ $icon-button-music-inactive-grey: url("./../../../assets/button-music-inactive-i
           }
 
           &:active:not(.toolbar-button-disabled) {
-            background-color: $color-primary;
+            background-color: main.$color-primary;
             background-image: $icon-button-lap-white;
           }
         }
@@ -79,7 +79,7 @@ $icon-button-music-inactive-grey: url("./../../../assets/button-music-inactive-i
           }
 
           &:active:not(.toolbar-button-disabled) {
-            background-color: $color-primary;
+            background-color: main.$color-primary;
             background-image: $icon-button-reset-white;
           }
         }
