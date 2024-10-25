@@ -142,11 +142,6 @@ export default class Timekeeper extends H5P.EventDispatcher {
         this.component.setFullscreen(false);
       });
     }
-
-    // Actively store target time for counter initially.
-    if (this.targetTimeMs) {
-      storeState(this);
-    }
   }
 
   /**
@@ -199,9 +194,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
     }
 
     // iOS is behind ... Again ...
-    const callback = window.requestIdleCallback ?
-      window.requestIdleCallback :
-      window.requestAnimationFrame;
+    const callback = window.requestIdleCallback ?? window.requestAnimationFrame;
 
     callback(() => {
       // Only start once visible to the user
@@ -215,6 +208,11 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
           if (this.autostart) {
             this.component.start();
+          }
+
+          // Actively store target time for counter initially.
+          if (this.targetTimeMs) {
+            storeState(this);
           }
 
           this.trigger('resize');
