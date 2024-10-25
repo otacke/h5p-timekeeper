@@ -4,6 +4,9 @@ import Util from '@services/util.js';
 
 import './counter.scss';
 
+/** @constant {number} CLOSE_TO_1_S_IN_MS Close to 1 second in ms */
+const CLOSE_TO_1_S_IN_MS = 999;
+
 /** Class representing the content */
 export default class Counter {
   /**
@@ -92,6 +95,7 @@ export default class Counter {
     }
     else {
       this.setCounter(TimeFormatter.format(
+        // eslint-disable-next-line no-magic-numbers
         this.params.timeToCount * 1000,
         this.params.format,
         this.params.dictionary,
@@ -121,6 +125,7 @@ export default class Counter {
    * Start.
    * @param {number} timeMs Time to count in milliseconds.
    */
+  // eslint-disable-next-line no-magic-numbers
   start(timeMs = this.params.timeToCount * 1000) {
     // Adding + 1000, because 'done' is triggered one second too late
     if (timeMs < 0) {
@@ -196,8 +201,10 @@ export default class Counter {
     this.timer.reset();
     this.isResetting = false;
 
+    // eslint-disable-next-line no-magic-numbers
     this.timeToCount = this.params.timeToCount * 1000;
     this.setCounter(TimeFormatter.format(
+      // eslint-disable-next-line no-magic-numbers
       this.params.timeToCount * 1000,
       this.params.format,
       this.params.dictionary,
@@ -265,7 +272,7 @@ export default class Counter {
     this.callbacks.onTick(timeMs);
 
     if (this.params.mode === 'timer') {
-      timeMs += 999; // Counting downwards, would update too early
+      timeMs += CLOSE_TO_1_S_IN_MS; // Counting downwards, would update too early
     }
 
     this.setCounter(TimeFormatter.format(

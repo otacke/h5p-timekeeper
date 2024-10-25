@@ -18,7 +18,7 @@ const retrieveStateProvider = (contenTypeInstance) => {
   }
 
   return stateProvider;
-}
+};
 
 /**
  * Store current state.
@@ -41,4 +41,4 @@ export const storeState = (contentTypeInstance) => {
     stateProvider.getCurrentState(),
     { deleteOnChange: true } // Use default behavior of H5P core
   );
-}
+};

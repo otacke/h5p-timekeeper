@@ -1,5 +1,35 @@
 import Util from './util.js';
 
+/** @constant {number} MS_IN_S Milliseconds in a second. */
+const MS_IN_S = 1000;
+
+/** @constant {number} MS_IN_TENTH_S Milliseconds in a tenth of a second. */
+const MS_IN_TENTH_S = 100;
+
+/** @constant {number} TENTH_IN_S Tenths in a second. */
+const TENTH_IN_S = 10;
+
+/** @constant {number} S_IN_MIN Seconds in a minute. */
+const S_IN_MIN = 60;
+
+/** @constant {number} MIN_IN_HOUR Minutes in an hour. */
+const MIN_IN_HOUR = 60;
+
+/** @constant {number} HOURS_IN_DAY Hours in a day. */
+const HOURS_IN_DAY = 24;
+
+/** @constant {number} MS_IN_MIN Milliseconds in a minute. */
+const MS_IN_MIN = S_IN_MIN * MS_IN_S;
+
+/** @constant {number} MS_IN_HOUR Milliseconds in an hour. */
+const MS_IN_HOUR = MIN_IN_HOUR * S_IN_MIN * MS_IN_S;
+
+/** @constant {number} MS_IN_DAY Milliseconds in a day. */
+const MS_IN_DAY = HOURS_IN_DAY * MIN_IN_HOUR * S_IN_MIN * MS_IN_S;
+
+/** @constant {number} DEFAULT_DIGITS_PADDING Default digits padding. */
+const DEFAULT_DIGITS_PADDING = 2;
+
 export default class TimeFormatter {
   /**
    * Convert milliseconds to other time units.
@@ -7,18 +37,18 @@ export default class TimeFormatter {
    * @returns {object} The milliseconds in other time units.
    */
   static convert(milliSeconds) {
-    const tenthsTotal = Math.floor(milliSeconds / 100);
-    const secondsTotal = Math.floor(milliSeconds / 1000);
-    const minutesTotal = Math.floor(secondsTotal / 60);
-    const hoursTotal = Math.floor(minutesTotal / 60);
+    const tenthsTotal = Math.floor(milliSeconds / MS_IN_TENTH_S);
+    const secondsTotal = Math.floor(milliSeconds / MS_IN_S);
+    const minutesTotal = Math.floor(secondsTotal / S_IN_MIN);
+    const hoursTotal = Math.floor(minutesTotal / MIN_IN_HOUR);
 
-    const tenths = tenthsTotal % 10;
-    const seconds = secondsTotal % 60;
-    const minutes = minutesTotal % 60;
-    const hours = hoursTotal % 24;
-    const days = Math.floor(hoursTotal / 24);
+    const tenths = tenthsTotal % TENTH_IN_S;
+    const seconds = secondsTotal % S_IN_MIN;
+    const minutes = minutesTotal % MIN_IN_HOUR;
+    const hours = hoursTotal % HOURS_IN_DAY;
+    const days = Math.floor(hoursTotal / HOURS_IN_DAY);
 
-    const daysAsHours = days * 24 + hours;
+    const daysAsHours = days * HOURS_IN_DAY + hours;
 
     return {
       d: days, h: hours, m: minutes, s: seconds, t: tenths,
@@ -57,11 +87,13 @@ export default class TimeFormatter {
         '<span class="h5p-timekeeper-format-delimiter">:</span>',
         '</span>',
         '<span class="h5p-timekeeper-format-element h5p-timekeeper-format-stopwatch">',
-        `<span class="h5p-timekeeper-format-value">${elements.m.toString().padStart(2, '0')}</span>`,
+        // eslint-disable-next-line max-len
+        `<span class="h5p-timekeeper-format-value">${elements.m.toString().padStart(DEFAULT_DIGITS_PADDING, '0')}</span>`,
         '<span class="h5p-timekeeper-format-delimiter">:</span>',
         '</span>',
         '<span class="h5p-timekeeper-format-element h5p-timekeeper-format-stopwatch">',
-        `<span class="h5p-timekeeper-format-value">${elements.s.toString().padStart(2, '0')}</span>`,
+        // eslint-disable-next-line max-len
+        `<span class="h5p-timekeeper-format-value">${elements.s.toString().padStart(DEFAULT_DIGITS_PADDING, '0')}</span>`,
         '<span class="h5p-timekeeper-format-delimiter">.</span>',
         '</span>',
         '<span class="h5p-timekeeper-format-element h5p-timekeeper-format-stopwatch">',
@@ -79,7 +111,8 @@ export default class TimeFormatter {
 
       if (elements.m !== 0 || segments.length > 0) {
         segments.push('<span class="h5p-timekeeper-format-element h5p-timekeeper-format-timecode">');
-        segments.push(`<span class="h5p-timekeeper-format-value">${elements.m.toString().padStart(2, '0')}</span>`);
+        // eslint-disable-next-line max-len
+        segments.push(`<span class="h5p-timekeeper-format-value">${elements.m.toString().padStart(DEFAULT_DIGITS_PADDING, '0')}</span>`);
         segments.push('<span class="h5p-timekeeper-format-delimiter">:</span>');
         segments.push('</span>');
       }
@@ -91,7 +124,8 @@ export default class TimeFormatter {
       }
       else {
         segments.push('<span class="h5p-timekeeper-format-element h5p-timekeeper-format-timecode">');
-        segments.push(`<span class="h5p-timekeeper-format-value">${elements.s.toString().padStart(2, '0')}</span>`);
+        // eslint-disable-next-line max-len
+        segments.push(`<span class="h5p-timekeeper-format-value">${elements.s.toString().padStart(DEFAULT_DIGITS_PADDING, '0')}</span>`);
         segments.push('</span>');
       }
     }
@@ -183,12 +217,13 @@ export default class TimeFormatter {
 
     const segments = [];
 
-    let hours = Math.floor(timeMs / 3600000);
-    let minutes = Math.floor((timeMs - hours * 3600000) / 60000);
-    let seconds = Math.floor((timeMs - hours * 3600000 - minutes * 60000) / 1000);
-    let milliseconds = timeMs - hours * 3600000 - minutes * 60000 - seconds * 1000;
+    let hours = Math.floor(timeMs / MS_IN_HOUR);
+    let minutes = Math.floor((timeMs - hours * MS_IN_HOUR) / MS_IN_MIN);
+    let seconds = Math.floor((timeMs - hours * MS_IN_HOUR - minutes * MS_IN_MIN) / MS_IN_S);
+    let milliseconds = timeMs - hours * MS_IN_HOUR - minutes * MS_IN_MIN - seconds * MS_IN_S;
 
     if (hours > 0) {
+      // eslint-disable-next-line no-magic-numbers
       if (hours < 10) {
         hours = `0${hours}`;
       }
@@ -196,12 +231,14 @@ export default class TimeFormatter {
     }
 
     if (minutes > 0 || minutes === 0 && hours > 0) {
+      // eslint-disable-next-line no-magic-numbers
       if (minutes < 10) {
         minutes = `0${minutes}`;
       }
       segments.push(`${minutes}M`);
     }
 
+    // eslint-disable-next-line no-magic-numbers
     if (seconds < 10) {
       seconds = `0${seconds}`;
     }
@@ -219,7 +256,7 @@ export default class TimeFormatter {
   static fitToGranularity(timeMs, granularity) {
     let factor;
     if (granularity === 'days') {
-      factor = 86400000; // 24 * 60 * 60 * 1000 ms
+      factor = MS_IN_DAY;
 
       const days = Math.floor(timeMs / factor);
       if (days !== 0) {
@@ -230,7 +267,7 @@ export default class TimeFormatter {
     }
 
     if (granularity === 'hours') {
-      factor = 3600000; // 60 * 60 * 1000 ms
+      factor = MS_IN_HOUR;
       const hours = Math.floor(timeMs / factor);
       if (hours !== 0) {
         return { timeMs: hours * factor, granularity: 'hours' };
@@ -240,7 +277,7 @@ export default class TimeFormatter {
     }
 
     if (granularity === 'minutes') {
-      factor = 60000; // 60 * 1000 ms
+      factor = MS_IN_MIN;
       const minutes = Math.floor(timeMs / factor);
       if (minutes !== 0) {
         return { timeMs: minutes * factor, granularity: 'minutes' };

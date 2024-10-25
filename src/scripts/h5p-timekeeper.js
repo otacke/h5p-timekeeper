@@ -7,6 +7,9 @@ import Toolbar from '@components/toolbar/toolbar.js';
 import Laptracker from '@components/laptracker.js';
 import '@styles/h5p-timekeeper.scss';
 
+/** @constant {number} FULLSCREEN_TIMEOUT_MS Fullscreen timeout in ms */
+const FULLSCREEN_TIMEOUT_MS = 300;
+
 export default class Timekeeper extends H5P.EventDispatcher {
   /**
    * @class
@@ -21,6 +24,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
     this.params = Util.extend({
       mode: 'endtime',
       datetimeGroup: {
+        // eslint-disable-next-line no-magic-numbers
         endtime: new Date(Date.now() + 60)
       },
       startTimeGroup: {
@@ -427,7 +431,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
   handleFullscreenClicked() {
     setTimeout(() => {
       this.toggleFullscreen();
-    }, 300); // Some devices don't register user gesture before call to to requestFullscreen
+    }, FULLSCREEN_TIMEOUT_MS); // Some devices don't register user gesture before call to to requestFullscreen
   }
 
   /**
@@ -630,9 +634,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           dictionary: this.dictionary,
           canBePaused: false,
           canBeReset: false,
-          timeToCount: (
-            new Date(this.params.datetimeGroup.endtime) - new Date()
-          ) / 1000,
+          // eslint-disable-next-line no-magic-numbers
+          timeToCount: (new Date(this.params.datetimeGroup.endtime) - new Date()) / 1000,
           finishedText: this.params.datetimeGroup.finishedText,
           tooLateText: this.params.datetimeGroup.tooLateText,
           format: this.params.timeFormat,
@@ -654,7 +657,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
       const toolbarButtons = [];
       if (this.backgroundMusic) {
-        toolbarButtons.push(buttons['music']);
+        toolbarButtons.push(buttons.music);
       }
 
       this.toolbar = new Toolbar({
@@ -669,7 +672,9 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
       if (this.params.startTimeGroup.keepState) {
         this.targetTimeMs = this.extras.previousState?.component?.targetTimeMs ??
+          // eslint-disable-next-line no-magic-numbers
           new Date().getTime() + this.params.startTimeGroup.startTime * 1000;
+        // eslint-disable-next-line no-magic-numbers
         timeToCount = Math.max(0, (this.targetTimeMs - new Date().getTime()) / 1000);
       }
 
@@ -701,16 +706,16 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
       const toolbarButtons = [];
       if (!this.autostart || this.params.startTimeGroup.canBePaused) {
-        toolbarButtons.push(buttons['play']);
+        toolbarButtons.push(buttons.play);
       }
       if (this.params.startTimeGroup.canBePaused) {
-        toolbarButtons.push(buttons['pause']);
+        toolbarButtons.push(buttons.pause);
       }
       if (this.params.startTimeGroup.canBeReset) {
-        toolbarButtons.push(buttons['reset']);
+        toolbarButtons.push(buttons.reset);
       }
       if (this.backgroundMusic) {
-        toolbarButtons.push(buttons['music']);
+        toolbarButtons.push(buttons.music);
       }
 
       this.toolbar = new Toolbar({
@@ -744,10 +749,10 @@ export default class Timekeeper extends H5P.EventDispatcher {
       // Toolbar
       this.toolbar = new Toolbar({
         buttons: [
-          buttons['play'],
-          buttons['pause'],
-          buttons['lap'],
-          buttons['reset']
+          buttons.play,
+          buttons.pause,
+          buttons.lap,
+          buttons.reset
         ]
       });
 
@@ -853,7 +858,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
 
   /**
    * Get current state.
-   * @returns {object} Current state to be retrieved later.
+   * @returns {object|undefined} Current state to be retrieved later.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-7}
    */
   getCurrentState() {

@@ -1,5 +1,8 @@
 import Util from './util.js';
 
+/** @constant {number} INTERVAL_MIN_MS Minimum interval in ms */
+const INTERVAL_MIN_MS = 50;
+
 export default class Timer {
   /**
    * Timer.
@@ -29,7 +32,7 @@ export default class Timer {
       Timer.BACKWARD;
 
     // Sanitize to 50ms at least
-    this.params.interval = Math.max(50, this.params.interval);
+    this.params.interval = Math.max(INTERVAL_MIN_MS, this.params.interval);
     this.state = Timer.STATE_ENDED;
     this.timeMs = 0;
   }
