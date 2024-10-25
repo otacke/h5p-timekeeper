@@ -303,6 +303,14 @@ export default class Counter {
       this.callbacks.onStateChanged(this.state, timeMs);
     }
   }
+
+  /**
+   * Get current state.
+   * @returns {object} Current state to be retrieved later.
+   */
+  getCurrentState() {
+    return this.params.keepState ? { targetTimeMs: this.params.targetTimeMs } : null;
+  }
 }
 
 /** @constant {number} State reset */

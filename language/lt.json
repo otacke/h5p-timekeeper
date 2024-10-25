@@ -59,6 +59,10 @@
         {
           "label": "Resettable",
           "description": "If checked, the user will be able to reset the timer."
+        },
+        {
+          "label": "Keep state",
+          "description": "If selected, the timer starts automatically when opened. It continues to run continuously, even if the user leaves the content. The timer cannot be paused or reset."
         }
       ]
     },

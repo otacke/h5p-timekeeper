@@ -1,4 +1,5 @@
 import Util from '@services/util.js';
+import { storeState } from '@services/h5p-util.js';
 import Dictionary from '@services/dictionary.js';
 import TimeFormatter from '@services/timeformatter.js';
 import Counter from '@components/counter.js';
@@ -26,7 +27,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
         startTime: 60,
         autostart: true,
         canBePaused: false,
-        canBeReset: false
+        canBeReset: false,
+        keepState: false,
       },
       timeFormat: 'verbose',
       granularity: 'seconds',
@@ -68,8 +70,16 @@ export default class Timekeeper extends H5P.EventDispatcher {
       }
     }, params);
 
+    if (this.params.startTimeGroup.keepState) {
+      this.params.startTimeGroup.autostart = true;
+      this.params.startTimeGroup.canBePaused = false;
+      this.params.startTimeGroup.canBeReset = false;
+    }
+
     this.contentId = contentId;
     this.extras = extras;
+
+    this.targetTimeMs = null;
 
     // Fill dictionary
     this.dictionary = new Dictionary();
@@ -127,6 +137,11 @@ export default class Timekeeper extends H5P.EventDispatcher {
       this.on('exitFullScreen', () => {
         this.component.setFullscreen(false);
       });
+    }
+
+    // Actively store target time for counter initially.
+    if (this.targetTimeMs) {
+      storeState(this);
     }
   }
 
@@ -650,12 +665,22 @@ export default class Timekeeper extends H5P.EventDispatcher {
       this.autostart = this.params.startTimeGroup.autostart;
       this.finishedText = this.params.startTimeGroup.finishedText;
 
+      let timeToCount = this.params.startTimeGroup.startTime;
+
+      if (this.params.startTimeGroup.keepState) {
+        this.targetTimeMs = this.extras.previousState?.component?.targetTimeMs ??
+          new Date().getTime() + this.params.startTimeGroup.startTime * 1000;
+        timeToCount = Math.max(0, (this.targetTimeMs - new Date().getTime()) / 1000);
+      }
+
       this.component = new Counter(
         {
           dictionary: this.dictionary,
           canBePaused: this.params.startTimeGroup.canBePaused,
           canBeReset: this.params.startTimeGroup.canBeReset,
-          timeToCount: this.params.startTimeGroup.startTime,
+          keepState: this.params.startTimeGroup.keepState,
+          targetTimeMs: this.targetTimeMs,
+          timeToCount: timeToCount,
           finishedText: this.params.startTimeGroup.finishedText,
           format: this.params.timeFormat,
           noFullscreen: this.noFullscreen,
@@ -824,6 +849,20 @@ export default class Timekeeper extends H5P.EventDispatcher {
         }
       }
     });
+  }
+
+  /**
+   * Get current state.
+   * @returns {object} Current state to be retrieved later.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-7}
+   */
+  getCurrentState() {
+    const componentState = this.component.getCurrentState();
+    if (!componentState) {
+      return;
+    }
+
+    return { component: componentState };
   }
 }
 

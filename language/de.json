@@ -59,6 +59,10 @@
         {
           "label": "Zurücksetzbar",
           "description": "Wenn gewählt, können die Nutzenden den Timer zurücksetzen."
+        },
+        {
+          "label": "Speichere Zustand",
+          "description": "Wenn gewählt, startet der Timer automatisch beim Öffnen. Es läuft ununterbrochen weiter, auch wenn die Nutzenden den Inhalt verlassen. Der Timer kann nicht pausiert oder zurückgesetzt werden."
         }
       ]
     },
