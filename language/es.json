@@ -9,10 +9,10 @@
       "description": "Elije en qué modo deseas que se ejecute el Reloj.",
       "options": [
         {
-          "label": "Cuenta atrás hasta la fecha y la hora"
+          "label": "Cuenta descendiente hasta la fecha y la hora"
         },
         {
-          "label": "Cuenta hacia atrás desde un momento determinado"
+          "label": "Cuenta descendiente desde un momento determinado"
         },
         {
           "label": "Cronómetro"
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "label": "Seleccione el número desde el que iniciar la cuenta atrás",
+      "label": "Seleccione el número desde el que iniciar la cuenta descendiente",
       "fields": [
         {
           "label": "Hora de inicio",
@@ -61,8 +61,8 @@
           "description": "Si está marcado, el usuario podrá reiniciar el temporizador."
         },
         {
-          "label": "Keep state",
-          "description": "If selected, the timer starts automatically when opened. It continues to run continuously, even if the user leaves the content. The timer cannot be paused or reset."
+          "label": "Conservar estado",
+          "description": "Si se selecciona, el cronómetro comenzará automáticamente al abrir. Continuará corriendo de forma continua, aunque el usuario abandone el contenido. el cronómetro no puede ser pausado ni reiniciado."
         }
       ]
     },
