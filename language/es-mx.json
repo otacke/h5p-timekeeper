@@ -61,8 +61,8 @@
           "description": "Si está marcado, el usuario podrá reiniciar el temporizador."
         },
         {
-          "label": "Keep state",
-          "description": "If selected, the timer starts automatically when opened. It continues to run continuously, even if the user leaves the content. The timer cannot be paused or reset."
+          "label": "Conservar estado",
+          "description": "Si se selecciona, el cronómetro comenzará automáticamente al abrir. Continuará corriendo de forma continua, aunque el usuario abandone el contenido. el cronómetro no puede ser pausado ni reiniciado."
         }
       ]
     },
@@ -265,7 +265,7 @@
         },
         {
           "label": "Motón de audio (mudo)",
-          "default": "Activar audio. Actualmente mudo."
+          "default": "Activar audio. Actualmente silenciado."
         }
       ]
     }
