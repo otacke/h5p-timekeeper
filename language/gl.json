@@ -61,8 +61,8 @@
           "description": "Se está marcado, o usuario poderá restablecer o temporizador."
         },
         {
-          "label": "Keep state",
-          "description": "If selected, the timer starts automatically when opened. It continues to run continuously, even if the user leaves the content. The timer cannot be paused or reset."
+          "label": "Manter estado",
+          "description": "Ao seleccionalo, o temporizador iniciarase automaticamente ao abrilo. Continuará funcionando continuamente, incluso se o usuario deixa o contido. O temporizador non pode pausarse nin restablecerse."
         }
       ]
     },
