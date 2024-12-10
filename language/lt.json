@@ -101,7 +101,7 @@
       "description": "Optionally set an audio file that should be played when the timer has expired. Please note that when starting the timer automatically, the browser may prevent playing the signal unless the user has interacted with the page first."
     },
     {
-      "label": "Background music"
+      "label": "Foninė muzika"
     },
     {
       "label": "Naudotojo sąsaja",
@@ -119,7 +119,7 @@
         {
           "label": "Minučių vienetas",
           "description": "Vieneto tekstas minutėms išsamiu laiko formatu.",
-          "default": "m"
+          "default": "min."
         },
         {
           "label": "Vienetas sekundėms",
