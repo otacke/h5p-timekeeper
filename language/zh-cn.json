@@ -61,8 +61,8 @@
           "description": "如果选中，用户将能够重置计时器。"
         },
         {
-          "label": "Keep state",
-          "description": "If selected, the timer starts automatically when opened. It continues to run continuously, even if the user leaves the content. The timer cannot be paused or reset."
+          "label": "保持状态",
+          "description": "如果选择，定时器在打开时自动启动。它继续连续运行，即使用户离开了内容。定时器不能暂停或重置。"
         }
       ]
     },
