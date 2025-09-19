@@ -14,7 +14,7 @@ export default class Laptracker {
     this.params = Util.extend({}, params);
 
     this.callbacks = Util.extend({
-      onResize: () => {}
+      onResize: () => {},
     }, callbacks);
 
     this.laps = [];
@@ -134,12 +134,12 @@ export default class Laptracker {
 
     this.currentLapEntry.tdLapTimeText.innerText =
       TimeFormatter.format(
-        lapTime, 'stopwatch', this.params.dictionary, true
+        lapTime, 'stopwatch', this.params.dictionary, true,
       ).text;
 
     this.currentLapEntry.tdTotalTimeText.innerText =
       TimeFormatter.format(
-        totalTime, 'stopwatch', this.params.dictionary, true
+        totalTime, 'stopwatch', this.params.dictionary, true,
       ).text;
   }
 
@@ -167,7 +167,7 @@ export default class Laptracker {
     tdLapTimeText.classList.add('h5p-timekeeper-laptracker-table-column-time-text');
     tdLapTimeText.setAttribute('role', 'timer');
     tdLapTimeText.innerText = TimeFormatter.format(
-      lapTime, 'stopwatch', this.params.dictionary, true
+      lapTime, 'stopwatch', this.params.dictionary, true,
     ).text;
     tdLapTime.appendChild(tdLapTimeText);
 
@@ -179,7 +179,7 @@ export default class Laptracker {
     tdTotalTimeText.classList.add('h5p-timekeeper-laptracker-table-column-time-text');
     tdTotalTimeText.setAttribute('role', 'timer');
     tdTotalTimeText.innerText = TimeFormatter.format(
-      totalTime, 'stopwatch', this.params.dictionary, true
+      totalTime, 'stopwatch', this.params.dictionary, true,
     ).text;
     tdTotalTime.appendChild(tdTotalTimeText);
 

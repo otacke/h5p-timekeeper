@@ -17,11 +17,11 @@ export default class Toolbar {
     this.params = Util.extend({
       buttons: [],
       hidden: false,
-      searchbox: true
+      searchbox: true,
     }, params);
 
     this.callbacks = Util.extend({
-      onSearchChanged: () => {}
+      onSearchChanged: () => {},
     }, callbacks);
 
     this.buttons = {};
@@ -69,21 +69,21 @@ export default class Toolbar {
         ...(button.a11y && { a11y: button.a11y }),
         classes: ['toolbar-button', `toolbar-button-${button.id}`],
         ...(typeof button.disabled === 'boolean' && {
-          disabled: button.disabled
+          disabled: button.disabled,
         }),
         ...(button.active && { active: button.active }),
         ...(button.hidden && { hidden: button.hidden }),
         ...(button.type && { type: button.type }),
         ...(button.pulseStates && { pulseStates: button.pulseStates }),
-        ...(button.pulseIndex && { pulseIndex: button.pulseIndex })
+        ...(button.pulseIndex && { pulseIndex: button.pulseIndex }),
       },
       {
         ...(typeof button.onClick === 'function' && {
           onClick: (event, params) => {
             button.onClick(event, params);
-          }
-        })
-      }
+          },
+        }),
+      },
     );
     this.buttonsContainer.appendChild(this.buttons[button.id].getDOM());
   }

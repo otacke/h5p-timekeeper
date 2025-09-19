@@ -53,7 +53,7 @@ export default class TimeFormatter {
     return {
       d: days, h: hours, m: minutes, s: seconds, t: tenths,
       ht: hoursTotal, mt: minutesTotal, st: secondsTotal, tt: tenthsTotal,
-      dh: daysAsHours
+      dh: daysAsHours,
     };
   }
 
@@ -73,7 +73,7 @@ export default class TimeFormatter {
     if (format === 'verbose') {
       (
         { timeMs, granularity } =
-        TimeFormatter.fitToGranularity(timeMs, granularity)
+          TimeFormatter.fitToGranularity(timeMs, granularity)
       );
     }
 
@@ -87,18 +87,18 @@ export default class TimeFormatter {
         '<span class="h5p-timekeeper-format-delimiter">:</span>',
         '</span>',
         '<span class="h5p-timekeeper-format-element h5p-timekeeper-format-stopwatch">',
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/js/max-len
         `<span class="h5p-timekeeper-format-value">${elements.m.toString().padStart(DEFAULT_DIGITS_PADDING, '0')}</span>`,
         '<span class="h5p-timekeeper-format-delimiter">:</span>',
         '</span>',
         '<span class="h5p-timekeeper-format-element h5p-timekeeper-format-stopwatch">',
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/js/max-len
         `<span class="h5p-timekeeper-format-value">${elements.s.toString().padStart(DEFAULT_DIGITS_PADDING, '0')}</span>`,
         '<span class="h5p-timekeeper-format-delimiter">.</span>',
         '</span>',
         '<span class="h5p-timekeeper-format-element h5p-timekeeper-format-stopwatch">',
         `<span class="h5p-timekeeper-format-value">${elements.t}</span>`,
-        '</span>'
+        '</span>',
       ];
     }
     else if (format === 'timecode') {
@@ -111,7 +111,7 @@ export default class TimeFormatter {
 
       if (elements.m !== 0 || segments.length > 0) {
         segments.push('<span class="h5p-timekeeper-format-element h5p-timekeeper-format-timecode">');
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/js/max-len
         segments.push(`<span class="h5p-timekeeper-format-value">${elements.m.toString().padStart(DEFAULT_DIGITS_PADDING, '0')}</span>`);
         segments.push('<span class="h5p-timekeeper-format-delimiter">:</span>');
         segments.push('</span>');
@@ -124,7 +124,7 @@ export default class TimeFormatter {
       }
       else {
         segments.push('<span class="h5p-timekeeper-format-element h5p-timekeeper-format-timecode">');
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/js/max-len
         segments.push(`<span class="h5p-timekeeper-format-value">${elements.s.toString().padStart(DEFAULT_DIGITS_PADDING, '0')}</span>`);
         segments.push('</span>');
       }
@@ -201,7 +201,7 @@ export default class TimeFormatter {
     return {
       html: html,
       text: Util.stripHTML(html),
-      aria: ariaSegments.join(', ')
+      aria: ariaSegments.join(', '),
     };
   }
 

@@ -18,13 +18,13 @@ export default class Timer {
   constructor(params = {}, callbacks = {}) {
     this.params = Util.extend({
       mode: 'timer',
-      interval: 1000
+      interval: 1000,
     }, params);
 
     this.callbacks = Util.extend({
       onStateChanged: () => {},
       onExpired: () => {},
-      onTick: () => {}
+      onTick: () => {},
     }, callbacks);
 
     this.mode = (this.params.mode === 'stopwatch') ?

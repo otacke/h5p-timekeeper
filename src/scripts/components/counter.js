@@ -21,14 +21,14 @@ export default class Counter {
   constructor(params = {}, callbacks = {}) {
     this.params = Util.extend({
       mode: 'timer',
-      timeToCount: 0
+      timeToCount: 0,
     }, params);
 
     this.callbacks = Util.extend({
       onStateChanged: () => {},
       onExpired: () => {},
       onTick: () => {},
-      onButtonFullscreenClicked: () => {}
+      onButtonFullscreenClicked: () => {},
     }, callbacks);
 
     this.state = Counter.STATE_RESET;
@@ -42,17 +42,17 @@ export default class Counter {
       },
       onStateChanged: (state, timeMs) => {
         this.handleStateChanged(state, timeMs);
-      }
+      },
     };
 
     if (this.params.mode === 'stopwatch') {
       this.timer = new Timer(
-        { interval: 100, mode: 'stopwatch' }, timerCallbacks
+        { interval: 100, mode: 'stopwatch' }, timerCallbacks,
       );
     }
     else {
       this.timer = new Timer(
-        { interval: 250 }, timerCallbacks
+        { interval: 250 }, timerCallbacks,
       );
     }
 
@@ -100,7 +100,7 @@ export default class Counter {
         this.params.format,
         this.params.dictionary,
         this.params.mode === 'stopwatch',
-        this.params.granularity
+        this.params.granularity,
       ));
     }
   }
@@ -209,7 +209,7 @@ export default class Counter {
       this.params.format,
       this.params.dictionary,
       this.params.mode === 'stopwatch',
-      this.params.granularity
+      this.params.granularity,
     ));
   }
 
@@ -280,7 +280,7 @@ export default class Counter {
       this.params.format,
       this.params.dictionary,
       this.params.mode === 'stopwatch',
-      this.params.granularity
+      this.params.granularity,
     ));
   }
 

@@ -39,6 +39,6 @@ export const storeState = (contentTypeInstance) => {
     contentTypeInstance.contentId,
     'state',
     stateProvider.getCurrentState(),
-    { deleteOnChange: true } // Use default behavior of H5P core
+    { deleteOnChange: true }, // Use default behavior of H5P core
   );
 };

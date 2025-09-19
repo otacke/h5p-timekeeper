@@ -25,7 +25,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
       mode: 'endtime',
       datetimeGroup: {
         // eslint-disable-next-line no-magic-numbers
-        endtime: new Date(Date.now() + 60)
+        endtime: new Date(Date.now() + 60),
       },
       startTimeGroup: {
         startTime: 60,
@@ -43,7 +43,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
         unitSeconds: 's',
         lap: 'Lap',
         lapTime: 'Lap time',
-        totalTime: 'Total time'
+        totalTime: 'Total time',
       },
       a11y: {
         play: 'Start timer',
@@ -71,7 +71,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
         buttonFullscreenExit: 'Exit fullscreen mode',
         buttonAudioActive: 'Mute audio. Currently unmuted.',
         buttonAudioInactive: 'Unmute audio. Currently muted.',
-      }
+      },
     }, params);
 
     if (this.params.startTimeGroup.keepState) {
@@ -107,7 +107,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
       if (this.params.signal?.[0]?.path) {
         this.finishedSignal = document.createElement('audio');
         this.finishedSignal.src = H5P.getPath(
-          this.params.signal[0].path, this.contentId
+          this.params.signal[0].path, this.contentId,
         );
 
         const track = this.audioContext
@@ -119,7 +119,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
         this.backgroundMusic = document.createElement('audio');
         this.backgroundMusic.loop = true;
         this.backgroundMusic.src = H5P.getPath(
-          this.params.music[0].path, this.contentId
+          this.params.music[0].path, this.contentId,
         );
 
         const track = this.audioContext
@@ -219,7 +219,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
         }
       }, {
         root: document.documentElement,
-        threshold: 0
+        threshold: 0,
       });
       this.observer.observe(dom);
     });
@@ -480,7 +480,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
    */
   getTitle() {
     return H5P.createTitle(
-      this.extras?.metadata?.title || Timekeeper.DEFAULT_DESCRIPTION
+      this.extras?.metadata?.title || Timekeeper.DEFAULT_DESCRIPTION,
     );
   }
 
@@ -538,10 +538,10 @@ export default class Timekeeper extends H5P.EventDispatcher {
             max: 1,
             min: 0,
             raw: 1,
-            scaled: 1.0
-          }
+            scaled: 1.0,
+          },
         },
-        xAPIEvent.data.statement.result || {}
+        xAPIEvent.data.statement.result || {},
       );
     }
 
@@ -589,7 +589,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
     }
     statement.verb = {
       'id': `https://w3id.org/xapi/dod-isd/verbs/${verb}`,
-      'display': { 'en-US': verb }
+      'display': { 'en-US': verb },
     };
   }
 
@@ -638,7 +638,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
           tooLateText: this.params.datetimeGroup.tooLateText,
           format: this.params.timeFormat,
           noFullscreen: this.noFullscreen,
-          granularity: this.params.granularity
+          granularity: this.params.granularity,
         },
         {
           onStateChanged: (state, timeMs) => {
@@ -649,8 +649,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           },
           onButtonFullscreenClicked: () => {
             this.handleFullscreenClicked();
-          }
-        }
+          },
+        },
       );
 
       const toolbarButtons = [];
@@ -659,7 +659,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
       }
 
       this.toolbar = new Toolbar({
-        buttons: toolbarButtons
+        buttons: toolbarButtons,
       });
     }
     else if (this.params.mode === 'starttime') {
@@ -687,7 +687,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
           finishedText: this.params.startTimeGroup.finishedText,
           format: this.params.timeFormat,
           noFullscreen: this.noFullscreen,
-          granularity: this.params.granularity
+          granularity: this.params.granularity,
         },
         {
           onStateChanged: (state, timeMs) => {
@@ -698,8 +698,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           },
           onButtonFullscreenClicked: () => {
             this.handleFullscreenClicked();
-          }
-        }
+          },
+        },
       );
 
       const toolbarButtons = [];
@@ -717,7 +717,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
       }
 
       this.toolbar = new Toolbar({
-        buttons: toolbarButtons
+        buttons: toolbarButtons,
       });
     }
     else {
@@ -729,7 +729,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
           mode: 'stopwatch',
           format: 'stopwatch',
           noFullscreen: this.noFullscreen,
-          granularity: this.params.granularity
+          granularity: this.params.granularity,
         },
         {
           onStateChanged: (state, timeMs) => {
@@ -740,8 +740,8 @@ export default class Timekeeper extends H5P.EventDispatcher {
           },
           onButtonFullscreenClicked: () => {
             this.handleFullscreenClicked();
-          }
-        }
+          },
+        },
       );
 
       // Toolbar
@@ -750,20 +750,20 @@ export default class Timekeeper extends H5P.EventDispatcher {
           buttons.play,
           buttons.pause,
           buttons.lap,
-          buttons.reset
-        ]
+          buttons.reset,
+        ],
       });
 
       // Laptracker
       this.laptracker = new Laptracker(
         {
-          dictionary: this.dictionary
+          dictionary: this.dictionary,
         },
         {
           onResize: () => {
             this.trigger('resize');
-          }
-        }
+          },
+        },
       );
     }
   }
@@ -784,12 +784,12 @@ export default class Timekeeper extends H5P.EventDispatcher {
             id: 'normal',
             label: (this.params.mode === 'stopwatch') ?
               this.dictionary.get('a11y.playStopwatch') :
-              this.dictionary.get('a11y.play')
-          }
+              this.dictionary.get('a11y.play'),
+          },
         ],
         onClick: () => {
           this.handleClickPlay();
-        }
+        },
       },
       pause: {
         id: 'pause',
@@ -799,25 +799,25 @@ export default class Timekeeper extends H5P.EventDispatcher {
             id: 'normal',
             label: (this.params.mode === 'stopwatch') ?
               this.dictionary.get('a11y.pauseStopwatch') :
-              this.dictionary.get('a11y.pause')
-          }
+              this.dictionary.get('a11y.pause'),
+          },
         ],
         hidden: true,
         onClick: () => {
           this.handleClickPause();
-        }
+        },
       },
       lap: {
         a11y: { disabled: this.dictionary.get('a11y.lapDisabled') },
         id: 'lap',
         type: 'pulse',
         pulseStates: [
-          { id: 'normal', label: this.dictionary.get('a11y.lap') }
+          { id: 'normal', label: this.dictionary.get('a11y.lap') },
         ],
         disabled: true,
         onClick: () => {
           this.handleClickLap();
-        }
+        },
       },
       reset: {
         id: 'reset',
@@ -827,12 +827,12 @@ export default class Timekeeper extends H5P.EventDispatcher {
             id: 'normal',
             label: (this.params.mode === 'stopwatch') ?
               this.dictionary.get('a11y.resetStopwatch') :
-              this.dictionary.get('a11y.reset')
-          }
+              this.dictionary.get('a11y.reset'),
+          },
         ],
         onClick: () => {
           this.handleClickReset();
-        }
+        },
       },
       music: {
         id: 'music',
@@ -840,17 +840,17 @@ export default class Timekeeper extends H5P.EventDispatcher {
         pulseStates: [
           {
             id: 'muted',
-            label: this.dictionary.get('a11y.buttonAudioInactive')
+            label: this.dictionary.get('a11y.buttonAudioInactive'),
           },
           {
             id: 'playing',
-            label: this.dictionary.get('a11y.buttonAudioActive')
-          }
+            label: this.dictionary.get('a11y.buttonAudioActive'),
+          },
         ],
         onClick: () => {
           this.toggleMusic();
-        }
-      }
+        },
+      },
     });
   }
 
@@ -863,7 +863,7 @@ export default class Timekeeper extends H5P.EventDispatcher {
     const xAPIEvent = this.createXAPIEvent('completed');
 
     return {
-      statement: xAPIEvent.data.statement
+      statement: xAPIEvent.data.statement,
     };
   }
 
